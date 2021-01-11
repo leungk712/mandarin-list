@@ -6,6 +6,7 @@
       group="characters"
       @start="drag = true"
       @end="drag = false"
+      class="pa-6"
     >
       <v-card
         v-for="(character, idx) in posts.mandarinList"
@@ -42,6 +43,7 @@
             data-testid="edit-card-button"
             class="edit-card-button mr-2"
             @click="handleEdit(character._id)"
+            color="blue-grey lighten-1"
           >
             create
           </v-icon>
@@ -49,6 +51,7 @@
             data-testid="edit-card-button"
             class="edit-card-button mr-2"
             @click="handleDelete(character._id)"
+            color="red"
           >
             delete_outline
           </v-icon>
@@ -88,8 +91,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
+import { PostsState } from "@/models";
 import Draggable from "vuedraggable";
-import {PostPayload, PostsState} from "@/models";
 import PostsModule from "@/store/modules/posts";
 
 const posts = namespace(PostsModule.name);

@@ -8,9 +8,9 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
+import { Example, PostPayload, PostsState } from "@/models";
 import CreateCharacter from "@/components/CreateCharacter.vue";
 import ListCard from "@/components/ListCard.vue";
-import { Example, PostPayload, PostsState } from "@/models";
 import PostsModule from "@/store/modules/posts";
 
 const posts = namespace(PostsModule.name);
