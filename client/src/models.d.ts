@@ -14,6 +14,6 @@ export interface RootState {
   posts: PostState;
 }
 
-export interface PostState {
-  mandarin: boolean;
+export interface PostsState {
+  mandarinList: [];
 }

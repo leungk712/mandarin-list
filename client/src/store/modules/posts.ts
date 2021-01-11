@@ -1,17 +1,17 @@
-import { PostState, RootState } from "@/models";
+import { PostsState, RootState } from "@/models";
 import { ActionTree, MutationTree } from "vuex";
 import axios, { AxiosResponse } from "axios";
 
-export const postState: PostState = {
-  mandarin: false
+export const postState: PostsState = {
+  mandarinList: []
 };
 
-export const postActions: ActionTree<PostState, RootState> = {
-  getMandarinList: ({ commit, dispatch }, payload) => {
+export const postActions: ActionTree<PostsState, RootState> = {
+  getMandarinList: ({ commit }) => {
     return axios
       .get(`${process.env.VUE_APP_API_HOST}/api/posts`)
       .then((resp: AxiosResponse) => {
-        console.log("response", resp);
+        commit("setMandarinList", resp.data);
       })
       .catch(err => {
         console.log(err);
@@ -19,7 +19,11 @@ export const postActions: ActionTree<PostState, RootState> = {
   }
 };
 
-export const postMutations: MutationTree<PostState> = {};
+export const postMutations: MutationTree<PostsState> = {
+  setMandarinList: (state, list) => {
+    state.mandarinList = list;
+  }
+};
 
 export default {
   name: "posts",
