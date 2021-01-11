@@ -20,14 +20,18 @@ router.route("/:id").get((req, res) => {
 
 // POST
 router.route("/").post((req, res) => {
-    const chineseCharacter = req.body.chineseCharacter;
-    const example = req.body.example;
+    const character = req.body.character;
+    const pinyin = req.body.pinyin;
+    const english = req.body.english;
+    const examples = req.body.examples;
     const starred = req.body.starred;
     const date = Date.parse(req.body.date);
 
     const newPost = new Post({
-        chineseCharacter,
-        example,
+        character,
+        pinyin,
+        english,
+        examples,
         starred,
         date
     });
@@ -38,12 +42,13 @@ router.route("/").post((req, res) => {
 });
 
 // UPDATE
-
-router.route("/:id").patch((req, res) => {
+router.route("/:id").put((req, res) => {
     Post.findByIdAndUpdate(req.params.id)
         .then(post => {
-            post.chineseCharacter = req.body.chineseCharacter;
-            post.example = req.body.example;
+            post.character = req.body.character;
+            post.pinyin = req.body.pinyin;
+            post.english = req.body.english;
+            post.examples = req.body.examples;
             post.starred = req.body.starred;
             post.date = Date.parse(req.body.date);
 
@@ -55,7 +60,6 @@ router.route("/:id").patch((req, res) => {
 });
 
 // DELETE
-
 router.route("/:id").delete((req, res) => {
     Post.findByIdAndDelete(req.params.id)
         .then(() => res.json('Post deleted.'))

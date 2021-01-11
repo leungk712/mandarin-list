@@ -1,0 +1,43 @@
+Mandarin List Project
+
+// Overview
+
+Project will allow people to type in chinese characters into an input field alongside the pinyin, english
+translation, sentence examples.
+
+Users can also click on a star to add to a list of favorites
+
+CRUD
+1. GET all posts
+2. POST a new post
+3. PUT an existing post
+4. DELETE an exist post
+
+// Front-end
+
+1. Vue
+2. Vuetify (?) / consider a new framework for practice
+3. TypeScript
+4. Jest
+
+// HTTP Request
+
+1. Axios
+
+// Back-end
+
+1. Node
+2. Express.js
+3. MongoDB
+4. Mongoose
+
+// Deployment
+
+Netlify vs Heroku?
+
+// Product Questions
+
+Public facing? Users login/personal account
+
+1. User logs in --> user dashboard --> dashboard contains list of all words --> add button
+
