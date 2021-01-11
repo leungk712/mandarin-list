@@ -22,17 +22,18 @@ export const postActions: ActionTree<PostsState, RootState> = {
     return axios
       .get(`${process.env.VUE_APP_API_HOST}/api/posts/${id}`)
       .then((resp: AxiosResponse) => {
+        console.log(resp);
         console.log(id);
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   },
 
   submitMandarinExample: ({ dispatch }, payload) => {
     return axios
       .post(`${process.env.VUE_APP_API_HOST}/api/posts`, payload)
-      .then((resp: AxiosResponse) => {
+      .then(() => {
         dispatch("getMandarinList");
       })
       .catch(err => {
@@ -43,7 +44,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
   updateMandarinExample: ({ dispatch }, payload) => {
     return axios
       .put(`${process.env.VUE_APP_API_HOST}/api/posts/${payload._id}`, payload)
-      .then((resp: AxiosResponse) => {
+      .then(() => {
         console.log("update payload", payload);
       })
       .catch(err => {

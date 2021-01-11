@@ -104,7 +104,9 @@ const posts = namespace(PostsModule.name);
 export default class ListCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
-  @posts.Action("deleteMandarinExample") public deleteMandarinExample!: (id: string) => void;
+  @posts.Action("deleteMandarinExample") public deleteMandarinExample!: (
+    id: string
+  ) => void;
 
   // ===== Data ===== //
   public reveal = true;

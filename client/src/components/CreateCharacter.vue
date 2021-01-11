@@ -1,10 +1,7 @@
 <template>
   <div>
     <v-row align-content="center" justify="center">
-      <div
-        class="display-4"
-        style="height: 15vh; width: 35vw"
-      >
+      <div class="display-4" style="height: 15vh; width: 35vw">
         <p class="text-center">{{ newExample.character }}</p>
       </div>
     </v-row>
@@ -55,7 +52,11 @@
     </v-row>
     <v-row align-content="center" justify="center">
       <div>
-        <ul v-for="example in newExample.examples" :key="example.id" class="my-4">
+        <ul
+          v-for="example in newExample.examples"
+          :key="example.id"
+          class="my-4"
+        >
           <span>
             <v-icon class="mr-1">chevron_right</v-icon>
             <span class="title">{{ example.sentence }}</span>
@@ -132,7 +133,7 @@ export default class CreateCharacter extends Vue {
 
   // ===== Methods ===== //
   public handleAddExample() {
-    this.newExample?.examples.push(this.example);
+    this.newExample?.examples?.push(this.example);
     this.example = {
       id: Math.floor(Math.random() * 1000),
       sentence: ""
@@ -154,8 +155,10 @@ export default class CreateCharacter extends Vue {
     };
   }
 
-  public handleDeleteSentence(id: string) {
-    const filteredSentences = this.newExample.examples.filter(example => example.id !== id);
+  public handleDeleteSentence(id: number) {
+    const filteredSentences = this.newExample.examples?.filter(
+      example => example.id !== id
+    );
     this.newExample.examples = filteredSentences;
   }
 

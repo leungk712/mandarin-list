@@ -1,6 +1,6 @@
 <template>
   <div class="my-4">
-    <CreateCharacter class="my-6"/>
+    <CreateCharacter class="my-6" />
     <ListCard class="mt-6" />
   </div>
 </template>
