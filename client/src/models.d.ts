@@ -4,8 +4,14 @@ export interface PostPayload {
   character: string;
   pinyin: string;
   english: string;
-  examples?: [];
+  examples?: Example[];
   starred?: boolean;
+  date: Date;
+}
+
+export interface Example {
+  id: number;
+  sentence: string;
 }
 
 // ===== Store Interfaces ===== //
