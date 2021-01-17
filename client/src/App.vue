@@ -1,9 +1,7 @@
 <template>
   <v-app>
-    <v-toolbar color="#8bbf9f">
-      <v-toolbar-title class="white--text font-weight-bold"
-        >Community Mandarin List</v-toolbar-title
-      >
+    <v-toolbar color="#8bbf9f" max-height="6vh">
+      <v-toolbar-title class="white--text font-weight-bold">Community Mandarin List</v-toolbar-title>
     </v-toolbar>
     <transition appear name="slide-x-transition" mode="out-in">
       <router-view />

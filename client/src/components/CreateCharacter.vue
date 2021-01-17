@@ -112,7 +112,7 @@ const posts = namespace(PostsModule.name);
 export default class CreateCharacter extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
-  @posts.Action("submitMandarinExample") public submitMandarinExample!: (
+  @posts.Action("submitMandarinCharacter") public submitMandarinCharacter!: (
     payload: PostPayload
   ) => void;
 
@@ -143,7 +143,7 @@ export default class CreateCharacter extends Vue {
   public handleSubmit() {
     const payload = this.newExample;
 
-    this.submitMandarinExample(payload);
+    this.submitMandarinCharacter(payload);
 
     this.newExample = {
       character: "",

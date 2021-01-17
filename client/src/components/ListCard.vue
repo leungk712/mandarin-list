@@ -94,6 +94,7 @@ import { namespace, State } from "vuex-class";
 import { PostsState } from "@/models";
 import Draggable from "vuedraggable";
 import PostsModule from "@/store/modules/posts";
+import router from "@/router";
 
 const posts = namespace(PostsModule.name);
 
@@ -128,8 +129,8 @@ export default class ListCard extends Vue {
     this.reveal = false;
   }
 
-  public handleEdit(id: string) {
-    console.log("edit id", id);
+  public handleEdit(cardId: string) {
+    router.push({ name: "CharacterCard", params: { id: cardId}});
   }
 
   public handleDelete(id: string) {

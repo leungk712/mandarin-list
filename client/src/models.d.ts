@@ -21,5 +21,7 @@ export interface RootState {
 }
 
 export interface PostsState {
+  loadingState: string[];
   mandarinList: [];
+  selectedMandarin: {};
 }
