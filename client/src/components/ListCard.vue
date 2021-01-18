@@ -130,7 +130,7 @@ export default class ListCard extends Vue {
   }
 
   public handleEdit(cardId: string) {
-    router.push({ name: "CharacterCard", params: { id: cardId}});
+    router.push({ name: "CharacterCard", params: { id: cardId }});
   }
 
   public handleDelete(id: string) {
