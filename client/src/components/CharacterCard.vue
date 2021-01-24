@@ -1,47 +1,66 @@
 <template>
   <div>
     <v-skeleton-loader
-      v-if="loadingStatus.includes('retrieving mandarin character...')"
+      v-if="loadingStatus.includes('retrieving mandarin character...') && !selectedCharacter"
       type="card"
       elevation="14"
       tile
     />
     <div v-else>
-      <v-container class="mt-6" v-if="this.$vuetify.breakpoint.smAndUp">
-        <v-row>
+      <v-container class="update-container mt-6 pa-6" v-if="this.$vuetify.breakpoint.smAndUp">
+        <v-row justify="center">
           <h1>Edit {{ selectedCharacter.character }}</h1>
         </v-row>
+        <v-divider class="character-divider my-4"/>
         <v-form class="mt-4">
           <v-container>
             <v-row>
               <v-col cols="4">
                 <v-text-field
-                  label="Character ( )"
+                  data-testid="update-character-character-input"
+                  class="update-character-character-input"
+                  label="Character"
+                  v-model="updateCharacter.character"
+                  outlined
                 />
               </v-col>
               <v-col cols="4">
                 <v-text-field
-                  label="Pinyin ( )"
+                  data-testid="update-character-pinyin-input"
+                  class="update-character-pinyin-input"
+                  label="Pinyin"
+                  v-model="updateCharacter.pinyin"
+                  outlined
                 />
               </v-col>
               <v-col cols="4">
                 <v-text-field
-                  label="English ( )"
+                  data-testid="update-character-english-input"
+                  class="update-character-english-input"
+                  label="English"
+                  v-model="updateCharacter.english"
+                  outlined
                 />
               </v-col>
             </v-row>
             <v-row>
               <div>
-                <v-expansion-panels>
+                <v-expansion-panels focusable>
                   <v-expansion-panel
-                      v-for="(example, i) in selectedCharacter.examples"
-                      :key="example.id"
+                    v-for="(example, i) in selectedCharacter.examples"
+                    :key="example.id"
+                    class="my-1"
                   >
                     <v-expansion-panel-header>
-                      {{ selectedCharacter.character }} Example #{{ i+1 }}
+                      <span class="title">
+                        {{ selectedCharacter.character }} Example #{{ i+1 }} ｜
+                        {{ selectedCharacter.character }} 第 {{ converter.toWords(i+1)}} 个 例子
+                      </span>
                     </v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                      {{ example.sentence }}
+                    <v-expansion-panel-content class="mt-2">
+                      <span>
+                        <span class="title">{{ example.sentence }}</span>
+                      </span>
                     </v-expansion-panel-content>
                   </v-expansion-panel>
                 </v-expansion-panels>
@@ -50,20 +69,18 @@
             <v-row class="mt-4">
               <v-spacer />
               <v-btn
-                  data-testid="return-home-btn"
-                  class="return-home-btn mr-4"
-                  color="red lighten-1"
-                  flat
-                  @click.once="handleReturnHome"
+                data-testid="return-home-btn"
+                class="return-home-btn mr-4"
+                color="red lighten-1"
+                @click.once="handleReturnHome"
               >
-                Return Home
+                Cancel
               </v-btn>
               <v-btn
-                  data-testid="submit-edit-btn"
-                  class="submit-edit-btn"
-                  color="teal lighten-1"
-                  flat
-                  @click.once="handleSubmitUpdate"
+                data-testid="submit-edit-btn"
+                class="submit-edit-btn"
+                color="teal lighten-1"
+                @click.once="handleSubmitUpdate"
               >
                 Submit Update
               </v-btn>
@@ -82,6 +99,7 @@ import { PostsState } from "@/models";
 import Vue from "vue";
 import PostsModule from "@/store/modules/posts";
 import router from "@/router";
+import converter from "number-to-chinese-words";
 
 const posts = namespace(PostsModule.name);
 
@@ -92,12 +110,14 @@ const posts = namespace(PostsModule.name);
 export default class CharacterCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
+  @posts.Action("clearSelectedMandarin") public clearSelectedMandarin!: () => void;
   @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (id: string) => void;
 
   // ===== Data ===== //
 
   // ===== Methods ===== //
   public handleReturnHome(): void {
+    this.clearSelectedMandarin();
     router.push({name: "Home"});
   }
 
@@ -108,11 +128,23 @@ export default class CharacterCard extends Vue {
   }
 
   // ===== Computed ===== //
+  get converter() {
+    return converter;
+  }
   get loadingStatus(): string[] {
     return this.posts.loadingState;
   }
-  get selectedCharacter(): {} {
+  get selectedCharacter() {
     return this.posts.selectedMandarin;
+  }
+  get updateCharacter() {
+    return {
+      character: this.selectedCharacter.character,
+      pinyin: this.selectedCharacter.pinyin,
+      english: this.selectedCharacter.english,
+      examples: this.selectedCharacter.examples,
+      starred: this.selectedCharacter.starred
+    }
   }
 
   // ===== Lifecycle ===== //
@@ -121,3 +153,15 @@ export default class CharacterCard extends Vue {
   }
 }
 </script>
+
+<style>
+.character-divider {
+  width: 350px;
+  margin: 0px auto;
+}
+
+.update-container {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+</style>

@@ -72,6 +72,10 @@ export const postActions: ActionTree<PostsState, RootState> = {
       .catch((err) => {
         throw new Error(err);
       });
+  },
+
+  clearSelectedMandarin: ({ commit}) => {
+    commit("resetSelectedMandarin");
   }
 };
 
@@ -81,6 +85,9 @@ export const postMutations: MutationTree<PostsState> = {
   },
   removeFromLoadingState: (state: PostsState, message: string) => {
     state.loadingState = state.loadingState.filter(loadMessages => loadMessages !== message);
+  },
+  resetSelectedMandarin: (state) => {
+    state.selectedMandarin = {};
   },
   setMandarinList: (state, list) => {
     state.mandarinList = list;

@@ -1,5 +1,6 @@
 <template>
   <div class="my-4 pa-4">
+    <h3>Select a card and drag it anywhere you like on the list.</h3>
     <Draggable
       tag="v-card"
       v-model="posts.mandarinList"
@@ -35,21 +36,29 @@
           <p class="title">{{ character.pinyin }} ({{ character.english }})</p>
         </v-card-text>
         <v-card-actions>
-          <v-btn text color="teal accent-4" @click.native="handleReveal(idx)">
-            {{ character.character }} Examples
+          <v-btn
+            data-testid="character-examples-btn"
+            class="character-examples-btn"
+            v-if="character.examples.length"
+            text
+            color="teal accent-4"
+            @click.native="handleReveal(idx)"
+          >
+            {{ character.character }}
+            Examples ({{ character.examples.length }} | {{ converter.toWords(character.examples.length)}})
           </v-btn>
           <v-spacer />
           <v-icon
-            data-testid="edit-card-button"
-            class="edit-card-button mr-2"
+            data-testid="edit-card-btn"
+            class="edit-card-btn mr-2"
             @click="handleEdit(character._id)"
             color="blue-grey lighten-1"
           >
             create
           </v-icon>
           <v-icon
-            data-testid="edit-card-button"
-            class="edit-card-button mr-2"
+            data-testid="edit-card-btn"
+            class="edit-card-btn mr-2"
             @click="handleDelete(character._id)"
             color="red"
           >
@@ -95,6 +104,7 @@ import { PostsState } from "@/models";
 import Draggable from "vuedraggable";
 import PostsModule from "@/store/modules/posts";
 import router from "@/router";
+import converter from "number-to-chinese-words";
 
 const posts = namespace(PostsModule.name);
 
@@ -112,6 +122,7 @@ export default class ListCard extends Vue {
   // ===== Data ===== //
   public reveal = true;
   public selectedIdx = -1;
+  public hello = converter;
 
   // ===== Methods ===== //
   public handleRating(value: number, id: string) {
@@ -130,11 +141,16 @@ export default class ListCard extends Vue {
   }
 
   public handleEdit(cardId: string) {
-    router.push({ name: "CharacterCard", params: { id: cardId }});
+    router.push({ name: "CharacterCard", params: { id: cardId } });
   }
 
   public handleDelete(id: string) {
     this.deleteMandarinExample(id);
+  }
+
+  // ===== Computed ===== //
+  get converter() {
+    return converter;
   }
 }
 </script>

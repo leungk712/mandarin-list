@@ -44,7 +44,7 @@
           data-testid="new-example-sentence-input"
           class="new-example-sentence-input"
           v-model="example.sentence"
-          label="Sentence example"
+          label="Sentence example..."
           placeholder="Ex. （你好， Kevin。你今天做什么?)"
           outlined
         />
