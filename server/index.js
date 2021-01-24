@@ -11,7 +11,11 @@ app.use(cors());
 
 const postsRouter = require('./routes/api/posts');
 
-app.use('/', postsRouter);
+app.use('/api/posts', postsRouter);
+
+app.get('/', function (req, res) {
+    res.send('Hello!!!');
+});
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});
