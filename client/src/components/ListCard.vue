@@ -45,7 +45,8 @@
             @click.native="handleReveal(idx)"
           >
             {{ character.character }}
-            Examples ({{ character.examples.length }} | {{ converter.toWords(character.examples.length)}})
+            Examples ({{ character.examples.length }} |
+            {{ converter.toWords(character.examples.length) }})
           </v-btn>
           <v-spacer />
           <v-icon

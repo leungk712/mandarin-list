@@ -15,9 +15,12 @@ export const postActions: ActionTree<PostsState, RootState> = {
       .get(`${process.env.VUE_APP_API_HOST}/api/posts`)
       .then((resp: AxiosResponse) => {
         commit("setMandarinList", resp.data);
-        commit("removeFromLoadingState", "retrieving list of mandarin characters...");
+        commit(
+          "removeFromLoadingState",
+          "retrieving list of mandarin characters..."
+        );
       })
-      .catch((err) => {
+      .catch(err => {
         throw new Error(err);
       });
   },
@@ -30,7 +33,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         commit("setSelectedMandarin", resp.data);
         commit("removeFromLoadingState", "retrieving mandarin character...");
       })
-      .catch((err) => {
+      .catch(err => {
         throw new Error(err);
       });
   },
@@ -43,7 +46,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         dispatch("getMandarinList");
         commit("removeFromLoadingState", "submitting mandarin character...");
       })
-      .catch((err) => {
+      .catch(err => {
         throw new Error(err);
       });
   },
@@ -56,7 +59,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         console.log("update payload", payload);
         commit("removeFromLoadingState", "updating mandarin character...");
       })
-      .catch((err) => {
+      .catch(err => {
         throw new Error(err);
       });
   },
@@ -69,12 +72,12 @@ export const postActions: ActionTree<PostsState, RootState> = {
         dispatch("getMandarinList");
         commit("removeFromLoadingState", "deleting mandarin character...");
       })
-      .catch((err) => {
+      .catch(err => {
         throw new Error(err);
       });
   },
 
-  clearSelectedMandarin: ({ commit}) => {
+  clearSelectedMandarin: ({ commit }) => {
     commit("resetSelectedMandarin");
   }
 };
@@ -84,9 +87,11 @@ export const postMutations: MutationTree<PostsState> = {
     state.loadingState.push(message);
   },
   removeFromLoadingState: (state: PostsState, message: string) => {
-    state.loadingState = state.loadingState.filter(loadMessages => loadMessages !== message);
+    state.loadingState = state.loadingState.filter(
+      loadMessages => loadMessages !== message
+    );
   },
-  resetSelectedMandarin: (state) => {
+  resetSelectedMandarin: state => {
     state.selectedMandarin = {};
   },
   setMandarinList: (state, list) => {

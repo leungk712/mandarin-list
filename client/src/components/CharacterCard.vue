@@ -1,17 +1,23 @@
 <template>
   <div>
     <v-skeleton-loader
-      v-if="loadingStatus.includes('retrieving mandarin character...') && !selectedCharacter"
+      v-if="
+        loadingStatus.includes('retrieving mandarin character...') &&
+          !selectedCharacter
+      "
       type="card"
       elevation="14"
       tile
     />
     <div v-else>
-      <v-container class="update-container mt-6 pa-6" v-if="this.$vuetify.breakpoint.smAndUp">
+      <v-container
+        class="update-container mt-6 pa-6"
+        v-if="this.$vuetify.breakpoint.smAndUp"
+      >
         <v-row justify="center">
           <h1>Edit {{ selectedCharacter.character }}</h1>
         </v-row>
-        <v-divider class="character-divider my-4"/>
+        <v-divider class="character-divider my-4" />
         <v-form class="mt-4">
           <v-container>
             <v-row>
@@ -53,8 +59,11 @@
                   >
                     <v-expansion-panel-header>
                       <span class="title">
-                        {{ selectedCharacter.character }} Example #{{ i+1 }} ｜
-                        {{ selectedCharacter.character }} 第 {{ converter.toWords(i+1)}} 个 例子
+                        {{ selectedCharacter.character }} Example #{{
+                          i + 1
+                        }}
+                        ｜ {{ selectedCharacter.character }} 第
+                        {{ converter.toWords(i + 1) }} 个 例子
                       </span>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content class="mt-2">
@@ -106,19 +115,21 @@ const posts = namespace(PostsModule.name);
 @Component({
   name: "CharacterCard"
 })
-
 export default class CharacterCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
-  @posts.Action("clearSelectedMandarin") public clearSelectedMandarin!: () => void;
-  @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (id: string) => void;
+  @posts.Action("clearSelectedMandarin")
+  public clearSelectedMandarin!: () => void;
+  @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (
+    id: string
+  ) => void;
 
   // ===== Data ===== //
 
   // ===== Methods ===== //
   public handleReturnHome(): void {
     this.clearSelectedMandarin();
-    router.push({name: "Home"});
+    router.push({ name: "Home" });
   }
 
   public handleSubmitUpdate(): void {
@@ -139,12 +150,12 @@ export default class CharacterCard extends Vue {
   }
   get updateCharacter() {
     return {
-      character: this.selectedCharacter.character,
-      pinyin: this.selectedCharacter.pinyin,
-      english: this.selectedCharacter.english,
-      examples: this.selectedCharacter.examples,
-      starred: this.selectedCharacter.starred
-    }
+      character: this.selectedCharacter ? this.selectedCharacter.character: "",
+      pinyin: this.selectedCharacter ? this.selectedCharacter.pinyin : "",
+      english: this.selectedCharacter ? this.selectedCharacter.english : "",
+      examples: this.selectedCharacter ? this.selectedCharacter.examples : [],
+      starred: this.selectedCharacter ? this.selectedCharacter.starred: false
+    };
   }
 
   // ===== Lifecycle ===== //

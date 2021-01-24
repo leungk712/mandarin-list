@@ -12,7 +12,8 @@ const routes: Array<RouteConfig> = [
   {
     path: "/edit/:id",
     name: "CharacterCard",
-    component: () => import(/* webpackChunkName: "home" */ "@/components/CharacterCard.vue")
+    component: () =>
+      import(/* webpackChunkName: "home" */ "@/components/CharacterCard.vue")
   }
 ];
 

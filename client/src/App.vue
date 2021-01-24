@@ -1,9 +1,7 @@
 <template>
   <v-app>
     <v-toolbar color="#8bbf9f" max-height="6vh">
-      <v-toolbar-title
-          class="white--text font-weight-bold"
-      >
+      <v-toolbar-title class="white--text font-weight-bold">
         Community Mandarin List
       </v-toolbar-title>
       <v-spacer />
@@ -32,9 +30,8 @@ import router from "@/router";
 })
 export default class App extends Vue {
   public handleReturnHome(): void {
-    router.push({name: "Home"});
+    router.push({ name: "Home" });
   }
-
 }
 </script>
 
