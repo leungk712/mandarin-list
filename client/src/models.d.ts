@@ -2,11 +2,24 @@
 
 export interface PostPayload {
   character: string;
-  pinyin: string;
   english: string;
   examples?: Example[];
-  starred?: boolean;
+  pinyin: string;
+  starred: boolean;
   date: Date;
+}
+
+export interface SelectedCharacter {
+  __v: number;
+  _id: string;
+  character: string;
+  createdAt: string;
+  date: string;
+  english: string;
+  examples: Example[];
+  pinyin: string;
+  starred: boolean;
+  updatedAt: string;
 }
 
 export interface Example {

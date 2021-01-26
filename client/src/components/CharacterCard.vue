@@ -104,7 +104,7 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { PostsState } from "@/models";
+import {PostPayload, PostsState, SelectedCharacter} from "@/models";
 import Vue from "vue";
 import PostsModule from "@/store/modules/posts";
 import router from "@/router";
@@ -145,10 +145,10 @@ export default class CharacterCard extends Vue {
   get loadingStatus(): string[] {
     return this.posts.loadingState;
   }
-  get selectedCharacter() {
+  get selectedCharacter(): any {
     return this.posts.selectedMandarin;
   }
-  get updateCharacter() {
+  get updateCharacter(): object {
     return {
       character: this.selectedCharacter ? this.selectedCharacter.character: "",
       pinyin: this.selectedCharacter ? this.selectedCharacter.pinyin : "",

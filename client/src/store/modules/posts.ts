@@ -1,11 +1,22 @@
-import { PostsState, PostPayload, RootState } from "@/models";
+import {PostsState, PostPayload, RootState, Example} from "@/models";
 import { ActionTree, MutationTree } from "vuex";
 import axios, { AxiosResponse } from "axios";
 
 export const postState: PostsState = {
   loadingState: [],
   mandarinList: [],
-  selectedMandarin: {}
+  selectedMandarin: {
+    __v: 0,
+    _id: "",
+    character: "",
+    createdAt: "",
+    date: "",
+    english: "",
+    examples: [],
+    pinyin: "",
+    starred: false,
+    updatedAt: ""
+  }
 };
 
 export const postActions: ActionTree<PostsState, RootState> = {

@@ -13,9 +13,7 @@ const postsRouter = require('./routes/api/posts');
 
 app.use('/api/posts', postsRouter);
 
-app.get('/', function (req, res) {
-    res.send('Hello!!!');
-});
+app.use(express.static('client/dist'));
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});
