@@ -17,7 +17,7 @@ app.use('/api/posts', postsRouter);
 app.use(express.static('../client/dist'));
 
 app.get('/', function (req, res) {
-    res.render(path.join(__dirname + '../client/dist/index.html'));
+    res.send("Hello world!!!!");
 });
 
 const uri = process.env.ATLAS_URI;
