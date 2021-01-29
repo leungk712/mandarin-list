@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 require('dotenv').config();
 
 // Middleware
@@ -13,7 +14,11 @@ const postsRouter = require('./routes/api/posts');
 
 app.use('/api/posts', postsRouter);
 
-app.use(express.static('client/dist'));
+app.use(express.static('../client/dist'));
+
+app.get('/', function (req, res) {
+    res.render(path.join(__dirname + '../client/dist/index.html'));
+});
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});

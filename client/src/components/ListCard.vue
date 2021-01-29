@@ -116,7 +116,7 @@ const posts = namespace(PostsModule.name);
 export default class ListCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
-  @posts.Action("deleteMandarinExample") public deleteMandarinExample!: (
+  @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (
     id: string
   ) => void;
 
@@ -146,8 +146,12 @@ export default class ListCard extends Vue {
   }
 
   public handleDelete(id: string) {
-    this.deleteMandarinExample(id);
+    this.deleteMandarinCharacter(id);
   }
+
+  // public handleItemSort() {
+  //   console.log("sprted");
+  // }
 
   // ===== Computed ===== //
   get converter() {
