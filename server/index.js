@@ -12,7 +12,7 @@ app.use(cors());
 
 const postsRouter = require('./routes/api/posts');
 
-app.use('/api/posts', postsRouter);
+app.use('/posts', postsRouter);
 
 app.get("/", (req, res) => {
     res.send("Hello to mandarin API");
