@@ -14,11 +14,15 @@ const postsRouter = require('./routes/api/posts');
 
 app.use('/api/posts', postsRouter);
 
-app.use(express.static('../client/dist'));
-
-app.get('/', function (req, res) {
-    res.send("Hello world!!!!");
+app.get("/", (req, res) => {
+    res.send("Hello to mandarin API");
 });
+
+// app.use(express.static('../client/dist'));
+//
+// app.get('/', function (req, res) {
+//     res.render(path.join(__dirname + '../client/dist/index.html'));
+// });
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});

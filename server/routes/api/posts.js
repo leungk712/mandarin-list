@@ -1,25 +1,23 @@
 const express = require('express');
-const moment = require('moment');
 const router = express.Router();
 require('dotenv').config();
 const Post = require('../../models/post.model');
 
-
 // GET
-router.route("/posts").get((req, res) => {
+router.route("/").get((req, res) => {
     Post.find()
         .then(posts => res.json(posts))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
-router.route("/posts/:id").get((req, res) => {
+router.route("/:id").get((req, res) => {
     Post.findById(req.params.id)
         .then(post => res.json(post))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
 // POST
-router.route("/posts").post((req, res) => {
+router.route("/").post((req, res) => {
     const character = req.body.character;
     const pinyin = req.body.pinyin;
     const english = req.body.english;
@@ -42,7 +40,7 @@ router.route("/posts").post((req, res) => {
 });
 
 // UPDATE
-router.route("/posts/edit/:id").put((req, res) => {
+router.route("/:id").put((req, res) => {
     Post.findByIdAndUpdate(req.params.id)
         .then(post => {
             post.character = req.body.character;
@@ -60,7 +58,7 @@ router.route("/posts/edit/:id").put((req, res) => {
 });
 
 // DELETE
-router.route("/posts/delete/:id").delete((req, res) => {
+router.route("/:id").delete((req, res) => {
     Post.findByIdAndDelete(req.params.id)
         .then(() => res.json('Post deleted.'))
         .catch(err => res.status(400).json(`Error: ${err}`));
