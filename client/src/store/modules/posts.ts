@@ -23,7 +23,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
   getMandarinList: ({ commit }) => {
     commit("addToLoadingState", "retrieving list of mandarin characters...");
     return axios
-      .get(`${process.env.VUE_APP_API_HOST}/api/posts`)
+      .get(`${process.env.VUE_APP_API_HOST}/posts`)
       .then((resp: AxiosResponse) => {
         commit("setMandarinList", resp.data);
         commit(
@@ -39,7 +39,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
   getIndividualCharacter: ({ commit }, characterId) => {
     commit("addToLoadingState", "retrieving mandarin character...");
     return axios
-      .get(`${process.env.VUE_APP_API_HOST}/api/posts/${characterId}`)
+      .get(`${process.env.VUE_APP_API_HOST}/posts/${characterId}`)
       .then((resp: AxiosResponse) => {
         commit("setSelectedMandarin", resp.data);
         commit("removeFromLoadingState", "retrieving mandarin character...");
@@ -52,7 +52,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
   submitMandarinCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "submitting mandarin character...");
     return axios
-      .post(`${process.env.VUE_APP_API_HOST}/api/posts`, payload)
+      .post(`${process.env.VUE_APP_API_HOST}/posts`, payload)
       .then(() => {
         dispatch("getMandarinList");
         commit("removeFromLoadingState", "submitting mandarin character...");
@@ -65,7 +65,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
   updateMandarinCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "updating mandarin character...");
     return axios
-      .put(`${process.env.VUE_APP_API_HOST}/api/posts/${payload._id}`, payload)
+      .put(`${process.env.VUE_APP_API_HOST}/posts/${payload._id}`, payload)
       .then(() => {
         console.log("update payload", payload);
         commit("removeFromLoadingState", "updating mandarin character...");
@@ -78,7 +78,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
   deleteMandarinCharacter: ({ commit, dispatch }, id) => {
     commit("addToLoadingState", "deleting mandarin character...");
     return axios
-      .delete(`${process.env.VUE_APP_API_HOST}/api/posts/${id}`)
+      .delete(`${process.env.VUE_APP_API_HOST}/posts/${id}`)
       .then(() => {
         dispatch("getMandarinList");
         commit("removeFromLoadingState", "deleting mandarin character...");
