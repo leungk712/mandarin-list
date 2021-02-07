@@ -2,15 +2,14 @@
   <div class="my-4 pa-4">
     <h3>Select a card and drag it anywhere you like on the list.</h3>
     <Draggable
+      :list="updatedCharactersList"
       tag="v-card"
-      v-model="posts.mandarinList"
       group="characters"
-      @start="drag = true"
-      @end="drag = false"
       class="pa-6"
+      @change="setCharacterOrder"
     >
       <v-card
-        v-for="(character, idx) in posts.mandarinList"
+        v-for="(character, idx) in updatedCharactersList"
         :key="character._id"
         class="mx-auto my-2 pa-2"
         max-width="400"
@@ -19,18 +18,17 @@
       >
         <v-card-text>
           <v-row>
-            <p class="display-2 text--primary">
-              {{ character.character }}
-            </p>
+            <p class="display-2 text--primary">{{ character.character }}</p>
             <v-spacer />
-            <v-rating
-              length="1"
-              hover
+            <v-icon
+              data-testid="favorite-icon-select"
+              class="favorite-icon-select"
+              :color="character.starred ? 'pink' : ''"
               size="30"
-              color="yellow"
-              clearable
-              @input="handleRating($event, character._id)"
-            />
+              @click="handleRating(character)"
+            >
+            favorite_border
+            </v-icon>
           </v-row>
 
           <p class="title">{{ character.pinyin }} ({{ character.english }})</p>
@@ -101,7 +99,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { PostsState } from "@/models";
+import { PostsState, SelectedCharacter } from "@/models";
 import Draggable from "vuedraggable";
 import PostsModule from "@/store/modules/posts";
 import router from "@/router";
@@ -116,46 +114,61 @@ const posts = namespace(PostsModule.name);
 export default class ListCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
-  @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (
-    id: string
-  ) => void;
+  @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (id: string) => void;
+  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (payload: {}) => void;
+  @posts.Action("updateMandarinList") public updateMandarinList!: (list: []) => void;
 
   // ===== Data ===== //
   public reveal = true;
   public selectedIdx = -1;
-  public hello = converter;
+  public favorited = false;
 
   // ===== Methods ===== //
-  public handleRating(value: number, id: string) {
-    console.log(value, id);
-    // may need to switch this to a computed property w/ getters and setters to autoupdate
+  public handleRating(character: SelectedCharacter): void {
+    this.favorited = !this.favorited;
+
+    const payload = {
+      _id: character._id,
+      character: character.character,
+      pinyin: character.pinyin,
+      english: character.english,
+      examples: character.examples,
+      starred: this.favorited,
+      date: character.date
+    };
+    
+    this.updateMandarinCharacter(payload);
   }
 
-  public handleReveal(idx: number) {
+  public handleReveal(idx: number): void {
     this.selectedIdx = idx;
     this.reveal = true;
   }
 
-  public handleRevealClose() {
+  public handleRevealClose(): void {
     this.selectedIdx = -1;
     this.reveal = false;
   }
 
-  public handleEdit(cardId: string) {
+  public handleEdit(cardId: string): void {
     router.push({ name: "CharacterCard", params: { id: cardId } });
   }
 
-  public handleDelete(id: string) {
+  public handleDelete(id: string): void {
     this.deleteMandarinCharacter(id);
   }
 
-  // public handleItemSort() {
-  //   console.log("sprted");
-  // }
+  public setCharacterOrder(): void {
+    this.updateMandarinList(this.updatedCharactersList);
+  }
 
   // ===== Computed ===== //
-  get converter() {
+  get converter(): {} {
     return converter;
+  }
+  
+  get updatedCharactersList(): [] {
+    return this.posts.mandarinList;
   }
 }
 </script>

@@ -18,14 +18,14 @@ app.get("/", (req, res) => {
     res.send("Hello to mandarin API");
 });
 
-// app.use(express.static('../client/dist'));
-//
-// app.get('/', function (req, res) {
-//     res.render(path.join(__dirname + '../client/dist/index.html'));
-// });
+app.use(express.static('../client/dist'));
+
+app.get('/', function (req, res) {
+    res.render(path.join(__dirname + '../client/dist/index.html'));
+});
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 
 const connection = mongoose.connection;
 connection.once('open', () => {

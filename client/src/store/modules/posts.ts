@@ -62,12 +62,25 @@ export const postActions: ActionTree<PostsState, RootState> = {
       });
   },
 
+  updateMandarinList: ({ commit }, payload) => {
+    commit("addToLoadingState", "updating mandarin list...");
+    return axios
+      .put(`${process.env.VUE_APP_API_HOST}/posts/update-mandarin-list`, payload)
+      .then(() => {
+
+        commit("removeFromLoadingState", "updating mandarin list...");
+      })
+      .catch(err => {
+        throw new Error(err);
+      })
+  },
+
   updateMandarinCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "updating mandarin character...");
     return axios
       .put(`${process.env.VUE_APP_API_HOST}/posts/${payload._id}`, payload)
       .then(() => {
-        console.log("update payload", payload);
+        dispatch("getMandarinList");
         commit("removeFromLoadingState", "updating mandarin character...");
       })
       .catch(err => {

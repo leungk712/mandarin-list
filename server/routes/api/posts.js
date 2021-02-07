@@ -57,6 +57,12 @@ router.route("/:id").put((req, res) => {
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
+router.route("/update-mandarin-list").put((req, res) => {
+    Post.updateMany(req)
+        .then(() => res.json('Mandarin list order updated!'))
+        .catch(err => res.statusMessage(500).json(`Error: ${err}`));
+});
+
 // DELETE
 router.route("/:id").delete((req, res) => {
     Post.findByIdAndDelete(req.params.id)
