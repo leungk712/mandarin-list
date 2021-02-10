@@ -10,8 +10,7 @@ const postSchema = new Schema({
     starred: { type: Boolean, default: false },
     date: { type: Date, default: Date.now }
 }, {
-    timestamps: true,
-    bufferCommands: false
+    timestamps: true
 },
 );
 
