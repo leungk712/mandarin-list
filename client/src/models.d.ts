@@ -6,20 +6,20 @@ export interface PostPayload {
   examples?: Example[];
   pinyin: string;
   starred: boolean;
-  date: Date;
+  date: Date | string;
 }
 
 export interface SelectedCharacter {
   __v: number;
   _id: string;
   character: string;
-  createdAt: string;
-  date: string;
+  createdAt: Date | string;
+  date: Date | string;
   english: string;
   examples: Example[];
   pinyin: string;
   starred: boolean;
-  updatedAt: string;
+  updatedAt: Date | string;
 }
 
 export interface Example {
@@ -35,6 +35,6 @@ export interface RootState {
 
 export interface PostsState {
   loadingState: string[];
-  mandarinList: [];
-  selectedMandarin: {};
+  mandarinList: SelectedCharacter[];
+  selectedMandarin?: null | SelectedCharacter;
 }

@@ -115,8 +115,8 @@ export default class ListCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
   @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (id: string) => void;
-  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (payload: {}) => void;
-  @posts.Action("updateMandarinList") public updateMandarinList!: (list: []) => void;
+  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (payload: SelectedCharacter) => void;
+  @posts.Action("updateMandarinList") public updateMandarinList!: (list: SelectedCharacter[]) => void;
 
   // ===== Data ===== //
   public reveal = true;
@@ -129,12 +129,15 @@ export default class ListCard extends Vue {
 
     const payload = {
       _id: character._id,
+      __v: character.__v,
       character: character.character,
-      pinyin: character.pinyin,
+      createdAt: character.createdAt,
+      date: character.date,
       english: character.english,
       examples: character.examples,
+      pinyin: character.pinyin,
       starred: this.favorited,
-      date: character.date
+      updatedAt: character.updatedAt
     };
     
     this.updateMandarinCharacter(payload);
@@ -167,7 +170,7 @@ export default class ListCard extends Vue {
     return converter;
   }
   
-  get updatedCharactersList(): [] {
+  get updatedCharactersList(): SelectedCharacter[] {
     return this.posts.mandarinList;
   }
 }

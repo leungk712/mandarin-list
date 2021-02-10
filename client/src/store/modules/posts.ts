@@ -1,22 +1,15 @@
-import {PostsState, PostPayload, RootState, Example} from "@/models";
+import {
+  PostsState, 
+  SelectedCharacter,
+  RootState
+} from "@/models";
 import { ActionTree, MutationTree } from "vuex";
 import axios, { AxiosResponse } from "axios";
 
 export const postState: PostsState = {
   loadingState: [],
   mandarinList: [],
-  selectedMandarin: {
-    __v: 0,
-    _id: "",
-    character: "",
-    createdAt: "",
-    date: "",
-    english: "",
-    examples: [],
-    pinyin: "",
-    starred: false,
-    updatedAt: ""
-  }
+  selectedMandarin: null
 };
 
 export const postActions: ActionTree<PostsState, RootState> = {
@@ -67,7 +60,6 @@ export const postActions: ActionTree<PostsState, RootState> = {
     return axios
       .put(`${process.env.VUE_APP_API_HOST}/posts/update-mandarin-list`, payload)
       .then(() => {
-
         commit("removeFromLoadingState", "updating mandarin list...");
       })
       .catch(err => {
@@ -116,12 +108,12 @@ export const postMutations: MutationTree<PostsState> = {
     );
   },
   resetSelectedMandarin: state => {
-    state.selectedMandarin = {};
+    state.selectedMandarin = null;
   },
   setMandarinList: (state, list) => {
     state.mandarinList = list;
   },
-  setSelectedMandarin: (state, character: PostPayload) => {
+  setSelectedMandarin: (state, character: SelectedCharacter) => {
     state.selectedMandarin = character;
   }
 };

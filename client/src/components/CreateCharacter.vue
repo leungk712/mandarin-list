@@ -89,6 +89,7 @@
             @click.native="handleSubmit"
             :disabled="!newExample.character.length"
             color="teal lighten-2"
+            :loading="loading"
           >
             Submit
           </v-btn>
@@ -123,16 +124,16 @@ export default class CreateCharacter extends Vue {
     english: "",
     examples: [],
     starred: false,
-    date: new Date()
+    date: new Date().toISOString()
   };
-
   public example: Example = {
     id: Math.floor(Math.random() * 1000),
     sentence: ""
   };
+  public loading = false;
 
   // ===== Methods ===== //
-  public handleAddExample() {
+  public handleAddExample(): void {
     this.newExample?.examples?.push(this.example);
     this.example = {
       id: Math.floor(Math.random() * 1000),
@@ -140,18 +141,22 @@ export default class CreateCharacter extends Vue {
     };
   }
 
-  public handleSubmit() {
+  public async handleSubmit(): Promise<void> {
+    this.loading = true;
     const payload = this.newExample;
+    await this.submitMandarinCharacter(payload);
+    this.loading = false;
+    this.resetExample();
+  }
 
-    this.submitMandarinCharacter(payload);
-
-    this.newExample = {
+  public resetExample(): void {
+   this.newExample = {
       character: "",
       pinyin: "",
       english: "",
       examples: [],
       starred: false,
-      date: new Date()
+      date: new Date().toISOString()
     };
   }
 
@@ -167,5 +172,3 @@ export default class CreateCharacter extends Vue {
   // ===== Lifecycle Hooks ===== //
 }
 </script>
-
-<style scoped></style>
