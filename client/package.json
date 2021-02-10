@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@jest/globals": "^26.6.2",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "number-to-chinese-words": "^1.0.20",

@@ -14,4 +14,9 @@ describe("posts.ts", () => {
         addToLoadingState(state, "load state");
         expect(state.loadingState).toEqual(["load state"]);
     });
+    it("removeFromLoadingState", () => {
+        const state = { loadingState: ["load state"] };
+        removeFromLoadingState(state, "load state");
+        expect(state.loadingState).toEqual([]);
+    });
 });

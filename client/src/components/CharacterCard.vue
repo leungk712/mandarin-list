@@ -121,7 +121,7 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { Example, PostPayload, PostsState, SelectedCharacter } from "@/models";
+import { Example, PostsState, SelectedCharacter } from "@/models";
 import Vue from "vue";
 import PostsModule from "@/store/modules/posts";
 import router from "@/router";
