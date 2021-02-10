@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-moongoose.set('bufferCommands', false);
+mongoose.set('bufferCommands', false);
 
 const Schema = mongoose.Schema;
 
@@ -12,7 +12,8 @@ const postSchema = new Schema({
     date: { type: Date, default: Date.now }
 }, {
     timestamps: true
-});
+},
+);
 
 const Post = mongoose.model('Post', postSchema);
 
