@@ -13,7 +13,7 @@ app.options('*', cors());
 
 const postsRouter = require('./routes/api/posts');
 
-// app.use('/posts', postsRouter);
+app.use('/posts', postsRouter);
 
 app.get("/", (req, res) => {
     res.send("Hello to mandarin API");
@@ -29,7 +29,7 @@ const uri = process.env.ATLAS_URI;
 const connectDB = async() => {
     await mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
     .then(() => { 
-        app.use('/posts', postsRouter);
+        mongoose.set('bufferCommands', false);
     })
     .catch((err) => handleError(err));
 }
