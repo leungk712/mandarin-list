@@ -28,13 +28,11 @@ app.get('/', function (req, res) {
 const uri = process.env.ATLAS_URI;
 const connectDB = async() => {
     await mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-    .then(() => {})
+    .then(() => { console.log("we are connected now"); })
     .catch((err) => handleError(err));
 }
 
-connectDB()
-    .then(() => { mongoose.set('bufferCommands', false); console.log("now connected") })
-    .catch((err) => "uh oh, no luck!");
+connectDB();
 
 const connection = mongoose.connection;
 connection.once('open', () => {

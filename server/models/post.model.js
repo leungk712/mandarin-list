@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.set('bufferCommands', false);
 
 const Schema = mongoose.Schema;
 
@@ -11,7 +10,8 @@ const postSchema = new Schema({
     starred: { type: Boolean, default: false },
     date: { type: Date, default: Date.now }
 }, {
-    timestamps: true
+    timestamps: true,
+    bufferCommands: false
 },
 );
 
