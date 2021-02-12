@@ -88,9 +88,6 @@
                 </v-expansion-panels>
               </div>
             </v-row>
-            <v-row>
-              Hello this is for editing and adding new sentences
-            </v-row>
             <v-row class="mt-4">
               <v-spacer />
               <v-btn
