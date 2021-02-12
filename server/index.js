@@ -27,7 +27,13 @@ app.get('/', function (req, res) {
 
 const uri = process.env.ATLAS_URI;
 const connectDB = async() => {
-    await mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+    await mongoose.connect(uri, { 
+        useNewUrlParser: true, 
+        useCreateIndex: true, 
+        useUnifiedTopology: true, 
+        bufferCommands: false, 
+        bufferMaxEntries: 0 
+    })
     .then(() => { console.log("we are connected now"); })
     .catch((err) => handleError(err));
 }
@@ -39,8 +45,6 @@ connection.once('open', () => {
     console.log("MongoDB database connection established securely");
 });
 
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log(`Server started on ${port}`);
 });
