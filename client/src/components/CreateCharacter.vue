@@ -2,7 +2,7 @@
   <div>
     <v-row align-content="center" justify="center">
       <div class="display-4" style="height: 15vh; width: 35vw">
-        <p class="text-center">{{ newExample.character }}</p>
+        <p class="text-center">{{ newExample.character ? newExample.character : '大家好！' }}</p>
       </div>
     </v-row>
     <v-row align-content="center" justify="center" class="my-3">
@@ -134,7 +134,7 @@ export default class CreateCharacter extends Vue {
 
   // ===== Methods ===== //
   public handleAddExample(): void {
-    this.newExample?.examples?.push(this.example);
+    this.newExample.examples?.push(this.example);
     this.example = {
       id: Math.floor(Math.random() * 1000),
       sentence: ""

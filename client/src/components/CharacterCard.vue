@@ -9,7 +9,7 @@
       elevation="14"
       tile
     />
-    <div v-else>
+    <div v-else-if="selectedCharacter">
       <v-container
         class="update-container mt-6 pa-6"
         v-if="this.$vuetify.breakpoint.smAndUp"
@@ -51,9 +51,9 @@
             </v-row>
             <v-row>
               <div>
-                <v-expansion-panels focusable>
+                <v-expansion-panels focusable style="width: 40vw">
                   <v-expansion-panel
-                    v-for="(example, i) in updateCharacter.examples"
+                    v-for="(example, i) in combinedExamples"
                     :key="example.id"
                     class="my-1"
                   >
@@ -88,6 +88,18 @@
                 </v-expansion-panels>
               </div>
             </v-row>
+            <v-row class="my-4">
+                <v-btn
+                  data-testid="update-character-example-btn"
+                  class="update-character-example-btn"
+                  @click="handleAddNewExample"
+                  text
+                  color="purple lighten-2"
+                >
+                <v-icon class="mr-2">add</v-icon>
+                  Add Example
+                </v-btn>
+            </v-row>
             <v-row class="mt-4">
               <v-spacer />
               <v-btn
@@ -104,6 +116,7 @@
                 color="teal lighten-1 white--text"
                 @click.once="handleSubmitUpdate"
                 :loading="loading"
+                :disabled="!invalidUpdate"
               >
                 Submit Update
               </v-btn>
@@ -148,11 +161,20 @@ export default class CharacterCard extends Vue {
   }
 
   public handleDeleteSentence(id: number): void {
-    this.newExamples = this.updateCharacter.examples.filter(examples => examples.id !== id);
+    const filteredList = this.combinedExamples.filter(examples => examples.id !== id);
+    this.newExamples = filteredList;
   }
 
   public handleEditSentence(): void {
     this.editing = !this.editing;
+  }
+
+  public handleAddNewExample(): void {
+    const example = {
+      id: Math.floor(Math.random() * 1000),
+      sentence: ""
+    };
+    this.newExamples.push(example);
   }
 
   public async handleSubmitUpdate(): Promise<void> {
@@ -192,11 +214,23 @@ export default class CharacterCard extends Vue {
       date: this.selectedCharacter.date,
       pinyin: this.selectedCharacter ? this.selectedCharacter.pinyin : "",
       english: this.selectedCharacter ? this.selectedCharacter.english : "",
-      examples: this.newExamples && this.newExamples.length ? this.newExamples : this.selectedCharacter.examples,
+      examples: this.combinedExamples,
       starred: this.selectedCharacter ? this.selectedCharacter.starred: false,
       updatedAt: this.selectedCharacter.updatedAt
     };
   }
+get combinedExamples() {
+  return [...this.selectedCharacter.examples, ...this.newExamples];
+}
+get invalidUpdate() {
+  const validExamples = this.combinedExamples.every(example => example.sentence.length);
+  return !!(this.updateCharacter.character
+    && this.updateCharacter.pinyin
+    && this.updateCharacter.english
+    && validExamples
+  )
+}
+
 
   // ===== Lifecycle ===== //
   private created(): void {
