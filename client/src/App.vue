@@ -1,11 +1,19 @@
 <template>
   <v-app>
-    <v-toolbar color="#8bbf9f" max-height="6vh">
+    <v-toolbar color="#8bbf9f" max-height="7vh">
       <v-toolbar-title class="white--text font-weight-bold">
         Community Mandarin List
       </v-toolbar-title>
       <v-spacer />
-      <v-icon
+      <v-btn
+        data-testid="app-login-btn"
+        class="app-login-btn"
+        @click="handleLogin"
+        color="orange lighten-2 white--text"
+      >
+        Sign Up/Login
+      </v-btn>
+      <!-- <v-icon
         data-testid="navbar-home-btn"
         class="navbar-home-btn"
         color="white"
@@ -13,7 +21,7 @@
         @click="handleReturnHome"
       >
         home
-      </v-icon>
+      </v-icon> -->
     </v-toolbar>
     <transition appear name="slide-x-transition" mode="out-in">
       <router-view />
@@ -29,9 +37,21 @@ import router from "@/router";
   name: "App"
 })
 export default class App extends Vue {
+  // ===== Store ===== //
+
+  // ===== Data ===== //
+
+  // ===== Methods ===== //
   public handleReturnHome(): void {
     router.push({ name: "Home" });
   }
+
+  public handleLogin(): void {
+    router.push({ name: "AppLogin" });
+  }
+
+  // ===== Computed ===== //
+
 }
 </script>
 

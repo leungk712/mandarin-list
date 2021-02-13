@@ -18,12 +18,7 @@ router.route("/:id").get((req, res) => {
 
 // POST
 router.route("/").post((req, res) => {
-    const character = req.body.character;
-    const pinyin = req.body.pinyin;
-    const english = req.body.english;
-    const examples = req.body.examples;
-    const starred = req.body.starred;
-    const date = Date.parse(req.body.date);
+    const { character, pinyin, english, examples, starred, date } = req.body;
 
     const newPost = new Post({
         character,
@@ -41,14 +36,15 @@ router.route("/").post((req, res) => {
 
 // UPDATE
 router.route("/:id").put((req, res) => {
+    const { character, pinyin, english, examples, starred, date } = req.body;
     Post.findByIdAndUpdate(req.params.id)
         .then(post => {
-            post.character = req.body.character;
-            post.pinyin = req.body.pinyin;
-            post.english = req.body.english;
-            post.examples = req.body.examples;
-            post.starred = req.body.starred;
-            post.date = Date.parse(req.body.date);
+            post.character = character;
+            post.pinyin = pinyin;
+            post.english = english;
+            post.examples = examples;
+            post.starred = starred;
+            post.date = Date.parse(date);
 
             post.save()
                 .then(() => res.json('Post updated!'))
