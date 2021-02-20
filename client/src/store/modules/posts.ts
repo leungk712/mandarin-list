@@ -1,8 +1,4 @@
-import {
-  PostsState, 
-  SelectedCharacter,
-  RootState
-} from "@/models";
+import { PostsState, SelectedCharacter, RootState } from "@/models";
 import { ActionTree, MutationTree } from "vuex";
 import axios, { AxiosResponse } from "axios";
 
@@ -25,6 +21,10 @@ export const postActions: ActionTree<PostsState, RootState> = {
         );
       })
       .catch(err => {
+        commit(
+          "removeFromLoadingState",
+          "retrieving list of mandarin characters..."
+        );
         throw new Error(err);
       });
   },
@@ -38,6 +38,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         commit("removeFromLoadingState", "retrieving mandarin character...");
       })
       .catch(err => {
+        commit("removeFromLoadingState", "retrieving mandarin character...");
         throw new Error(err);
       });
   },
@@ -51,6 +52,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         commit("removeFromLoadingState", "submitting mandarin character...");
       })
       .catch(err => {
+        commit("removeFromLoadingState", "submitting mandarin character...");
         throw new Error(err);
       });
   },
@@ -58,13 +60,17 @@ export const postActions: ActionTree<PostsState, RootState> = {
   updateMandarinList: ({ commit }, payload) => {
     commit("addToLoadingState", "updating mandarin list...");
     return axios
-      .put(`${process.env.VUE_APP_API_HOST}/posts/update-mandarin-list`, payload)
+      .put(
+        `${process.env.VUE_APP_API_HOST}/posts/update-mandarin-list`,
+        payload
+      )
       .then(() => {
         commit("removeFromLoadingState", "updating mandarin list...");
       })
       .catch(err => {
+        commit("removeFromLoadingState", "updating mandarin list...");
         throw new Error(err);
-      })
+      });
   },
 
   updateMandarinCharacter: ({ commit, dispatch }, payload) => {
@@ -76,6 +82,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         commit("removeFromLoadingState", "updating mandarin character...");
       })
       .catch(err => {
+        commit("removeFromLoadingState", "updating mandarin character...");
         throw new Error(err);
       });
   },
@@ -89,6 +96,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         commit("removeFromLoadingState", "deleting mandarin character...");
       })
       .catch(err => {
+        commit("removeFromLoadingState", "deleting mandarin character...");
         throw new Error(err);
       });
   },

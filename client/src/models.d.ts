@@ -1,5 +1,15 @@
 // ===== App Interfaces ===== //
 
+export interface Example {
+  id: number;
+  sentence: string;
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
 export interface PostPayload {
   character: string;
   english: string;
@@ -7,6 +17,14 @@ export interface PostPayload {
   pinyin: string;
   starred: boolean;
   date: Date | string;
+}
+
+export interface RegisterPayload {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
 }
 
 export interface SelectedCharacter {
@@ -22,15 +40,25 @@ export interface SelectedCharacter {
   updatedAt: Date | string;
 }
 
-export interface Example {
-  id: number;
-  sentence: string;
+export interface User {
+  __v: number;
+  _id: string;
+  date: string;
+  email: string;
+  firstName: string;
+  lastName: string;
 }
 
 // ===== Store Interfaces ===== //
 
 export interface RootState {
   posts: PostState;
+  user: UserState;
+}
+
+export interface UserState {
+  loadingState: string[];
+  user: User | null;
 }
 
 export interface PostsState {

@@ -1,98 +1,106 @@
 <template>
-  <div class="my-4 pa-4">
-    <h3>Select a card and drag it anywhere you like on the list.</h3>
-    <Draggable
-      :list="updatedCharactersList"
-      tag="v-card"
-      group="characters"
-      class="pa-6"
-      @change="setCharacterOrder"
-    >
-      <v-card
-        v-for="(character, idx) in updatedCharactersList"
-        :key="character._id"
-        class="mx-auto my-2 pa-2"
-        max-width="400"
-        outlined
-        tag="div"
+  <div class="my-8 pa-4">
+    <v-skeleton-loader
+      v-if="posts.loadingState.includes('retrieving list of mandarin characters...')"
+      type="card@8"
+    />
+    <div v-else>
+      <h3>Select a card and drag it anywhere you like on the list.</h3>
+      <Draggable
+        :list="updatedCharactersList"
+        tag="v-card"
+        group="characters"
+        class="pa-6"
+        @change="setCharacterOrder"
       >
-        <v-card-text>
-          <v-row>
-            <p class="display-2 text--primary">{{ character.character }}</p>
+        <v-card
+          v-for="(character, idx) in updatedCharactersList"
+          :key="character._id"
+          class="mx-auto my-2 pa-2"
+          max-width="400"
+          outlined
+          tag="div"
+        >
+          <v-card-text>
+            <v-row>
+              <p class="display-2 text--primary">{{ character.character }}</p>
+              <v-spacer />
+              <v-icon
+                data-testid="favorite-icon-select"
+                class="favorite-icon-select"
+                :color="character.starred ? 'pink' : ''"
+                size="30"
+                @click="handleRating(character)"
+              >
+                favorite_border
+              </v-icon>
+            </v-row>
+
+            <p class="title">
+              {{ character.pinyin }} ({{ character.english }})
+            </p>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              data-testid="character-examples-btn"
+              class="character-examples-btn"
+              v-if="character.examples.length"
+              text
+              color="teal accent-4"
+              @click.native="handleReveal(idx)"
+            >
+              {{ character.character }}
+              Examples ({{ character.examples.length }} |
+              {{ converter.toWords(character.examples.length) }})
+            </v-btn>
             <v-spacer />
             <v-icon
-              data-testid="favorite-icon-select"
-              class="favorite-icon-select"
-              :color="character.starred ? 'pink' : ''"
-              size="30"
-              @click="handleRating(character)"
+              data-testid="edit-card-btn"
+              class="edit-card-btn mr-2"
+              @click="handleEdit(character._id)"
+              color="blue-grey lighten-1"
             >
-            favorite_border
+              create
             </v-icon>
-          </v-row>
+            <v-icon
+              data-testid="edit-card-btn"
+              class="edit-card-btn mr-2"
+              @click="handleDelete(character._id)"
+              color="red"
+            >
+              delete_outline
+            </v-icon>
+          </v-card-actions>
 
-          <p class="title">{{ character.pinyin }} ({{ character.english }})</p>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn
-            data-testid="character-examples-btn"
-            class="character-examples-btn"
-            v-if="character.examples.length"
-            text
-            color="teal accent-4"
-            @click.native="handleReveal(idx)"
-          >
-            {{ character.character }}
-            Examples ({{ character.examples.length }} |
-            {{ converter.toWords(character.examples.length) }})
-          </v-btn>
-          <v-spacer />
-          <v-icon
-            data-testid="edit-card-btn"
-            class="edit-card-btn mr-2"
-            @click="handleEdit(character._id)"
-            color="blue-grey lighten-1"
-          >
-            create
-          </v-icon>
-          <v-icon
-            data-testid="edit-card-btn"
-            class="edit-card-btn mr-2"
-            @click="handleDelete(character._id)"
-            color="red"
-          >
-            delete_outline
-          </v-icon>
-        </v-card-actions>
-
-        <v-expand-transition>
-          <v-card
-            v-model="selectedIdx"
-            v-show="selectedIdx === idx"
-            class="transition-fast-in-fast-out v-card--reveal"
-            style="height: 100%;"
-          >
-            <v-card-text class="pb-0">
-              <p class="title font-weight-bold text--primary">Example(s)</p>
-              <p v-for="example in character.examples" :key="example.id">
-                {{ example.sentence }}
-              </p>
-            </v-card-text>
-            <v-card-actions class="pt-0">
-              <v-btn
-                data-testid="close-reveal-btn"
-                class="close-reveal-btn"
-                @click.native="handleRevealClose"
-                text
-                color="teal accent-4"
-              >
-                Close
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-expand-transition>
-      </v-card>
-    </Draggable>
+          <v-expand-transition>
+            <v-card
+              v-model="selectedIdx"
+              v-show="selectedIdx === idx"
+              class="transition-fast-in-fast-out v-card--reveal"
+              style="height: 100%;"
+            >
+              <v-card-text class="pb-0">
+                <p class="title font-weight-bold text--primary">Example(s)</p>
+                <p v-for="example in character.examples" :key="example.id">
+                  {{ example.sentence }}
+                </p>
+              </v-card-text>
+              <v-card-actions class="pt-0">
+                <v-btn
+                  data-testid="close-reveal-btn"
+                  class="close-reveal-btn"
+                  @click.native="handleRevealClose"
+                  text
+                  color="teal accent-4"
+                >
+                  Close
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-expand-transition>
+        </v-card>
+      </Draggable>
+    </div>
   </div>
 </template>
 
@@ -114,9 +122,15 @@ const posts = namespace(PostsModule.name);
 export default class ListCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
-  @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (id: string) => void;
-  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (payload: SelectedCharacter) => void;
-  @posts.Action("updateMandarinList") public updateMandarinList!: (list: SelectedCharacter[]) => void;
+  @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (
+    id: string
+  ) => void;
+  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (
+    payload: SelectedCharacter
+  ) => void;
+  @posts.Action("updateMandarinList") public updateMandarinList!: (
+    list: SelectedCharacter[]
+  ) => void;
 
   // ===== Data ===== //
   public reveal = true;
@@ -139,7 +153,7 @@ export default class ListCard extends Vue {
       starred: this.favorited,
       updatedAt: character.updatedAt
     };
-    
+
     this.updateMandarinCharacter(payload);
   }
 
@@ -169,7 +183,7 @@ export default class ListCard extends Vue {
   get converter(): {} {
     return converter;
   }
-  
+
   get updatedCharactersList(): SelectedCharacter[] {
     return this.posts.mandarinList;
   }

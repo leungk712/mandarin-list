@@ -5,12 +5,14 @@ import Vuex, { StoreOptions } from "vuex";
 
 // ===== Module Imports ===== //
 import PostModule from "@/store/modules/posts";
+import UserModule from "@/store/modules/user";
 
 Vue.use(Vuex);
 
 const store: StoreOptions<RootState> = {
   modules: {
-    posts: PostModule
+    posts: PostModule,
+    user: UserModule
   }
 };
 

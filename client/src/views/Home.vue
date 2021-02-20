@@ -1,7 +1,8 @@
 <template>
   <div class="my-4">
-    <CreateCharacter class="my-6" />
-    <ListCard class="mt-6" />
+    <!-- <CreateCharacter class="my-6" />
+    <ListCard class="mt-6" /> -->
+    <LandingPage />
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
 import { PostsState } from "@/models";
+import LandingPage from "@/components/LandingPage.vue";
 import CreateCharacter from "@/components/CreateCharacter.vue";
 import ListCard from "@/components/ListCard.vue";
 import PostsModule from "@/store/modules/posts";
@@ -17,7 +19,7 @@ const posts = namespace(PostsModule.name);
 
 @Component({
   name: "Home",
-  components: { CreateCharacter, ListCard }
+  components: { CreateCharacter, LandingPage, ListCard }
 })
 export default class Home extends Vue {
   // ===== Store ===== //

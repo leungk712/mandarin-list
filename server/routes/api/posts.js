@@ -1,69 +1,34 @@
 const express = require('express');
 const router = express.Router();
-require('dotenv').config();
 const Post = require('../../models/post.model');
+const {
+    createPost,
+    deletePost,
+    getPosts,
+    getIndividualPost,
+    updatePost 
+} = require('../../controllers/posts');
 
 // GET
-router.route("/").get((req, res) => {
-    Post.find()
-        .then(posts => res.json(posts))
-        .catch(err => res.status(400).json(`Error: ${err}`));
-});
+router.get("/", getPosts);
 
-router.route("/:id").get((req, res) => {
-    Post.findById(req.params.id)
-        .then(post => res.json(post))
-        .catch(err => res.status(400).json(`Error: ${err}`));
-});
+router.get("/:id", getIndividualPost);
 
 // POST
-router.route("/").post((req, res) => {
-    const { character, pinyin, english, examples, starred, date } = req.body;
-
-    const newPost = new Post({
-        character,
-        pinyin,
-        english,
-        examples,
-        starred,
-        date
-    });
-
-    newPost.save()
-        .then(() => res.json('New post created!'))
-        .catch(err => res.status(400).json(`Error: ${err}`));
-});
+router.post("/", createPost);
 
 // UPDATE
-router.route("/:id").put((req, res) => {
-    const { character, pinyin, english, examples, starred, date } = req.body;
-    Post.findByIdAndUpdate(req.params.id)
-        .then(post => {
-            post.character = character;
-            post.pinyin = pinyin;
-            post.english = english;
-            post.examples = examples;
-            post.starred = starred;
-            post.date = Date.parse(date);
+router.put("/:id", updatePost);
 
-            post.save()
-                .then(() => res.json('Post updated!'))
-                .catch(err => res.status(400).json(`Error: ${err}`))
-        })
-        .catch(err => res.status(400).json(`Error: ${err}`));
-});
 
-router.route("/update-mandarin-list").put((req, res) => {
-    Post.updateMany(req)
-        .then(() => res.json('Mandarin list order updated!'))
-        .catch(err => res.statusMessage(500).json(`Error: ${err}`));
-});
+// @TODO unsure if able to implement draggable solution in mongodb?
+// router.route("/update-mandarin-list").put((req, res) => {
+//     Post.updateMany(req)
+//         .then(() => res.json('Mandarin list order updated!'))
+//         .catch(err => res.statusMessage(500).json(`Error: ${err}`));
+// });
 
 // DELETE
-router.route("/:id").delete((req, res) => {
-    Post.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Post deleted.'))
-        .catch(err => res.status(400).json(`Error: ${err}`));
-});
+router.delete("/:id", deletePost);
 
 module.exports = router;

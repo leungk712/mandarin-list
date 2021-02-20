@@ -8,8 +8,8 @@ import "@/helpers/vee-validate-rules";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 Vue.use(Vuetify);
-Vue.component('ValidationObserver', ValidationObserver);
-Vue.component('ValidationProvider', ValidationProvider);
+Vue.component("ValidationObserver", ValidationObserver);
+Vue.component("ValidationProvider", ValidationProvider);
 
 Vue.config.productionTip = false;
 

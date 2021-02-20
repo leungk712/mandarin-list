@@ -13,12 +13,25 @@ const routes: Array<RouteConfig> = [
     path: "/edit/:id",
     name: "CharacterCard",
     component: () =>
-      import(/* webpackChunkName: "CharacterCard" */ "@/components/CharacterCard.vue")
+      import(
+        /* webpackChunkName: "CharacterCard" */ "@/components/CharacterCard.vue"
+      )
   },
   {
     path: "/login",
     name: "AppLogin",
-    component: () => import(/* webpackChunkName: "AppLogin" */ "@/views/authorization/AppLogin.vue")
+    component: () =>
+      import(
+        /* webpackChunkName: "AppLogin" */ "@/views/authorization/AppLogin.vue"
+      )
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => 
+      import(
+        /* webpackChunkName: "AppLogin" */ "@/views/dashboard/Dashboard.vue"
+      )
   }
 ];
 

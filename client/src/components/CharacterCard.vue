@@ -59,7 +59,9 @@
                   >
                     <v-expansion-panel-header>
                       <span class="title">
-                        {{ selectedCharacter.character }} Example #{{i + 1}}
+                        {{ selectedCharacter.character }} Example #{{
+                          i + 1
+                        }}
                         ｜ {{ selectedCharacter.character }} 第
                         {{ converter.toWords(i + 1) }} 个 例子
                       </span>
@@ -89,16 +91,16 @@
               </div>
             </v-row>
             <v-row class="my-4">
-                <v-btn
-                  data-testid="update-character-example-btn"
-                  class="update-character-example-btn"
-                  @click="handleAddNewExample"
-                  text
-                  color="purple lighten-2"
-                >
+              <v-btn
+                data-testid="update-character-example-btn"
+                class="update-character-example-btn"
+                @click="handleAddNewExample"
+                text
+                color="purple lighten-2"
+              >
                 <v-icon class="mr-2">add</v-icon>
-                  Add Example
-                </v-btn>
+                Add Example
+              </v-btn>
             </v-row>
             <v-row class="mt-4">
               <v-spacer />
@@ -145,9 +147,13 @@ const posts = namespace(PostsModule.name);
 export default class CharacterCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
-  @posts.Action("clearSelectedMandarin") public clearSelectedMandarin!: () => void;
-  @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (id: string) => void;
-  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (payload: {}) => void;
+  @posts.Action("clearSelectedMandarin")
+  public clearSelectedMandarin!: () => void;
+  @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (
+    id: string
+  ) => void;
+  @posts.Action("updateMandarinCharacter")
+  public updateMandarinCharacter!: (payload: {}) => void;
 
   // ===== Data ===== //
   public editing = false;
@@ -161,7 +167,9 @@ export default class CharacterCard extends Vue {
   }
 
   public handleDeleteSentence(id: number): void {
-    const filteredList = this.combinedExamples.filter(examples => examples.id !== id);
+    const filteredList = this.combinedExamples.filter(
+      examples => examples.id !== id
+    );
     this.newExamples = filteredList;
   }
 
@@ -209,28 +217,30 @@ export default class CharacterCard extends Vue {
     return {
       _id: this.selectedCharacter._id,
       __v: this.selectedCharacter.__v,
-      character: this.selectedCharacter ? this.selectedCharacter.character: "",
+      character: this.selectedCharacter ? this.selectedCharacter.character : "",
       createdAt: this.selectedCharacter.createdAt,
       date: this.selectedCharacter.date,
       pinyin: this.selectedCharacter ? this.selectedCharacter.pinyin : "",
       english: this.selectedCharacter ? this.selectedCharacter.english : "",
       examples: this.combinedExamples,
-      starred: this.selectedCharacter ? this.selectedCharacter.starred: false,
+      starred: this.selectedCharacter ? this.selectedCharacter.starred : false,
       updatedAt: this.selectedCharacter.updatedAt
     };
   }
-get combinedExamples() {
-  return [...this.selectedCharacter.examples, ...this.newExamples];
-}
-get invalidUpdate() {
-  const validExamples = this.combinedExamples.every(example => example.sentence.length);
-  return !!(this.updateCharacter.character
-    && this.updateCharacter.pinyin
-    && this.updateCharacter.english
-    && validExamples
-  )
-}
-
+  get combinedExamples() {
+    return [...this.selectedCharacter.examples, ...this.newExamples];
+  }
+  get invalidUpdate() {
+    const validExamples = this.combinedExamples.every(
+      example => example.sentence.length
+    );
+    return !!(
+      this.updateCharacter.character &&
+      this.updateCharacter.pinyin &&
+      this.updateCharacter.english &&
+      validExamples
+    );
+  }
 
   // ===== Lifecycle ===== //
   private created(): void {
