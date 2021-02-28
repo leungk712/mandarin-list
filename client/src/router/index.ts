@@ -28,9 +28,9 @@ const routes: Array<RouteConfig> = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    component: () => 
+    component: () =>
       import(
-        /* webpackChunkName: "AppLogin" */ "@/views/dashboard/Dashboard.vue"
+        /* webpackChunkName: "Dashboard" */ "@/views/dashboard/Dashboard.vue"
       )
   }
 ];

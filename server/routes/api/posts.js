@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../../models/post.model');
 const {
     createPost,
     deletePost,
@@ -8,17 +7,18 @@ const {
     getIndividualPost,
     updatePost 
 } = require('../../controllers/posts');
+const { authenticateToken } = require('../../middleware/authenticate.js');
 
 // GET
-router.get("/", getPosts);
+router.get("/:userId", getPosts);
 
-router.get("/:id", getIndividualPost);
+router.get("/:userId/post/:postId", authenticateToken, getIndividualPost);
 
 // POST
-router.post("/", createPost);
+router.post("/:userId", authenticateToken, createPost);
 
 // UPDATE
-router.put("/:id", updatePost);
+router.put("/:userId/post/:postId", authenticateToken, updatePost);
 
 
 // @TODO unsure if able to implement draggable solution in mongodb?
@@ -29,6 +29,6 @@ router.put("/:id", updatePost);
 // });
 
 // DELETE
-router.delete("/:id", deletePost);
+router.delete("/:userId/post/:id", authenticateToken, deletePost);
 
 module.exports = router;

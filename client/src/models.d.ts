@@ -40,7 +40,7 @@ export interface SelectedCharacter {
   updatedAt: Date | string;
 }
 
-export interface User {
+export interface UserData {
   __v: number;
   _id: string;
   date: string;
@@ -57,8 +57,10 @@ export interface RootState {
 }
 
 export interface UserState {
+  accessToken: string;
+  isLoggedIn: boolean;
   loadingState: string[];
-  user: User | null;
+  user: UserData | null;
 }
 
 export interface PostsState {

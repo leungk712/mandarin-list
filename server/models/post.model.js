@@ -7,9 +7,13 @@ const postSchema = new Schema({
     character: { type: String, required: true },
     pinyin: { type: String, required: true },
     english: { type: String, required: true },
-    examples: Array,
+    examples: { type: Array },
     starred: { type: Boolean, default: false },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 }, {
     timestamps: true
 },
