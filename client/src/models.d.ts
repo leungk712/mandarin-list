@@ -17,6 +17,7 @@ export interface PostPayload {
   pinyin: string;
   starred: boolean;
   date: Date | string;
+  user: string;
 }
 
 export interface RegisterPayload {
@@ -38,6 +39,7 @@ export interface SelectedCharacter {
   pinyin: string;
   starred: boolean;
   updatedAt: Date | string;
+  user: string;
 }
 
 export interface UserData {
@@ -54,6 +56,13 @@ export interface UserData {
 export interface RootState {
   posts: PostState;
   user: UserState;
+  categories: CategoriesState;
+}
+
+export interface CategoriesState {
+  categoriesList: [];
+  loadingState: string[];
+  selectedCategory: null;
 }
 
 export interface UserState {

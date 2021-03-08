@@ -20,6 +20,10 @@ router.post("/:userId", authenticateToken, createPost);
 // UPDATE
 router.put("/:userId/post/:postId", authenticateToken, updatePost);
 
+// DELETE
+router.delete("/:userId/post/:postId", authenticateToken, deletePost);
+
+module.exports = router;
 
 // @TODO unsure if able to implement draggable solution in mongodb?
 // router.route("/update-mandarin-list").put((req, res) => {
@@ -27,8 +31,3 @@ router.put("/:userId/post/:postId", authenticateToken, updatePost);
 //         .then(() => res.json('Mandarin list order updated!'))
 //         .catch(err => res.statusMessage(500).json(`Error: ${err}`));
 // });
-
-// DELETE
-router.delete("/:userId/post/:id", authenticateToken, deletePost);
-
-module.exports = router;

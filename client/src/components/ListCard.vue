@@ -1,21 +1,22 @@
 <template>
   <div class="my-8 pa-4">
     <v-skeleton-loader
-      v-if="posts.loadingState.includes('retrieving list of mandarin characters...')"
+      v-if="
+        posts.loadingState.includes('retrieving list of mandarin characters...')
+      "
       type="card@8"
     />
     <div v-else>
       <h3>Select a card and drag it anywhere you like on the list.</h3>
-      <Draggable
-        :list="updatedCharactersList"
-        tag="v-card"
-        group="characters"
-        class="pa-6"
-        @change="setCharacterOrder"
-      >
-        <v-card
+      <v-row>
+        <v-col
           v-for="(character, idx) in updatedCharactersList"
           :key="character._id"
+          xl="3"
+          lg="4"
+          md="2"
+        >
+        <v-card
           class="mx-auto my-2 pa-2"
           max-width="400"
           outlined
@@ -39,6 +40,15 @@
             <p class="title">
               {{ character.pinyin }} ({{ character.english }})
             </p>
+
+            <v-chip
+              v-for="(category, idx) in character.categories"
+              :key="idx"
+              class="mx-1"
+              color="deep-purple lighten-4"
+            >
+              {{ category }}
+            </v-chip>
           </v-card-text>
           <v-card-actions>
             <v-btn
@@ -57,7 +67,7 @@
             <v-icon
               data-testid="edit-card-btn"
               class="edit-card-btn mr-2"
-              @click="handleEdit(character._id)"
+              @click="handleEdit(character)"
               color="blue-grey lighten-1"
             >
               create
@@ -65,7 +75,7 @@
             <v-icon
               data-testid="edit-card-btn"
               class="edit-card-btn mr-2"
-              @click="handleDelete(character._id)"
+              @click="handleDelete(character)"
               color="red"
             >
               delete_outline
@@ -99,7 +109,8 @@
             </v-card>
           </v-expand-transition>
         </v-card>
-      </Draggable>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -107,13 +118,15 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { PostsState, SelectedCharacter } from "@/models";
+import { PostsState, SelectedCharacter, UserState } from "@/models";
 import Draggable from "vuedraggable";
 import PostsModule from "@/store/modules/posts";
+import UserModule from "@/store/modules/user";
 import router from "@/router";
 import converter from "number-to-chinese-words";
 
 const posts = namespace(PostsModule.name);
+const user = namespace(UserModule.name);
 
 @Component({
   name: "ListCard",
@@ -122,9 +135,11 @@ const posts = namespace(PostsModule.name);
 export default class ListCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
+  @State("user") public user!: UserState;
   @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (
-    id: string
+    payload: {}
   ) => void;
+  @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (payload: {}) => void;
   @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (
     payload: SelectedCharacter
   ) => void;
@@ -146,11 +161,13 @@ export default class ListCard extends Vue {
       __v: character.__v,
       character: character.character,
       createdAt: character.createdAt,
+      categories: character.categories,
       date: character.date,
       english: character.english,
       examples: character.examples,
       pinyin: character.pinyin,
       starred: this.favorited,
+      user: this.user.user._id,
       updatedAt: character.updatedAt
     };
 
@@ -167,16 +184,18 @@ export default class ListCard extends Vue {
     this.reveal = false;
   }
 
-  public handleEdit(cardId: string): void {
-    router.push({ name: "CharacterCard", params: { id: cardId } });
+  public async handleEdit(character): Promise<void> {
+    const payload = {
+      userId: character.user,
+      _id: character._id
+    }
+    await this.getIndividualCharacter(payload);
+    router.push({ name: "CharacterCard", params: { userId: character.user, id: character._id } });
   }
 
-  public handleDelete(id: string): void {
-    this.deleteMandarinCharacter(id);
-  }
-
-  public setCharacterOrder(): void {
-    this.updateMandarinList(this.updatedCharactersList);
+  public handleDelete(character): void {
+    console.log("delete", character);
+    this.deleteMandarinCharacter(character);
   }
 
   // ===== Computed ===== //
@@ -189,5 +208,3 @@ export default class ListCard extends Vue {
   }
 }
 </script>
-
-<style scoped></style>

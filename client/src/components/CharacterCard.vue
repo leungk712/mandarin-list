@@ -118,7 +118,6 @@
                 color="teal lighten-1 white--text"
                 @click.once="handleSubmitUpdate"
                 :loading="loading"
-                :disabled="!invalidUpdate"
               >
                 Submit Update
               </v-btn>
@@ -133,13 +132,15 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { Example, PostsState, SelectedCharacter } from "@/models";
+import { Example, PostsState, SelectedCharacter, UserState } from "@/models";
 import Vue from "vue";
 import PostsModule from "@/store/modules/posts";
+import UserModule from "@/store/modules/user";
 import router from "@/router";
 import converter from "number-to-chinese-words";
 
 const posts = namespace(PostsModule.name);
+const user = namespace(UserModule.name);
 
 @Component({
   name: "CharacterCard"
@@ -147,6 +148,7 @@ const posts = namespace(PostsModule.name);
 export default class CharacterCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
+  @State("user") public user!: UserState;
   @posts.Action("clearSelectedMandarin")
   public clearSelectedMandarin!: () => void;
   @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (
@@ -196,6 +198,7 @@ export default class CharacterCard extends Vue {
       english: this.updateCharacter.english,
       examples: this.updateCharacter.examples,
       starred: this.updateCharacter.starred,
+      user: this.user.user._id,
       updatedAt: new Date().toISOString()
     };
     await this.updateMandarinCharacter(updatePayload);
@@ -224,28 +227,29 @@ export default class CharacterCard extends Vue {
       english: this.selectedCharacter ? this.selectedCharacter.english : "",
       examples: this.combinedExamples,
       starred: this.selectedCharacter ? this.selectedCharacter.starred : false,
+      user: this.user.user._id,
       updatedAt: this.selectedCharacter.updatedAt
     };
   }
   get combinedExamples() {
     return [...this.selectedCharacter.examples, ...this.newExamples];
   }
-  get invalidUpdate() {
-    const validExamples = this.combinedExamples.every(
-      example => example.sentence.length
-    );
-    return !!(
-      this.updateCharacter.character &&
-      this.updateCharacter.pinyin &&
-      this.updateCharacter.english &&
-      validExamples
-    );
-  }
+  // get invalidUpdate() {
+  //   const validExamples = this.combinedExamples.every(
+  //     example => example.sentence.length
+  //   );
+  //   return !!(
+  //     this.updateCharacter.character &&
+  //     this.updateCharacter.pinyin &&
+  //     this.updateCharacter.english &&
+  //     validExamples
+  //   );
+  // }
 
   // ===== Lifecycle ===== //
-  private created(): void {
-    this.getIndividualCharacter(this.$route.params.id);
-  }
+  // private created(): void {
+  //   this.getIndividualCharacter(this.$route.params.id);
+  // }
 }
 </script>
 

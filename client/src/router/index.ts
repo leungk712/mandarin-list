@@ -1,5 +1,20 @@
+import store from "@/store";
 import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
+import VueRouter, { NavigationGuardNext, Route, RouteConfig } from "vue-router";
+
+export function ifAuthenticated(to: Route, from: Route, next: NavigationGuardNext) {
+  if (store.getters["user/isAuthenticated" || to.path === "/login"]) {
+    next();
+    return;
+  }
+
+  if (store.getters["user/isAuthenticated"] && to.path === "/login") {
+    next("/");
+    return;
+  }
+
+  next("/login")
+}
 
 Vue.use(VueRouter);
 
@@ -10,7 +25,7 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "Home" */ "@/views/Home.vue")
   },
   {
-    path: "/edit/:id",
+    path: "/edit/:userId/:id",
     name: "CharacterCard",
     component: () =>
       import(

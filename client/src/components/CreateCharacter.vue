@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container class="py-6">
     <v-row align-content="center" justify="center">
       <div class="display-4" style="height: 15vh; width: 35vw">
         <p class="text-center">
@@ -7,7 +7,7 @@
         </p>
       </div>
     </v-row>
-    <v-row align-content="center" justify="center" class="my-3">
+    <v-row align-content="center" justify="center" class="mt-3">
       <v-col cols="2">
         <v-text-field
           data-testid="new-example-character-input"
@@ -36,6 +36,22 @@
           label="English"
           placeholder="Ex. (Hello)"
           outlined
+        />
+      </v-col>
+    </v-row>
+    <v-row align-content="center" justify="center">
+      <v-col cols="6">
+        <p class="font-weight-bold">Select 1 or more categories:</p>
+        <v-select
+          data-testid="new-example-category-menu"
+          class="new-example-category-menu"
+          v-model="newExample.categories"
+          :items="categories.categoriesList"
+          item-text="name"
+          item-value="name"
+          multiple
+          label="Categories"
+          chips
         />
       </v-col>
     </v-row>
@@ -98,34 +114,42 @@
         </v-row>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { Example, PostPayload, PostsState } from "@/models";
+import { CategoriesState, Example, PostPayload, PostsState, UserState } from "@/models";
+import CategoriesModule from "@/store/modules/categories";
 import PostsModule from "@/store/modules/posts";
+import UserModule from "@/store/modules/user";
 
+const categories = namespace(CategoriesModule.name);
 const posts = namespace(PostsModule.name);
+const user = namespace(UserModule.name);
 
 @Component({
   name: "CreateCharacter"
 })
 export default class CreateCharacter extends Vue {
   // ===== Store ===== //
+  @State("categories") public categories!: CategoriesState;
   @State("posts") public posts!: PostsState;
+  @State("user") public user!: UserState;
   @posts.Action("submitMandarinCharacter") public submitMandarinCharacter!: (
     payload: PostPayload
   ) => void;
 
   // ===== Data ===== //
   public newExample: PostPayload = {
+    categories: [],
     character: "",
     pinyin: "",
     english: "",
     examples: [],
     starred: false,
+    user: "",
     date: new Date().toISOString()
   };
   public example: Example = {
@@ -145,7 +169,16 @@ export default class CreateCharacter extends Vue {
 
   public async handleSubmit(): Promise<void> {
     this.loading = true;
-    const payload = this.newExample;
+    const payload = {
+      character: this.newExample.character,
+      categories: this.newExample.categories,
+      pinyin: this.newExample.pinyin,
+      english: this.newExample.english,
+      examples: this.newExample.examples,
+      starred: false,
+      user: this.user!.user._id,
+      date: new Date().toISOString()
+    };
     await this.submitMandarinCharacter(payload);
     this.loading = false;
     this.resetExample();

@@ -1,48 +1,25 @@
 <template>
-    <div>
-        <h1> Landing Page yo</h1>
-        <!-- <v-carousel height="750">
-            <v-carousel-item
-                v-for="(image, idx) in chinaImages"
-                :key="idx"
-                :src="image.src"
-            >
-            </v-carousel-item>
-        </v-carousel> -->
-    </div>
+  <v-container style="min-height: 80vh" fill-height>
+    <v-row justify="center" align="center">
+        <v-img src="../assets/carousel-imgs/diem-nhi-nguyen-Y-HwuSKt6gM-unsplash.jpg" />
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
-    name: "LandingPage"
+  name: "LandingPage"
 })
 export default class LandingPage extends Vue {
-    // ===== Store ===== //
+  // ===== Store ===== //
 
-    // ===== Data ===== //
-    public model = 0;
-    public chinaImages = [
-        {
-            src: `../assets/joshua-sortino-gii7lF4y0WY-unsplash.jpg`
-        },
-        {
-            src: `../assets/li-yang-5h_dMuX_7RE-unsplash.jpg`
-        },
-        {
-            src: `../assets/ling-tang-yBroAF1cN3I-unsplash.jpg`
-        },
-        {
-            src: `../assets/sam-beasley-eltps1t7gDY-unsplash.jpg`
-        },
-        {
-            src: `../assets/theodor-lundqvist-WHhbYArwFt8-unsplash.jpg`
-        }
-    ];
+  // ===== Data ===== //
+  public model = 0;
 
-    // ===== Methods ===== //
+  // ===== Methods ===== //
 
-    // ===== Computed ===== //
+  // ===== Computed ===== //
 }
 </script>

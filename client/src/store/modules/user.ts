@@ -9,7 +9,7 @@ import { ActionTree, GetterTree, MutationTree } from "vuex";
 import axios, { AxiosResponse } from "axios";
 
 export const userState = {
-  accessToken: localStorage.getItem("access_token") || "",
+  accessToken: sessionStorage.getItem("access_token") || "",
   isLoggedIn: false,
   loadingState: [],
   user: null
@@ -62,7 +62,7 @@ export const userMutations: MutationTree<UserState> = {
   setLoginSuccess: (state: UserState, resp) => {
     const bearerToken = `Bearer ${resp.token}`;
     state.accessToken = bearerToken;
-    localStorage.setItem("access_token", bearerToken);
+    sessionStorage.setItem("access_token", bearerToken);
     state.isLoggedIn = true;
     axios.defaults.headers.common.Authorization = bearerToken;
   },
@@ -70,8 +70,8 @@ export const userMutations: MutationTree<UserState> = {
     state.accessToken = "";
     state.user = null;
     state.isLoggedIn = false;
-    localStorage.removeItem("access_token");
-    localStorage.clear();
+    sessionStorage.removeItem("access_token");
+    sessionStorage.clear();
     axios.defaults.headers.common.Authorization = null;
   },
   setUser: (state: UserState, user: UserData) => {

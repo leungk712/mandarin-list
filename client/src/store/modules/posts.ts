@@ -10,7 +10,6 @@ export const postState: PostsState = {
 
 export const postActions: ActionTree<PostsState, RootState> = {
   getMandarinList: ({ commit }, userId) => {
-    console.log("get mandarin list userId", userId);
     commit("addToLoadingState", "retrieving list of mandarin characters...");
     return axios
       .get(`${process.env.VUE_APP_API_HOST}/posts/${userId}`)
@@ -34,7 +33,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
     commit("addToLoadingState", "retrieving mandarin character...");
     return axios
       .get(
-        `${process.env.VUE_APP_API_HOST}/${payload.user}/post/${payload.characterId}`
+        `${process.env.VUE_APP_API_HOST}/posts/${payload.userId}/post/${payload._id}`
       )
       .then((resp: AxiosResponse) => {
         commit("setSelectedMandarin", resp.data);
@@ -49,9 +48,9 @@ export const postActions: ActionTree<PostsState, RootState> = {
   submitMandarinCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "submitting mandarin character...");
     return axios
-      .post(`${process.env.VUE_APP_API_HOST}/${payload.user}`, payload)
+      .post(`${process.env.VUE_APP_API_HOST}/posts/${payload.user}`, payload)
       .then(() => {
-        dispatch("getMandarinList");
+        dispatch("getMandarinList", payload.user);
         commit("removeFromLoadingState", "submitting mandarin character...");
       })
       .catch(err => {
@@ -60,31 +59,15 @@ export const postActions: ActionTree<PostsState, RootState> = {
       });
   },
 
-  // updateMandarinList: ({ commit }, payload) => {
-  //   commit("addToLoadingState", "updating mandarin list...");
-  //   return axios
-  //     .put(
-  //       `${process.env.VUE_APP_API_HOST}/${payload.user}/posts/update-mandarin-list`,
-  //       payload
-  //     )
-  //     .then(() => {
-  //       commit("removeFromLoadingState", "updating mandarin list...");
-  //     })
-  //     .catch(err => {
-  //       commit("removeFromLoadingState", "updating mandarin list...");
-  //       throw new Error(err);
-  //     });
-  // },
-
   updateMandarinCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "updating mandarin character...");
     return axios
       .put(
-        `${process.env.VUE_APP_API_HOST}/${payload.user}/post/${payload._id}`,
+        `${process.env.VUE_APP_API_HOST}/posts/${payload.user}/post/${payload._id}`,
         payload
       )
       .then(() => {
-        dispatch("getMandarinList");
+        dispatch("getMandarinList", payload.user);
         commit("removeFromLoadingState", "updating mandarin character...");
       })
       .catch(err => {
@@ -97,10 +80,10 @@ export const postActions: ActionTree<PostsState, RootState> = {
     commit("addToLoadingState", "deleting mandarin character...");
     return axios
       .delete(
-        `${process.env.VUE_APP_API_HOST}/${payload.user}/post/${payload.id}`
+        `${process.env.VUE_APP_API_HOST}/posts/${payload.user}/post/${payload._id}`
       )
       .then(() => {
-        dispatch("getMandarinList");
+        dispatch("getMandarinList", payload.user);
         commit("removeFromLoadingState", "deleting mandarin character...");
       })
       .catch(err => {
