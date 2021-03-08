@@ -1,20 +1,16 @@
 <template>
   <div class="my-8 pa-4">
     <v-skeleton-loader
-      v-if="
-        posts.loadingState.includes('retrieving list of mandarin characters...')
-      "
+      v-if="posts.loadingState.includes('retrieving list of mandarin characters...')"
       type="card@8"
     />
     <div v-else>
-      <h3>Select a card and drag it anywhere you like on the list.</h3>
       <v-row>
         <v-col
           v-for="(character, idx) in updatedCharactersList"
           :key="character._id"
           xl="3"
           lg="4"
-          md="2"
         >
         <v-card
           class="mx-auto my-2 pa-2"
@@ -136,16 +132,10 @@ export default class ListCard extends Vue {
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
   @State("user") public user!: UserState;
-  @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (
-    payload: {}
-  ) => void;
+  @posts.Action("deleteMandarinCharacter") public deleteMandarinCharacter!: (payload: {}) => void;
   @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (payload: {}) => void;
-  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (
-    payload: SelectedCharacter
-  ) => void;
-  @posts.Action("updateMandarinList") public updateMandarinList!: (
-    list: SelectedCharacter[]
-  ) => void;
+  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (payload: SelectedCharacter) => void;
+  @posts.Action("updateMandarinList") public updateMandarinList!: (list: SelectedCharacter[]) => void;
 
   // ===== Data ===== //
   public reveal = true;
@@ -194,7 +184,6 @@ export default class ListCard extends Vue {
   }
 
   public handleDelete(character): void {
-    console.log("delete", character);
     this.deleteMandarinCharacter(character);
   }
 

@@ -4,33 +4,27 @@
     <v-card>
       <v-toolbar
         flat
-        color="teal"
+        color="blue-grey lighten-2"
         dark
       >
         <v-toolbar-title>Dashboard</v-toolbar-title>
       </v-toolbar>
-      <v-tabs vertical>
+      <v-tabs vertical id="tabs-yo" background-color="blue-grey lighten-4">
         <v-tab>
-          <v-icon left>
-            mdi-account
-          </v-icon>
+          <v-icon left>mdi-ideogram-cjk</v-icon>
           Characters
         </v-tab>
         <v-tab>
-          <v-icon left>
-            mdi-lock
-          </v-icon>
+          <v-icon left>mdi-format-list-bulleted</v-icon>
           Categories
         </v-tab>
         <v-tab>
-          <v-icon left>
-            mdi-access-point
-          </v-icon>
-          Option 3
+          <v-icon left>mdi-book-open-variant</v-icon>
+          Stories
         </v-tab>
 
         <v-tab-item>
-          <v-card flat>
+          <v-card flat class="ml-8">
               <CreateCharacter class="mt-6" />
               <v-divider class="my-8" />
               <ListCard />
@@ -38,12 +32,14 @@
         </v-tab-item>
         <v-tab-item>
           <v-card flat>
-              <CreateCategory />
+              <CreateCategory class="ml-10" />
+              <v-divider />
+              <CategoryIndex />
           </v-card>
         </v-tab-item>
         <v-tab-item>
           <v-card flat>
-              Section Three
+              My Blog (coming soon!)
           </v-card>
         </v-tab-item>
       </v-tabs>
@@ -55,6 +51,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
+import CategoryIndex from "@/views/categories/CategoryIndex.vue";
 import CreateCategory from "@/views/categories/CreateCategory.vue";
 import CreateCharacter from "@/components/CreateCharacter.vue";
 import ListCard from "@/components/ListCard.vue";
@@ -63,6 +60,7 @@ import ListCard from "@/components/ListCard.vue";
   name: "Dashboard",
   components: {
     ApplicationLayout,
+    CategoryIndex,
     CreateCategory,
     CreateCharacter,
     ListCard
@@ -70,3 +68,10 @@ import ListCard from "@/components/ListCard.vue";
 })
 export default class Dashboard extends Vue {}
 </script>
+
+<style scoped>
+#tabs-yo .v-tab-bars {
+  background: red;
+  border: 4px solid black;
+}
+</style>

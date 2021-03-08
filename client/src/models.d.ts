@@ -31,6 +31,7 @@ export interface RegisterPayload {
 export interface SelectedCharacter {
   __v: number;
   _id: string;
+  categories: [];
   character: string;
   createdAt: Date | string;
   date: Date | string;

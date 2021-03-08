@@ -69,6 +69,7 @@ import { namespace, State } from "vuex-class";
 import { UserState } from "@/models";
 import router from "@/router";
 import UserModule from "@/store/modules/user";
+import { avatarColors } from "@/helpers/avatar-colors";
 
 const user = namespace(UserModule.name);
 
@@ -81,31 +82,7 @@ export default class NavigationDrawer extends Vue {
     @user.Action("logout") public logout!: () => void;
 
     // ===== Data ===== //
-    public avatarColors = [
-      'red lighten-1',
-      'red darken-1',
-      'red darken-3',
-      'pink ligthen-2',
-      'pink darken-1',
-      'purple lighten-1',
-      'purple darken-1',
-      'indigo lighten-2',
-      'indigo darken-1',
-      'blue lighten-1',
-      'blue darken-2',
-      'light-blue darken-1',
-      'teal lighten-1',
-      'teal darken-1',
-      'teal accent-4',
-      'green lighten-2',
-      'green lighten-1',
-      'green darken-1',
-      'amber darken-2',
-      'amber darken-4',
-      'brown lighten-1',
-      'blue-grey lighten-1',
-      'blue-grey darken-1'
-    ]
+    public avatarColors = avatarColors;
 
     // ===== Methods ===== //
     public async handleLogout(): Promise<void> {

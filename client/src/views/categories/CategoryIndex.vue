@@ -1,43 +1,63 @@
 <template>
-  <application-layout>
+  <div>
     <v-container
-      class="mt-1"
-      style="border: 1px solid black; min-height: 80vh; max-width: 90%"
+      class="my-4"
+      style="border: 1px solid #eee; min-height: 80vh; max-width: 95%"
       fill-height
     >
       <v-row>
-        <v-col cols="3" style="min-height: 80vh" fill-height>
-          <v-btn>Add example</v-btn>
-        <v-divider class="my-4"/>
-        Categories
+        <v-col cols="2" style="min-height: 80vh; border-right: 1px solid #eee" fill-height>
+        <h4 class="font-weight-bold">Categories</h4>
         <v-card class="my-2 py-2 px-2">All Characters</v-card>
         <v-card
-          v-for="(item, idx) in items"
-          :key="idx"
+          v-for="(category) in categories.categoriesList"
+          :key="category._id"
           class="my-2 py-2 px-2"
+          @click="handleViewCategory(category)"
         >
-          {{ item }}
+          {{ category.name }}
         </v-card>
         </v-col>
-        <v-col cols="9" style="border: 1px solid black">
-          Cards
+        <v-col cols="10">
+          <ListCard />
         </v-col>
       </v-row>
     </v-container>
-  </application-layout>
+  </div>
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from 'vue-property-decorator';
-        import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import { namespace, State } from "vuex-class";
+import { CategoriesState } from "@/models";
+import CategoriesModule from "@/store/modules/categories";
+import ListCard from "@/components/ListCard.vue";
 
-    @Component({
-        name: "CategoryIndex",
-        components: { ApplicationLayout }
-    })
-    export default class CategoryIndex extends Vue {
-        
+const categories = namespace(CategoriesModule.name);
+
+@Component({
+    name: "CategoryIndex",
+    components: { ListCard }
+})
+export default class CategoryIndex extends Vue {
+    // ===== Store ===== //
+    @State("categories") public categories!: CategoriesState;
+    @categories.Action("getCategories") public getCategories!: () => void;
+
+    // ===== Data ===== //
+
+    // ===== Methods ===== //
+    public handleViewCategory(category):void  {
+      console.log("cate", category);
     }
+
+    // ===== Computed ===== //
+
+    // ===== Lifecycle Hook ===== //
+    private mounted(): void {
+        this.getCategories();
+    }
+}
 </script>
 
 <style scoped>

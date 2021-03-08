@@ -25,22 +25,6 @@
                 </v-btn>
             </v-col>
         </v-row>
-        <v-divider />
-        <div class="ml-1 my-4">
-            <h1>Categories</h1>
-            <v-row>
-                <v-col 
-                    cols="2"
-                    v-for="category in categories.categoriesList"
-                    :key="category._id"
-                    class="my-1"
-                >
-                    <v-card class="pa-2">
-                        <h4 class="text-center">{{ category.name }}</h4>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </div>
     </div>
 </template>
 
@@ -64,7 +48,6 @@ export default class CreateCategory extends Vue {
     @State("categories") public categories!: CategoriesState;
     @State("user") public user!: UserState;
     @categories.Action("createCategory") public createCategory!: (payload: {}) => void;
-    @categories.Action("getCategories") public getCategories!: () => void;
 
     // ===== Data ====== //
     public categoryName = "";
@@ -89,11 +72,6 @@ export default class CreateCategory extends Vue {
     get validCategory() {
         return this.categoryName.length &&
         this.categories.categoriesList.every(category => category.name !== this.categoryName);
-    }
-
-    // ===== Lifecycle Hook ===== //
-    private created(): void {
-        this.getCategories();
     }
 }
 </script>

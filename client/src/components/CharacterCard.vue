@@ -1,132 +1,134 @@
 <template>
-  <div>
-    <v-skeleton-loader
-      v-if="
-        loadingStatus.includes('retrieving mandarin character...') &&
-          !selectedCharacter
-      "
-      type="card"
-      elevation="14"
-      tile
-    />
-    <div v-else-if="selectedCharacter">
-      <v-container
-        class="update-container mt-6 pa-6"
-        v-if="this.$vuetify.breakpoint.smAndUp"
-      >
-        <v-row justify="center">
-          <h1>Edit {{ selectedCharacter.character }}</h1>
-        </v-row>
-        <v-divider class="character-divider my-4" />
-        <v-form class="mt-4">
-          <v-container>
-            <v-row>
-              <v-col cols="4">
-                <v-text-field
-                  data-testid="update-character-character-input"
-                  class="update-character-character-input"
-                  label="Character"
-                  v-model="updateCharacter.character"
-                  outlined
-                />
-              </v-col>
-              <v-col cols="4">
-                <v-text-field
-                  data-testid="update-character-pinyin-input"
-                  class="update-character-pinyin-input"
-                  label="Pinyin"
-                  v-model="updateCharacter.pinyin"
-                  outlined
-                />
-              </v-col>
-              <v-col cols="4">
-                <v-text-field
-                  data-testid="update-character-english-input"
-                  class="update-character-english-input"
-                  label="English"
-                  v-model="updateCharacter.english"
-                  outlined
-                />
-              </v-col>
-            </v-row>
-            <v-row>
-              <div>
-                <v-expansion-panels focusable style="width: 40vw">
-                  <v-expansion-panel
-                    v-for="(example, i) in combinedExamples"
-                    :key="example.id"
-                    class="my-1"
-                  >
-                    <v-expansion-panel-header>
-                      <span class="title">
-                        {{ selectedCharacter.character }} Example #{{
-                          i + 1
-                        }}
-                        ｜ {{ selectedCharacter.character }} 第
-                        {{ converter.toWords(i + 1) }} 个 例子
-                      </span>
-                    </v-expansion-panel-header>
-                    <v-expansion-panel-content class="mt-2">
-                      <v-row class="my-2">
-                        <v-text-field
-                          data-testid="example-sentence-input"
-                          class="example-sentence-input"
-                          v-model="example.sentence"
-                          :append-icon="!editing ? 'edit' : 'check'"
-                          :readonly="!editing"
-                          @click:append="handleEditSentence"
-                        />
-                        <v-icon
-                          data-testid="delete-sentence-btn"
-                          class="delete-sentence-btn mx-2"
-                          @click="handleDeleteSentence(example.id)"
-                          color="red"
-                        >
-                          delete_outline
-                        </v-icon>
-                      </v-row>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-                </v-expansion-panels>
-              </div>
-            </v-row>
-            <v-row class="my-4">
-              <v-btn
-                data-testid="update-character-example-btn"
-                class="update-character-example-btn"
-                @click="handleAddNewExample"
-                text
-                color="purple lighten-2"
-              >
-                <v-icon class="mr-2">add</v-icon>
-                Add Example
-              </v-btn>
-            </v-row>
-            <v-row class="mt-4">
-              <v-spacer />
-              <v-btn
-                data-testid="return-home-btn"
-                class="return-home-btn mr-4"
-                color="red lighten-1 white--text"
-                @click.once="handleReturnHome"
-              >
-                Cancel
-              </v-btn>
-              <v-btn
-                data-testid="submit-edit-btn"
-                class="submit-edit-btn"
-                color="teal lighten-1 white--text"
-                @click.once="handleSubmitUpdate"
-                :loading="loading"
-              >
-                Submit Update
-              </v-btn>
-            </v-row>
-          </v-container>
-        </v-form>
-      </v-container>
+  <application-layout>
+    <div>
+      <v-skeleton-loader
+        v-if="
+          loadingStatus.includes('retrieving mandarin character...') &&
+            !selectedCharacter
+        "
+        type="card"
+        elevation="14"
+        tile
+      />
+      <div v-else-if="selectedCharacter">
+        <v-container
+          class="update-container mt-6 pa-6"
+          v-if="this.$vuetify.breakpoint.smAndUp"
+        >
+          <v-row justify="center">
+            <h1>Edit {{ selectedCharacter.character }}</h1>
+          </v-row>
+          <v-divider class="character-divider my-4" />
+          <v-form class="mt-4">
+            <v-container>
+              <v-row>
+                <v-col cols="4">
+                  <v-text-field
+                    data-testid="update-character-character-input"
+                    class="update-character-character-input"
+                    label="Character"
+                    v-model="updateCharacter.character"
+                    outlined
+                  />
+                </v-col>
+                <v-col cols="4">
+                  <v-text-field
+                    data-testid="update-character-pinyin-input"
+                    class="update-character-pinyin-input"
+                    label="Pinyin"
+                    v-model="updateCharacter.pinyin"
+                    outlined
+                  />
+                </v-col>
+                <v-col cols="4">
+                  <v-text-field
+                    data-testid="update-character-english-input"
+                    class="update-character-english-input"
+                    label="English"
+                    v-model="updateCharacter.english"
+                    outlined
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <div>
+                  <v-expansion-panels focusable style="width: 40vw">
+                    <v-expansion-panel
+                      v-for="(example, i) in combinedExamples"
+                      :key="example.id"
+                      class="my-1"
+                    >
+                      <v-expansion-panel-header>
+                        <span class="title">
+                          {{ selectedCharacter.character }} Example #{{
+                            i + 1
+                          }}
+                          ｜ {{ selectedCharacter.character }} 第
+                          {{ converter.toWords(i + 1) }} 个 例子
+                        </span>
+                      </v-expansion-panel-header>
+                      <v-expansion-panel-content class="mt-2">
+                        <v-row class="my-2">
+                          <v-text-field
+                            data-testid="example-sentence-input"
+                            class="example-sentence-input"
+                            v-model="example.sentence"
+                            :append-icon="!editing ? 'edit' : 'check'"
+                            :readonly="!editing"
+                            @click:append="handleEditSentence"
+                          />
+                          <v-icon
+                            data-testid="delete-sentence-btn"
+                            class="delete-sentence-btn mx-2"
+                            @click="handleDeleteSentence(example.id)"
+                            color="red"
+                          >
+                            delete_outline
+                          </v-icon>
+                        </v-row>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </div>
+              </v-row>
+              <v-row class="my-4">
+                <v-btn
+                  data-testid="update-character-example-btn"
+                  class="update-character-example-btn"
+                  @click="handleAddNewExample"
+                  text
+                  color="purple lighten-2"
+                >
+                  <v-icon class="mr-2">add</v-icon>
+                  Add Example
+                </v-btn>
+              </v-row>
+              <v-row class="mt-4">
+                <v-spacer />
+                <v-btn
+                  data-testid="return-home-btn"
+                  class="return-home-btn mr-4"
+                  color="red lighten-1 white--text"
+                  @click.once="handleReturnHome"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  data-testid="submit-edit-btn"
+                  class="submit-edit-btn"
+                  color="teal lighten-1 white--text"
+                  @click.once="handleSubmitUpdate"
+                  :loading="loading"
+                >
+                  Submit Update
+                </v-btn>
+              </v-row>
+            </v-container>
+          </v-form>
+        </v-container>
+      </div>
     </div>
-  </div>
+  </application-layout>
 </template>
 
 <script lang="ts">
@@ -134,6 +136,7 @@ import { Component } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
 import { Example, PostsState, SelectedCharacter, UserState } from "@/models";
 import Vue from "vue";
+import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 import PostsModule from "@/store/modules/posts";
 import UserModule from "@/store/modules/user";
 import router from "@/router";
@@ -143,7 +146,8 @@ const posts = namespace(PostsModule.name);
 const user = namespace(UserModule.name);
 
 @Component({
-  name: "CharacterCard"
+  name: "CharacterCard",
+  components: { ApplicationLayout }
 })
 export default class CharacterCard extends Vue {
   // ===== Store ===== //
@@ -165,7 +169,7 @@ export default class CharacterCard extends Vue {
   // ===== Methods ===== //
   public handleReturnHome(): void {
     this.clearSelectedMandarin();
-    router.push({ name: "Home" });
+    router.push({ name: "Dashboard" });
   }
 
   public handleDeleteSentence(id: number): void {

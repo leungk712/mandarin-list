@@ -8,7 +8,7 @@
       </div>
     </v-row>
     <v-row align-content="center" justify="center" class="mt-3">
-      <v-col cols="2">
+      <v-col sm="12" md="3" xl="2">
         <v-text-field
           data-testid="new-example-character-input"
           class="new-example-character-input"
@@ -18,7 +18,7 @@
           outlined
         />
       </v-col>
-      <v-col cols="2">
+      <v-col sm="12" md="3" xl="2">
         <v-text-field
           data-testid="new-example-pinyin-input"
           class="new-example-pinyin-input"
@@ -28,7 +28,7 @@
           outlined
         />
       </v-col>
-      <v-col cols="2">
+      <v-col sm="12" md="3" xl="2">
         <v-text-field
           data-testid="new-example-english-input"
           class="new-example-english-input"
@@ -40,7 +40,7 @@
       </v-col>
     </v-row>
     <v-row align-content="center" justify="center">
-      <v-col cols="6">
+      <v-col sm="12" md="9" xl="6">
         <p class="font-weight-bold">Select 1 or more categories:</p>
         <v-select
           data-testid="new-example-category-menu"
@@ -52,11 +52,12 @@
           multiple
           label="Categories"
           chips
+          outlined
         />
       </v-col>
     </v-row>
     <v-row align-content="center" justify="center">
-      <v-col cols="6">
+      <v-col sm="12" md="9" xl="6">
         <p class="font-weight-bold">Add an example (optional):</p>
         <v-text-field
           data-testid="new-example-sentence-input"
