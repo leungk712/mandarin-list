@@ -9,7 +9,7 @@
       >
         <v-toolbar-title>Dashboard</v-toolbar-title>
       </v-toolbar>
-      <v-tabs vertical id="tabs-yo" background-color="blue-grey lighten-4">
+      <v-tabs vertical background-color="blue-grey lighten-4">
         <v-tab>
           <v-icon left>mdi-ideogram-cjk</v-icon>
           Characters
@@ -68,10 +68,3 @@ import ListCard from "@/components/ListCard.vue";
 })
 export default class Dashboard extends Vue {}
 </script>
-
-<style scoped>
-#tabs-yo .v-tab-bars {
-  background: red;
-  border: 4px solid black;
-}
-</style>

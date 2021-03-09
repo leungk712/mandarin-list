@@ -16,10 +16,11 @@ export default class LandingPage extends Vue {
   // ===== Store ===== //
 
   // ===== Data ===== //
-  public model = 0;
 
   // ===== Methods ===== //
 
   // ===== Computed ===== //
+
+  // ===== Lifecycle Hooks ===== //
 }
 </script>

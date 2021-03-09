@@ -7,15 +7,25 @@ import {
 } from "@/models";
 import { ActionTree, GetterTree, MutationTree } from "vuex";
 import axios, { AxiosResponse } from "axios";
+import { avatarColors } from "@/helpers/avatar-colors";
+
+function generateAvatarColor() {
+    return avatarColors[Math.floor(Math.random() * avatarColors.length)];
+}
 
 export const userState = {
   accessToken: sessionStorage.getItem("access_token") || "",
+  avatarColor: "",
   isLoggedIn: false,
   loadingState: [],
   user: null
 };
 
 export const userActions: ActionTree<UserState, RootState> = {
+  handleAvatarColor: ({ commit }) => {
+    commit("setAvatarColor", generateAvatarColor());
+  },
+
   login: ({ commit, dispatch }, payload: LoginPayload) => {
     commit("addToLoadingState", "attemping to log in...");
     return axios
@@ -23,6 +33,7 @@ export const userActions: ActionTree<UserState, RootState> = {
       .then((resp: AxiosResponse) => {
         commit("setUser", resp.data.user);
         commit("setLoginSuccess", resp.data);
+        dispatch("handleAvatarColor");
         dispatch("posts/getMandarinList", resp.data.user._id, { root: true });
         commit("removeFromLoadingState", "attemping to log in...");
       })
@@ -58,6 +69,9 @@ export const userMutations: MutationTree<UserState> = {
     state.loadingState = state.loadingState.filter(
       loadMessages => loadMessages !== message
     );
+  },
+  setAvatarColor: (state: UserState, color: string) => {
+    state.avatarColor = color;
   },
   setLoginSuccess: (state: UserState, resp) => {
     const bearerToken = `Bearer ${resp.token}`;

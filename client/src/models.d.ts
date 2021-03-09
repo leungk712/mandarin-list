@@ -68,6 +68,7 @@ export interface CategoriesState {
 
 export interface UserState {
   accessToken: string;
+  avatarColor: string;
   isLoggedIn: boolean;
   loadingState: string[];
   user: UserData | null;

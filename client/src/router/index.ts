@@ -47,6 +47,22 @@ const routes: Array<RouteConfig> = [
       import(
         /* webpackChunkName: "Dashboard" */ "@/views/dashboard/Dashboard.vue"
       )
+  },
+  {
+    path: "/travel-china",
+    name: "TravelChina",
+    component: () =>
+      import(
+        /* webpackChunkName: "TravelChina" */ "@/views/navigation/TravelChina.vue"
+      )
+  },
+  {
+    path: "/resources",
+    name: "Resources",
+    component: () =>
+      import(
+        /* webpackChunkName: "Resources" */ "@/views/navigation/Resources.vue"
+      )
   }
 ];
 

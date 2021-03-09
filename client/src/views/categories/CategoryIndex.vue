@@ -8,14 +8,15 @@
       <v-row>
         <v-col cols="2" style="min-height: 80vh; border-right: 1px solid #eee" fill-height>
         <h4 class="font-weight-bold">Categories</h4>
-        <v-card class="my-2 py-2 px-2">All Characters</v-card>
+        <v-divider class="my-2" />
         <v-card
           v-for="(category) in categories.categoriesList"
           :key="category._id"
           class="my-2 py-2 px-2"
           @click="handleViewCategory(category)"
+          outlined
         >
-          {{ category.name }}
+          <h4 class="font-weight-bold">{{ category.name }}</h4>
         </v-card>
         </v-col>
         <v-col cols="10">

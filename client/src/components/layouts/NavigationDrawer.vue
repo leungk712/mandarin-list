@@ -12,7 +12,7 @@
             <v-list-item-avatar
               v-if="user && userInfo"
               class="mr-2 white--text"
-              :color="randomColor"
+              :color="user.avatarColor"
               size="48"
               tile
             >
@@ -39,17 +39,17 @@
             </v-list-item-icon>
             <v-list-item-title>My Profile</v-list-item-title>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link :to="{ name: 'TravelChina' }">
             <v-list-item-icon>
               <v-icon>map</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Travel China</v-list-item-title>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link :to="{ name: 'Resources' }">
             <v-list-item-icon>
               <v-icon>folder</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Chinese Resources</v-list-item-title>
+            <v-list-item-title>Resources</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="handleLogout">
             <v-list-item-icon>
@@ -69,7 +69,6 @@ import { namespace, State } from "vuex-class";
 import { UserState } from "@/models";
 import router from "@/router";
 import UserModule from "@/store/modules/user";
-import { avatarColors } from "@/helpers/avatar-colors";
 
 const user = namespace(UserModule.name);
 
@@ -82,14 +81,12 @@ export default class NavigationDrawer extends Vue {
     @user.Action("logout") public logout!: () => void;
 
     // ===== Data ===== //
-    public avatarColors = avatarColors;
 
     // ===== Methods ===== //
-    public async handleLogout(): Promise<void> {
-        await this.logout().then(() => {
-            router.push({ name: "Home" }).catch(() => {
-            return true;
-          });
+    public handleLogout(): void {
+        this.logout()
+        router.push({ name: "Home" }).catch(() => {
+          return true;
         });
     }
 
@@ -100,10 +97,5 @@ export default class NavigationDrawer extends Vue {
     get userInitials() {
         return this.userInfo ? `${this.userInfo.firstName.charAt(0)}${this.userInfo.lastName.charAt(0)}` : "";
     }
-    get randomColor() {
-      return this.avatarColors[Math.floor(Math.random() * this.avatarColors.length)];
-    }
 }
 </script>
-
-<style scoped></style>
