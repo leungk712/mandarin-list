@@ -12,6 +12,7 @@
     "@jest/globals": "^26.6.2",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "moment": "^2.29.1",
     "number-to-chinese-words": "^1.0.20",
     "vee-validate": "^3.4.5",
     "vue": "^2.6.11",

@@ -39,7 +39,9 @@
         </v-tab-item>
         <v-tab-item>
           <v-card flat>
-              My Blog (coming soon!)
+              <CreateStory />
+              <v-divider class="my-4" />
+              <StoriesIndex />
           </v-card>
         </v-tab-item>
       </v-tabs>
@@ -54,7 +56,9 @@ import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 import CategoryIndex from "@/views/categories/CategoryIndex.vue";
 import CreateCategory from "@/views/categories/CreateCategory.vue";
 import CreateCharacter from "@/components/CreateCharacter.vue";
+import CreateStory from "@/views/stories/CreateStory.vue";
 import ListCard from "@/components/ListCard.vue";
+import StoriesIndex from "@/views/stories/StoriesIndex.vue";
 
 @Component({
   name: "Dashboard",
@@ -63,7 +67,9 @@ import ListCard from "@/components/ListCard.vue";
     CategoryIndex,
     CreateCategory,
     CreateCharacter,
-    ListCard
+    CreateStory,
+    ListCard,
+    StoriesIndex
   }
 })
 export default class Dashboard extends Vue {}

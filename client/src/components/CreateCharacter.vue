@@ -177,7 +177,7 @@ export default class CreateCharacter extends Vue {
       english: this.newExample.english,
       examples: this.newExample.examples,
       starred: false,
-      user: this.user!.user._id,
+      user: this.user.user!._id,
       date: new Date().toISOString()
     };
     await this.submitMandarinCharacter(payload);
@@ -187,6 +187,7 @@ export default class CreateCharacter extends Vue {
 
   public resetExample(): void {
     this.newExample = {
+      categories: [],
       character: "",
       pinyin: "",
       english: "",

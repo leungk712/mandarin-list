@@ -30,7 +30,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { namespace, State } from "vuex-class";
-import { CategoriesState } from "@/models";
+import { Category, CategoriesState } from "@/models";
 import CategoriesModule from "@/store/modules/categories";
 import ListCard from "@/components/ListCard.vue";
 
@@ -48,7 +48,7 @@ export default class CategoryIndex extends Vue {
     // ===== Data ===== //
 
     // ===== Methods ===== //
-    public handleViewCategory(category):void  {
+    public handleViewCategory(category: Category):void  {
       console.log("cate", category);
     }
 

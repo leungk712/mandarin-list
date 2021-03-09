@@ -159,7 +159,7 @@ export default class CharacterCard extends Vue {
     id: string
   ) => void;
   @posts.Action("updateMandarinCharacter")
-  public updateMandarinCharacter!: (payload: {}) => void;
+  public updateMandarinCharacter!: (payload: SelectedCharacter) => void;
 
   // ===== Data ===== //
   public editing = false;
@@ -195,6 +195,8 @@ export default class CharacterCard extends Vue {
     this.loading = true;
     const updatePayload = {
       _id: this.updateCharacter._id,
+      __v: this.selectedCharacter.__v,
+      categories: this.selectedCharacter.categories,
       character: this.updateCharacter.character,
       createdAt: this.selectedCharacter.createdAt,
       date: this.selectedCharacter.date,
@@ -202,7 +204,7 @@ export default class CharacterCard extends Vue {
       english: this.updateCharacter.english,
       examples: this.updateCharacter.examples,
       starred: this.updateCharacter.starred,
-      user: this.user.user._id,
+      user: this.user.user!._id,
       updatedAt: new Date().toISOString()
     };
     await this.updateMandarinCharacter(updatePayload);
@@ -225,13 +227,14 @@ export default class CharacterCard extends Vue {
       _id: this.selectedCharacter._id,
       __v: this.selectedCharacter.__v,
       character: this.selectedCharacter ? this.selectedCharacter.character : "",
+      categories: this.selectedCharacter ? this.selectedCharacter.categories : [],
       createdAt: this.selectedCharacter.createdAt,
       date: this.selectedCharacter.date,
       pinyin: this.selectedCharacter ? this.selectedCharacter.pinyin : "",
       english: this.selectedCharacter ? this.selectedCharacter.english : "",
       examples: this.combinedExamples,
       starred: this.selectedCharacter ? this.selectedCharacter.starred : false,
-      user: this.user.user._id,
+      user: this.user.user!._id,
       updatedAt: this.selectedCharacter.updatedAt
     };
   }

@@ -157,7 +157,7 @@ export default class ListCard extends Vue {
       examples: character.examples,
       pinyin: character.pinyin,
       starred: this.favorited,
-      user: this.user.user._id,
+      user: this.user.user!._id,
       updatedAt: character.updatedAt
     };
 
@@ -174,7 +174,7 @@ export default class ListCard extends Vue {
     this.reveal = false;
   }
 
-  public async handleEdit(character): Promise<void> {
+  public async handleEdit(character: SelectedCharacter): Promise<void> {
     const payload = {
       userId: character.user,
       _id: character._id
@@ -183,7 +183,7 @@ export default class ListCard extends Vue {
     router.push({ name: "CharacterCard", params: { userId: character.user, id: character._id } });
   }
 
-  public handleDelete(character): void {
+  public handleDelete(character: SelectedCharacter): void {
     this.deleteMandarinCharacter(character);
   }
 

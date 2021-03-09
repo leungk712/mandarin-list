@@ -5,9 +5,10 @@ import Vuex, { StoreOptions } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
 // ===== Module Imports ===== //
-import PostModule from "@/store/modules/posts";
-import UserModule from "@/store/modules/user";
 import CategoryModule from "@/store/modules/categories";
+import PostModule from "@/store/modules/posts";
+import StoryModule from "@/store/modules/stories";
+import UserModule from "@/store/modules/user";
 
 Vue.use(Vuex);
 
@@ -16,6 +17,7 @@ const store: StoreOptions<RootState> = {
   modules: {
     categories: CategoryModule,
     posts: PostModule,
+    stories: StoryModule,
     user: UserModule
   }
 };

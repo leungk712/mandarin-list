@@ -144,7 +144,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { namespace, State } from "vuex-class";
+import { namespace } from "vuex-class";
 import UserModule from "@/store/modules/user";
 import { LoginPayload, RegisterPayload } from "@/models";
 import router from "@/router";
@@ -178,10 +178,9 @@ export default class AppLogin extends Vue {
   // ===== Methods ===== //
   public async handleLoginRegister(): Promise<void> {
     if (this.loginView) {
-      await this.login(this.loginUser).then(() => {
-        router.push({ name: "Dashboard" }).catch(() => {
-          return true;
-        });
+      await this.login(this.loginUser)
+      router.push({ name: "Dashboard" }).catch(() => {
+        return true;
       });
     } else {
       this.register(this.registerUser);

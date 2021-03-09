@@ -35,6 +35,7 @@ import { CategoriesState, UserState } from "@/models";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 import CategoriesModule from "@/store/modules/categories";
 import UserModule from "@/store/modules/user";
+import { CategoryPayload, UserData } from "@/models";
 
 const categories = namespace(CategoriesModule.name);
 const user = namespace(UserModule.name);
@@ -47,7 +48,7 @@ export default class CreateCategory extends Vue {
     // ===== Store ====== //
     @State("categories") public categories!: CategoriesState;
     @State("user") public user!: UserState;
-    @categories.Action("createCategory") public createCategory!: (payload: {}) => void;
+    @categories.Action("createCategory") public createCategory!: (payload: CategoryPayload) => void;
 
     // ===== Data ====== //
     public categoryName = "";
@@ -63,10 +64,10 @@ export default class CreateCategory extends Vue {
     }
 
     // ===== Computed ===== //
-    get userInfo() {
-        return this.user.user;
+    get userInfo(): UserData {
+        return this.user.user!;
     }
-    get loadingState() {
+    get loadingState(): string[] {
         return this.categories.loadingState;
     }
     get validCategory() {
