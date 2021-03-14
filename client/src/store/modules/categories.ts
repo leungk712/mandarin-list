@@ -9,7 +9,7 @@ export const categoriesState = {
 };
 
 export const categoriesActions: ActionTree<CategoriesState, RootState> = {
-    getCategories: ({ commit, rootState }) => {
+    getCategories: ({ commit, dispatch, rootState }) => {
         commit("addToLoadingState", "getting user categories...");
         return axios
             .get(`${process.env.VUE_APP_API_HOST}/categories/${rootState.user.user!._id}`)
@@ -18,6 +18,7 @@ export const categoriesActions: ActionTree<CategoriesState, RootState> = {
                 commit("removeFromLoadingState", "getting user categories...");
             })
             .catch(err => {
+                dispatch("snackbar/errorStatus", err, { root: true });
                 commit("removeFromLoadingState", "getting user categories...");
                 throw new Error(err);
             });
@@ -28,9 +29,11 @@ export const categoriesActions: ActionTree<CategoriesState, RootState> = {
             .post(`${process.env.VUE_APP_API_HOST}/categories/${rootState.user.user!._id}`, payload)
             .then(() => {
                 dispatch("getCategories");
+                dispatch("snackbar/successStatus", "Successfully created a new category!", { root: true });
                 commit("removeFromLoadingState", "creating new category...");
             })
             .catch(err => {
+                dispatch("snackbar/errorStatus", err, { root: true });
                 commit("removeFromLoadingState", "creating new category...");
                 throw new Error(err);
             });
@@ -40,9 +43,11 @@ export const categoriesActions: ActionTree<CategoriesState, RootState> = {
         return axios
             .delete(`${process.env.VUE_APP_API_HOST}/categories/${rootState.user.user!._id}/${categoryId}`)
             .then(() => {
+                dispatch("snackbar/successStatus", "Successfully deleted category!", { root: true });
                 commit("removeFromLoadingState", "deleting category...");
             })
             .catch(err => {
+                dispatch("snackbar/errorStatus", err, { root: true });
                 commit("removeFromLoadingState", "deleting category...");
                 throw new Error(err);
             })

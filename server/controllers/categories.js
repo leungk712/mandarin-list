@@ -4,7 +4,7 @@ const Category = require('../models/category.model');
 const getCategories = async (req, res) => {
     await Category.find({ user: req.params.userId })
         .then(categories => res.json(categories))
-        .catch(err => res.status(400).json({ message: `Error: ${err}`}));
+        .catch(err => res.status(400).json({ message: `Error: ${err}` }));
 };
 
 const createCategory = async (req, res) => {

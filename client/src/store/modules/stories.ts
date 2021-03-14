@@ -12,7 +12,7 @@ export const storyState = {
 };
   
 export const storyActions: ActionTree<StoriesState, RootState> = {
-    getStories: ({ commit, rootState }) => {
+    getStories: ({ commit, dispatch, rootState }) => {
         commit("addToLoadingState", "getting user stories...");
         return axios
             .get(`${process.env.VUE_APP_API_HOST}/stories/${rootState.user.user!._id}`)
@@ -21,6 +21,7 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
                 commit("removeFromLoadingState", "getting user stories...");
             })
             .catch(err => {
+                dispatch("snackbar/errorStatus", err, { root: true });
                 commit("removeFromLoadingState", "getting user stories...");
                 throw new Error(err);
             });
@@ -31,9 +32,11 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
             .post(`${process.env.VUE_APP_API_HOST}/stories/${rootState.user.user!._id}`, payload)
             .then(() => {
                 dispatch("getStories");
+                dispatch("snackbar/successStatus", "Successfully created a new story!", { root: true });
                 commit("removeFromLoadingState", "creating new story...");
             })
             .catch(err => {
+                dispatch("snackbar/errorStatus", err, { root: true });
                 commit("removeFromLoadingState", "creating new story...");
                 throw new Error(err);
             });
@@ -44,9 +47,11 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
             .post(`${process.env.VUE_APP_API_HOST}/stories/${rootState.user.user!._id}/story/${payload._id}`, payload)
             .then(() => {
                 dispatch("getStories");
+                dispatch("snackbar/successStatus", "Successfully updated story!", { root: true });
                 commit("removeFromLoadingState", "updating story...");
             })
             .catch(err => {
+                dispatch("snackbar/errorStatus", err, { root: true });
                 commit("removeFromLoadingState", "updating story...");
                 throw new Error(err);
             });
@@ -54,11 +59,14 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
     deleteStory: ({ commit, dispatch, rootState }, storyId) => {
         commit("addToLoadingState", "deleting story...");
         return axios
-            .delete(`${process.env.VUE_APP_API_HOST}/stories/${rootState.user.user!._id}/${storyId}/story/${storyId}`)
+            .delete(`${process.env.VUE_APP_API_HOST}/stories/${rootState.user.user!._id}/story/${storyId}`)
             .then(() => {
+                dispatch("getStories");
+                dispatch("snackbar/successStatus", "Successfully deleted story!", { root: true });
                 commit("removeFromLoadingState", "deleting story...");
             })
             .catch(err => {
+                dispatch("snackbar/errorStatus", err, { root: true });
                 commit("removeFromLoadingState", "deleting story...");
                 throw new Error(err);
             });

@@ -86,10 +86,18 @@ export interface UserData {
 // ===== Store Interfaces ===== //
 
 export interface RootState {
+  alert: AlertState;
   categories: CategoriesState;
   posts: PostState;
+  snackbar: SnackbarState;
   stories: StoriesState;
   user: UserState;
+}
+
+export interface AlertState {
+  display: boolean;
+  message: string;
+  type: string;
 }
 
 export interface CategoriesState {
@@ -102,6 +110,12 @@ export interface PostsState {
   loadingState: string[];
   mandarinList: SelectedCharacter[];
   selectedMandarin?: null | SelectedCharacter;
+}
+
+export interface SnackbarState {
+  display: boolean;
+  message: string;
+  type: string;
 }
 
 export interface StoriesState {

@@ -6,7 +6,7 @@
           :key="story._id"
         >
           <v-expansion-panel-header>
-            {{ story.title }}
+            <h3>{{ story.title }}</h3>
           </v-expansion-panel-header>
           <v-expansion-panel-content class="mt-2">
             <h4>Written: {{ formatDateAndTime(story.createdAt) }}</h4>
@@ -47,13 +47,15 @@ export default class StoriesIndex extends Vue {
   // ===== Store ===== //
   @State("stories") public stories!: StoriesState;
   @stories.Action("getStories") public getStories!: () => void;
+  @stories.Action("deleteStory") public deleteStory!: (storyId: string) => void;
 
   // ===== Data ===== //
 
   // ===== Methods ===== //
-  public handleDeleteStory(id: string): void {
-    console.log("id", id);
+  public handleDeleteStory(storyId: string): void {
+    this.deleteStory(storyId);
   }
+
   public formatDateAndTime(time: string) {
     return moment(time).format('MMMM Do YYYY, h:mm:ss a')
   }

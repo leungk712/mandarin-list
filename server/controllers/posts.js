@@ -65,7 +65,7 @@ const updatePost = async (req, res) => {
 
             post.save()
                 .then(() => res.json('Post updated!'))
-                .catch(err => res.status(400).json(`Error: ${err}`))
+                .catch(err => res.status(400).json(`Error: ${err}`));
         })
         .catch(err => res.status(400).json({ mesasge: `Error: ${err}` }));
 };

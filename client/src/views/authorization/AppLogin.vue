@@ -6,6 +6,7 @@
           <v-card-title class="pl-0">
             <h3>{{ loginView ? "Login" : "Register" }}</h3>
           </v-card-title>
+          <application-alert />
           <v-divider />
           <v-form
             v-if="!loginView"
@@ -148,11 +149,13 @@ import { namespace } from "vuex-class";
 import UserModule from "@/store/modules/user";
 import { LoginPayload, RegisterPayload } from "@/models";
 import router from "@/router";
+import ApplicationAlert from "@/components/ApplicationAlert.vue";
 
 const user = namespace(UserModule.name);
 
 @Component({
-  name: "AppLogin"
+  name: "AppLogin",
+  components: { ApplicationAlert }
 })
 export default class AppLogin extends Vue {
   // ===== Store ===== //

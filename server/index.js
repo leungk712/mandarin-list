@@ -16,10 +16,12 @@ app.options('*', cors());
 // Router
 const categoriesRouter = require('./routes/api/categories');
 const postsRouter = require('./routes/api/posts');
+const storiesRouter = require('./routes/api/stories');
 const usersRouter = require('./routes/api/users');
 
 app.use('/categories', categoriesRouter);
 app.use('/posts', postsRouter);
+app.use('/stories', storiesRouter);
 app.use('/users', usersRouter);
 
 app.use(express.static('../client/dist'));

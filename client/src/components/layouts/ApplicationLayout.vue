@@ -2,18 +2,22 @@
   <div id="layout--application">
     <ApplicationToolbar />
     <NavigationDrawer />
-    <slot />
+    <v-main>
+      <slot />
+    </v-main>
+    <ApplicationSnackbar />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import ApplicationSnackbar from "@/components/ApplicationSnackbar.vue";
 import ApplicationToolbar from "@/components/layouts/ApplicationToolbar.vue";
 import NavigationDrawer from "@/components/layouts/NavigationDrawer.vue";
 
 @Component({
   name: "ApplicationLayout",
-  components: { ApplicationToolbar, NavigationDrawer }
+  components: { ApplicationSnackbar, ApplicationToolbar, NavigationDrawer }
 })
 export default class ApplicationLayout extends Vue {}
 </script>
