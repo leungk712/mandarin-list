@@ -22,6 +22,10 @@
           <v-icon left>mdi-book-open-variant</v-icon>
           Stories
         </v-tab>
+        <v-tab>
+          <v-icon left>translate</v-icon>
+          Translate
+        </v-tab>
 
         <v-tab-item>
           <v-card flat class="ml-8">
@@ -44,6 +48,11 @@
               <StoriesIndex />
           </v-card>
         </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <Translate />
+          </v-card>
+        </v-tab-item>
       </v-tabs>
     </v-card>
     </v-container>
@@ -59,6 +68,7 @@ import CreateCharacter from "@/components/CreateCharacter.vue";
 import CreateStory from "@/views/stories/CreateStory.vue";
 import ListCard from "@/components/ListCard.vue";
 import StoriesIndex from "@/views/stories/StoriesIndex.vue";
+import Translate from "@/views/translate/Translate.vue";
 
 @Component({
   name: "Dashboard",
@@ -69,7 +79,8 @@ import StoriesIndex from "@/views/stories/StoriesIndex.vue";
     CreateCharacter,
     CreateStory,
     ListCard,
-    StoriesIndex
+    StoriesIndex,
+    Translate
   }
 })
 export default class Dashboard extends Vue {}

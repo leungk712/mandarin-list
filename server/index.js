@@ -31,16 +31,21 @@ app.get('/', function (req, res) {
 });
 
 // MongoDB Connection
-const uri = process.env.ATLAS_URI;
+const uriDev = process.env.ATLAS_URI;
+const uriProd = process.env.ATLAS_URI_PRODUCTION;
+const db = process.env.NODE_ENV === 'production' ? uriProd : uriDev;
 const connectDB = async() => {
-    await mongoose.connect(uri, { 
+    await mongoose.connect(db, { 
         useNewUrlParser: true, 
         useCreateIndex: true, 
         useUnifiedTopology: true, 
         bufferCommands: false, 
         bufferMaxEntries: 0 
     })
-    .then(() => { console.log("we are connected now"); })
+    .then(() => {
+        
+        console.log("we are connected now"); 
+    })
     .catch((err) => handleError(err));
 }
 

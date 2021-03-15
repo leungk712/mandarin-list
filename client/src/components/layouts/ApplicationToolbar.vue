@@ -1,6 +1,12 @@
 <template>
-    <v-app-bar color="#8bbf9f" max-height="10vh" app clipped-left>
+    <v-app-bar
+        color="#8bbf9f"
+        max-height="10vh"
+        app
+        clipped-left
+    >
         <v-icon
+            v-if="!nonDashboard"
             data-testid="navbar-home-btn"
             class="navbar-home-btn"
             color="white"
@@ -11,16 +17,6 @@
         <v-spacer />
         <h3 class="white--text font-weight-bold ml-4">Mandarin List</h3>
         <v-spacer />
-        <!-- <v-btn
-            data-testid="app-login-btn"
-            class="app-login-btn"
-            @click="handleLogin"
-            color="black lighten-1 white--text"
-            outlined
-        >
-            {{ user.isLoggedIn ? "Logout" : "Login" }}
-            <v-icon class="mr-2">login</v-icon>
-        </v-btn> -->
     </v-app-bar>
 </template>
 
@@ -47,9 +43,9 @@ export default class ApplicationToolbar extends Vue {
     // ===== Methods ===== //
     public handleReturnHome(): void {
         if (this.user.isLoggedIn) {
-        router.push({ name: "Dashboard" });
+            router.push({ name: "Dashboard" });
         } else {
-        router.push({ name: "Home" });
+            router.push({ name: "Home" });
         }
     }
 
@@ -60,6 +56,10 @@ export default class ApplicationToolbar extends Vue {
     }
 
     // ===== Computed ===== //
+
+    get nonDashboard(): boolean {
+        return this.$route.name === 'Home';
+    }
     get userInfo() {
         return this.user.user;
     }

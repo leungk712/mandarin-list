@@ -38,7 +38,7 @@ export const userActions: ActionTree<UserState, RootState> = {
         commit("removeFromLoadingState", "attemping to log in...");
       })
       .catch(err => {
-        console.log("log in error", err.response.data);
+        dispatch("alert/errorStatus", err.message, { root: true });
         commit("removeFromLoadingState", "attempting to log in...");
         throw new Error(err);
       });

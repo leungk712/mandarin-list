@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ApplicationToolbar />
     <v-row justify="center" class="mt-4">
       <v-col cols="4">
         <v-card class="pa-4" color="grey lighten-5">
@@ -150,12 +151,13 @@ import UserModule from "@/store/modules/user";
 import { LoginPayload, RegisterPayload } from "@/models";
 import router from "@/router";
 import ApplicationAlert from "@/components/ApplicationAlert.vue";
+import ApplicationToolbar from "@/components/layouts/ApplicationToolbar.vue";
 
 const user = namespace(UserModule.name);
 
 @Component({
   name: "AppLogin",
-  components: { ApplicationAlert }
+  components: { ApplicationAlert, ApplicationToolbar }
 })
 export default class AppLogin extends Vue {
   // ===== Store ===== //

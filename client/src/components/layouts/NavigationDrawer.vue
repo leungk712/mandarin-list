@@ -28,16 +28,28 @@
               <v-list-item-subtitle>{{ userInfo.email }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
+
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>China <v-icon small>schedule</v-icon>: {{ chinaTime }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
 
         <v-divider />
 
         <v-list nav dense>
-          <v-list-item link>
+          <v-list-item link :to="{ name: 'Dashboard' }">
+            <v-list-item-icon>
+              <v-icon>dashboard</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Dashboard</v-list-item-title>
+          </v-list-item>
+          <v-list-item link :to="{ name: 'Profile' }">
             <v-list-item-icon>
               <v-icon>person</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>My Profile</v-list-item-title>
+            <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
           <v-list-item link :to="{ name: 'TravelChina' }">
             <v-list-item-icon>
@@ -50,6 +62,12 @@
               <v-icon>folder</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Resources</v-list-item-title>
+          </v-list-item>
+          <v-list-item link :to="{ name: 'Code' }">
+            <v-list-item-icon>
+              <v-icon>code</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Code</v-list-item-title>
           </v-list-item>
           <v-list-item link @click="handleLogout">
             <v-list-item-icon>
@@ -64,11 +82,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
 import { UserState } from "@/models";
 import router from "@/router";
 import UserModule from "@/store/modules/user";
+import moment from "moment-timezone";
 
 const user = namespace(UserModule.name);
 
@@ -91,6 +110,9 @@ export default class NavigationDrawer extends Vue {
     }
 
     // ===== Computed ===== //
+    get chinaTime() {
+      return moment.utc().tz("Asia/Shanghai").format("MM/DD, h:mm:ss a");
+    }
     get userInfo() {
         return this.user.user;
     }

@@ -49,6 +49,14 @@ const routes: Array<RouteConfig> = [
       )
   },
   {
+    path: "/profile",
+    name: "Profile",
+    component: () =>
+      import(
+        /* webpackChunkName: "Profile" */ "@/views/navigation/Profile.vue"
+      )
+  },
+  {
     path: "/travel-china",
     name: "TravelChina",
     component: () =>
@@ -63,7 +71,15 @@ const routes: Array<RouteConfig> = [
       import(
         /* webpackChunkName: "Resources" */ "@/views/navigation/Resources.vue"
       )
-  }
+  },
+  {
+    path: "/code",
+    name: "Code",
+    component: () =>
+      import(
+        /* webpackChunkName: "Code" */ "@/views/navigation/Code.vue"
+      )
+  },
 ];
 
 const router = new VueRouter({

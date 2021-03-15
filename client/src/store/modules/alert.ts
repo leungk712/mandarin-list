@@ -3,6 +3,11 @@ import {
     AlertState
   } from "@/models";
 import { ActionTree, MutationTree } from "vuex";
+import { AxiosError } from "axios";
+
+// export const processErrorMessage = (err: AxiosError | string) => {
+//   let errorMessage = "Invalid"
+// };
 
 export const alertState = {
   display: false,
@@ -14,7 +19,7 @@ export const alertActions: ActionTree<AlertState, RootState> = {
   clearAlert: ({ commit }) => {
     commit("resetAlert")
   },
-  errorStatus: ({ commit }, errorMessage: string) => {
+  errorStatus: ({ commit }, errorMessage: AxiosError | string) => {
     commit("setMessage", errorMessage);
     commit("setType", "error");
     commit("displayAlert");
