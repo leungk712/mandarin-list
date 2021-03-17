@@ -28,21 +28,21 @@
         </v-tab>
 
         <v-tab-item>
-          <v-card flat class="ml-8">
+          <v-card flat class="ma-6">
               <CreateCharacter class="mt-6" />
               <v-divider class="my-8" />
               <ListCard />
           </v-card>
         </v-tab-item>
         <v-tab-item>
-          <v-card flat>
-              <CreateCategory class="ml-10" />
+          <v-card flat class="ma-6">
+              <CreateCategory class="ml-6" />
               <v-divider />
               <CategoryIndex />
           </v-card>
         </v-tab-item>
         <v-tab-item>
-          <v-card flat>
+          <v-card flat class="ma-6">
               <CreateStory />
               <v-divider class="my-4" />
               <StoriesIndex />

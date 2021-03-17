@@ -2,6 +2,24 @@ const beijingDescription = `Home to the capital of China,
     Beijing offers visitors the chance to witness both its ancient and modern blend.
     From the Forbidden City to the Great Wall of China, Beijing is one of the must-visit cities in China.`;
 
+const chengduDescription = `Pandas. Pandas. Pandas. Chengdu is home to the world's largest panda research base. It is also known to be filled with 
+    an abundance of hotpot restaurants, one of the top must-have meals in China.`;
+
+const guangzhouDescription = `Home to dimsum, Guangzhou is a food lover's heaven. From the Canton Tower to the natural beauty of Baiyun Mountain,
+    one thing is for certain. Everyone eats dimsum in Guangzhou.`;
+
+const guilinDescription = `A land filled with karsts, Guilin is a must visit. Taking a cruise down the Li River from Guilin to Yangshou allows you
+    to take in the sights of famous karst landscapes seen on Chinese monetary bills and paintings.`;
+
+const hangzhouDescription = `Known for West Lake, Hangzhou is known for its beautiful scenery. Fog-filled hills, stunning sunsets have inspired
+    Hangzhou to have been talked about throughout China's history as one of the most beautiful places.`;
+
+const harbinDescription = `Home to the world's largest ice festival, Harbin from December to February is one of the must-see
+    places in the entire world. Ice sculptors all around the world gather to create some of the most stunning ice sculptures out there.`;
+
+const lhasaDescription = `Home of the Tibetan people, Lhasa is one of the highest cities in the world at nearly 12,000 feet. With the Himalayan Mountains
+    within sight, experience the beauty of Tibetan monestaries alongside Tibetan culture.`;
+
 const shanghaiDescription = `One of the most modern cities in the world, 
     Shanghai offers a blend of Chinese and European influence. Shanghai is a city that never sleeps.`;
 
@@ -9,25 +27,7 @@ const suzhouDescription = `Considered as one of the most beautiful places to vis
     beautiful water towns showing the charm and beauty of Suzhou gardens. A short distance from Shanghai makes a
     perfect day trip via the bullet train`;
 
-const harbinDescription = `Home to the world's largest ice festival, Harbin from December to February is one of the must-see
-    places in the entire world. Ice sculptors all around the world gather to create some of the most stunning ice sculptures out there.`;
-
-const guangzhouDescription = `Home to dimsum, Guangzhou is a food lovers heaven. From the Canton Tower to the natural beauty of Baiyun Mountain,
-    one thing is for certain. Everyone eats dimsum in Guangzhou.`;
-
-const hangzhouDescription = `Known for West Lake, Hangzhou is known for its beautiful scenery. Fog-filled hills, stunning sunsets have inspired
-    Hangzhou to have been talked about throughout China's history as one of the most beautiful places.`;
-
-const guilinDescription = `A land filled with karsts, Guilin is a must visit. Taking a cruise down the Li River from Guilin to Yangshou allows you
-    to take in the sights of famous karst landscapes seen on Chinese monetary bills and paintings.`;
-
-const chengduDescription = `Pandas. Pandas. Pandas. Chengdu is home to the world's largest panda research base. It is also known to be filled with 
-    an abundance of hotpot restaurants, one of the top must-have meals in China.`;
-
-const lhasaDescription = `Home of the Tibetan people, Lhasa is one of the highest cities in the world at nearly 12,000 feet. With the Himalayan Mountains
-    from afar, experience the beauty of Tibetan monestaries alongside Tibetan culture.`;
-
-const xianDescription = `Terracotta warriors, fortresses. Xi'an is home to the world famous Terracotta Warriors alongside one of the largest ancient
+const xianDescription = `Terracotta warriors, fortresses, pagodas. Xi'an is home to the world famous Terracotta Warriors alongside one of the largest ancient
     military defense systems in the world. Witness the history of an ancient city wall in a bustling city.`;
 
 export const cities = [

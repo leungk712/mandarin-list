@@ -1,6 +1,6 @@
 <template>
     <application-layout>
-      <v-container>
+      <v-container class="container-border">
         <div class="my-4">
           <h1>Travel China</h1>
           <p class="ml-1">China is a country of both ancient and modern. Over 55 ethnic groups live in China offering a range of different cultures, languages, cuisine.</p>

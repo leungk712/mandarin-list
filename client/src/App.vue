@@ -29,4 +29,10 @@ export default class App extends Vue {}
   margin: 0;
   box-sizing: border-box;
 }
+
+.container-border {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin-bottom: 40px;
+}
 </style>

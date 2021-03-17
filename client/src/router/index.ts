@@ -18,68 +18,18 @@ export function ifAuthenticated(to: Route, from: Route, next: NavigationGuardNex
 
 Vue.use(VueRouter);
 
+import CharacterRoute from "@/router/routes/character";
+import DashboardRoute from "@/router/routes/dashboard";
+import HomeRoute from "@/router/routes/home";
+import LoginRoute from "@/router/routes/login";
+import NavigationRoute from "@/router/routes/navigation";
+
 const routes: Array<RouteConfig> = [
-  {
-    path: "/",
-    name: "Home",
-    component: () => import(/* webpackChunkName: "Home" */ "@/views/Home.vue")
-  },
-  {
-    path: "/edit/:userId/:id",
-    name: "CharacterCard",
-    component: () =>
-      import(
-        /* webpackChunkName: "CharacterCard" */ "@/components/CharacterCard.vue"
-      )
-  },
-  {
-    path: "/login",
-    name: "AppLogin",
-    component: () =>
-      import(
-        /* webpackChunkName: "AppLogin" */ "@/views/authorization/AppLogin.vue"
-      )
-  },
-  {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: () =>
-      import(
-        /* webpackChunkName: "Dashboard" */ "@/views/dashboard/Dashboard.vue"
-      )
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: () =>
-      import(
-        /* webpackChunkName: "Profile" */ "@/views/navigation/Profile.vue"
-      )
-  },
-  {
-    path: "/travel-china",
-    name: "TravelChina",
-    component: () =>
-      import(
-        /* webpackChunkName: "TravelChina" */ "@/views/navigation/TravelChina.vue"
-      )
-  },
-  {
-    path: "/resources",
-    name: "Resources",
-    component: () =>
-      import(
-        /* webpackChunkName: "Resources" */ "@/views/navigation/Resources.vue"
-      )
-  },
-  {
-    path: "/code",
-    name: "Code",
-    component: () =>
-      import(
-        /* webpackChunkName: "Code" */ "@/views/navigation/Code.vue"
-      )
-  },
+  ...CharacterRoute,
+  ...DashboardRoute,
+  ...HomeRoute,
+  ...LoginRoute,
+  ...NavigationRoute
 ];
 
 const router = new VueRouter({

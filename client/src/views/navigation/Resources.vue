@@ -1,7 +1,41 @@
 <template>
     <application-layout>
-        <v-container>
-          <h1>Resources.vue</h1>
+        <v-container class="container-border">
+          <h1>Mandarin Resources</h1>
+          <p>These are some resources to help you learn mandarin and/or look into traveling throughout China!</p>
+          <v-divider />
+          <v-list three-line>
+            <template v-for="(resource, idx) in resources">
+              <v-divider
+                v-if="resource.divider"
+                :key="idx"
+              />
+              
+              <v-list-item
+                v-else
+                :key="resource.title"
+              >
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <span>
+                      <v-icon>horizontal_rule
+                      </v-icon>
+                      <span class="font-weight-bold title">{{ resource.title }}
+                      </span>
+                      <v-icon>horizontal_rule</v-icon>
+                    </span>
+                  </v-list-item-title>
+                  <v-list-item-subtitle>{{ resource.subtitle }}</v-list-item-subtitle>
+                  <v-list-item-subtitle class="mt-1">
+                    <a :href="resource.url" target="_blank" class="text-decoration-none teal--text">
+                      Click here to check out {{ resource.title }}
+                      <v-icon small>open_in_new</v-icon>
+                    </a>
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </v-list>
         </v-container>
     </application-layout>
 </template>
@@ -9,6 +43,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
+import { resourcesList } from "@/helpers/resources";
 
 @Component({
   name: "Resources",
@@ -18,6 +53,7 @@ export default class Resources extends Vue {
   // ===== Store ===== //
 
   // ===== Data ===== //
+  public resources = resourcesList;
 
   // ===== Methods ===== //
 

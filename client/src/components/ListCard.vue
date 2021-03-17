@@ -10,7 +10,7 @@
           v-for="(character, idx) in updatedCharactersList"
           :key="character._id"
           xl="3"
-          lg="4"
+          :lg="categoryView ? 6 : 4"
         >
         <v-card
           class="mx-auto my-2 pa-2"
@@ -112,7 +112,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
 import { PostsState, SelectedCharacter, UserState } from "@/models";
 import Draggable from "vuedraggable";
@@ -129,6 +129,9 @@ const user = namespace(UserModule.name);
   components: { Draggable }
 })
 export default class ListCard extends Vue {
+  // ===== Props ===== //
+  @Prop({ default: false }) private readonly categoryView?: boolean;
+
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
   @State("user") public user!: UserState;

@@ -1,14 +1,103 @@
 <template>
     <application-layout>
-        <v-container>
-          <h1>Profile.vue</h1>
+        <v-container class="container-border">
+          <h1>
+            <v-icon large class="pb-1">
+              person_outline
+            </v-icon>
+            My Profile
+          </h1>
+          <p>Member since {{ userSince }}</p>
+          <v-divider />
+          <v-row class="my-6">
+            <v-col cols="12 py-0">
+              <h2>Statistics</h2>
+            </v-col>
+            <v-col cols="4">
+              <v-card
+                class="mx-auto"
+                color="#eee"
+                max-width="400"
+              >
+                <v-card-title>
+                  <v-icon
+                    large
+                    left
+                  >
+                    mdi-ideogram-cjk
+                  </v-icon>
+                  <span class="title font-weight-light">Characters</span>
+                </v-card-title>
+
+                <v-card-text class="display-1 font-weight-bold text-center">
+                  {{ posts.mandarinList.length }} characters
+                </v-card-text>
+              </v-card>
+            </v-col>
+            <v-col cols="4">
+              <v-card
+                class="mx-auto"
+                color="#26c6da"
+                dark
+                max-width="400"
+              >
+                <v-card-title>
+                  <v-icon
+                    large
+                    left
+                  >
+                    mdi-format-list-bulleted
+                  </v-icon>
+                  <span class="title font-weight-light">Categories</span>
+                </v-card-title>
+
+                <v-card-text class="display-1 font-weight-bold text-center">
+                  {{ categories.categoriesList.length }} categories
+                </v-card-text>
+              </v-card>
+            </v-col>
+            <v-col cols="4">
+              <v-card
+                class="mx-auto"
+                color="#BA68C8"
+                dark
+                max-width="400"
+              >
+                <v-card-title>
+                  <v-icon
+                    large
+                    left
+                  >
+                    mdi-book-open-variant
+                  </v-icon>
+                  <span class="title font-weight-light">Stories</span>
+                </v-card-title>
+
+                <v-card-text class="display-1 font-weight-bold text-center">
+                  {{ stories.storiesList.length }} stories
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-container>
     </application-layout>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { namespace, State } from "vuex-class";
+import { CategoriesState, PostsState, StoriesState, UserData, UserState } from "@/models";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
+import CategoriesModule from "@/store/modules/categories";
+import PostsModule from "@/store/modules/posts";
+import StoriesModule from "@/store/modules/stories";
+import UserModule from "@/store/modules/user";
+import moment from "moment";
+
+const categories = namespace(CategoriesModule.name);
+const posts = namespace(PostsModule.name);
+const stories = namespace(StoriesModule.name);
+const user = namespace(UserModule.name);
 
 @Component({
   name: "Profile",
@@ -16,12 +105,23 @@ import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 })
 export default class Profile extends Vue {
   // ===== Store ===== //
+  @State("categories") public categories!: CategoriesState;
+  @State("posts") public posts!: PostsState;
+  @State("stories") public stories!: StoriesState;
+  @State("user") public user!: UserState;
 
   // ===== Data ===== //
 
   // ===== Methods ===== //
 
   // ===== Computed ===== //
+  get userInfo(): UserData {
+    return this.user.user!;
+  }
+
+  get userSince(): string {
+    return moment(this.userInfo.date).utc().format("MMMM Do, YYYY")
+  }
 
   // ===== Lifecycle Hooks ===== //
 }

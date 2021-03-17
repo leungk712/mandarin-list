@@ -31,7 +31,7 @@
 
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title>China <v-icon small>schedule</v-icon>: {{ chinaTime }}</v-list-item-title>
+              <v-list-item-title>China <v-icon small>schedule</v-icon>: {{ clock }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -84,7 +84,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { UserState } from "@/models";
+import { UserData, UserState } from "@/models";
 import router from "@/router";
 import UserModule from "@/store/modules/user";
 import moment from "moment-timezone";
@@ -100,6 +100,7 @@ export default class NavigationDrawer extends Vue {
     @user.Action("logout") public logout!: () => void;
 
     // ===== Data ===== //
+    public clock = "";
 
     // ===== Methods ===== //
     public handleLogout(): void {
@@ -109,15 +110,21 @@ export default class NavigationDrawer extends Vue {
         });
     }
 
+    public handleChinaTime(): void {
+      this.clock = moment.utc().tz("Asia/Shanghai").format("MM/DD, h:mm:ss a");
+    }
+
     // ===== Computed ===== //
-    get chinaTime() {
-      return moment.utc().tz("Asia/Shanghai").format("MM/DD, h:mm:ss a");
+    get userInfo(): UserData {
+        return this.user.user!;
     }
-    get userInfo() {
-        return this.user.user;
-    }
-    get userInitials() {
+    get userInitials(): string {
         return this.userInfo ? `${this.userInfo.firstName.charAt(0)}${this.userInfo.lastName.charAt(0)}` : "";
+    }
+
+    // ===== Lifecycle Hooks ===== //
+    private mounted() {
+      setInterval(() => { this.handleChinaTime() }, 1000);
     }
 }
 </script>
