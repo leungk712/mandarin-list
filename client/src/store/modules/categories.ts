@@ -38,6 +38,20 @@ export const categoriesActions: ActionTree<CategoriesState, RootState> = {
                 throw new Error(err);
             });
     },
+    updateCategory: ({ commit, dispatch, rootState }, payload) => {
+        commit("addToLoadingState", "updating category...");
+        return axios
+            .put(`${process.env.VUE_APP_API_HOST}/categories/${rootState.user.user!._id}/${payload._id}`, payload)
+            .then(() => {
+                dispatch("snackbar/successStatus", "Successfully updated category!", { root: true });
+                commit("removeFromLoadingState", "updating category...");
+            })
+            .catch(err => {
+                dispatch("snackbar/errorStatus", err, { root: true });
+                commit("removeFromLoadingState", "updating category...");
+                throw new Error(err);
+            })
+    },
     deleteCategory: ({ commit, dispatch, rootState }, categoryId) => {
         commit("addToLoadingState", "deleting category...");
         return axios
@@ -69,9 +83,9 @@ export const categoriesMutations: MutationTree<CategoriesState> = {
 };
 
 export default {
-name: "categories",
-namespaced: true,
-state: categoriesState,
-actions: categoriesActions,
-mutations: categoriesMutations
+    name: "categories",
+    namespaced: true,
+    state: categoriesState,
+    actions: categoriesActions,
+    mutations: categoriesMutations
 };

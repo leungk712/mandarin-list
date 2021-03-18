@@ -11,7 +11,10 @@
           <v-divider />
           <v-row class="my-6">
             <v-col cols="12 py-0">
-              <h2>Statistics</h2>
+              <v-row class="ml-1 mb-2">
+                <v-icon class="mr-1">analytics</v-icon>
+                <h2>Statistics</h2>
+              </v-row>
             </v-col>
             <v-col cols="4">
               <v-card

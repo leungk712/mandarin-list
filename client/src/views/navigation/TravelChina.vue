@@ -38,7 +38,7 @@
                 {{ city.name }} | {{ city.pinyin }}
               </v-card-title>
 
-              <v-card-subtitle>
+              <v-card-subtitle style="height: 18vh">
                 {{ city.description }}
               </v-card-subtitle>
 

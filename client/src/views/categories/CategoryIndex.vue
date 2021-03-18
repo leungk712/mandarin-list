@@ -15,7 +15,12 @@
           @click="handleViewCategory(category)"
           outlined
         >
-          <h4 class="font-weight-bold">{{ category.name }}</h4>
+          <v-row class="py-4 px-2">
+            <h4 class="font-weight-bold">{{ category.name }}</h4>
+            <v-spacer />
+            <v-icon>edit</v-icon>
+            <v-icon>delete_outline</v-icon>
+          </v-row>
         </v-card>
         </v-col>
         <v-col md="8" lg="9">

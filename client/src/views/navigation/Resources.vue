@@ -23,15 +23,12 @@
                       <span class="font-weight-bold title">{{ resource.title }}
                       </span>
                       <v-icon>horizontal_rule</v-icon>
+                      <a :href="resource.url" target="_blank" class="text-decoration-none">
+                        <v-icon small color="teal">open_in_new</v-icon>
+                      </a>
                     </span>
                   </v-list-item-title>
                   <v-list-item-subtitle>{{ resource.subtitle }}</v-list-item-subtitle>
-                  <v-list-item-subtitle class="mt-1">
-                    <a :href="resource.url" target="_blank" class="text-decoration-none teal--text">
-                      Click here to check out {{ resource.title }}
-                      <v-icon small>open_in_new</v-icon>
-                    </a>
-                  </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
             </template>

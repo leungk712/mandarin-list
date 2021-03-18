@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-container fluid fill-height>
     <ApplicationToolbar />
-    <v-row justify="center" class="mt-4">
+    <v-row justify="center" align="center">
       <v-col cols="4">
         <v-card class="pa-4" color="grey lighten-5">
           <v-card-title class="pl-0">
@@ -141,7 +141,7 @@
         </v-card>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">

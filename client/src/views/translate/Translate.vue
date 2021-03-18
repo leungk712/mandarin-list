@@ -1,15 +1,30 @@
 <template>
     <div>
-        <v-container fluid style="width: 80%">
+        <v-container fluid class="translate-container mb-6">
             <v-row class="mt-6">
                 <h4>Inspired by Google Translate, type in your simplified chinese characters and we'll produce a pinyin version</h4>
             </v-row>
-            <v-row style="border: 1px solid black; width: 100%" justify="space-around" align="center" class="mt-6">
+            <v-row justify="space-around" align="center" class="translate-row mt-6">
                 <v-col cols="6">
-                    Simplified Chinese Characters
+                    <h4>Simplified Chinese Characters</h4>
+                    <v-textarea
+                        v-model="characters"
+                        outlined
+                        placeholder="你好"
+                        rows="4"
+                        no-resize
+                    />
                 </v-col>
                 <v-col>
-                    Pinyin
+                    <h4>Pinyin</h4>
+                    <v-textarea
+                        v-model="converted"
+                        outlined
+                        readonly
+                        placeholder="Nǐ hǎo"
+                        rows="4"
+                        no-resize
+                    />
                 </v-col>
             </v-row>
         </v-container>
@@ -17,16 +32,35 @@
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from 'vue-property-decorator';
-    // import convert = require('hanzi-to-pinyin');
+import { Component, Vue } from 'vue-property-decorator';
+import pinyin from "chinese-to-pinyin";
 
-    @Component({
-        name: "Translate"
-    })
-    export default class Translate extends Vue {
-        // ===== Computed ===== //
-        // get convert() {
-        //     return convert;
-        // }
+@Component({
+    name: "Translate"
+})
+export default class Translate extends Vue {
+    // ===== Data ===== //
+    public characters = "";
+
+    // ===== Methods ===== //
+
+    // ===== Computed ===== //
+    get converted() {
+        return pinyin(this.characters);
     }
+
+    // ===== Lifecycle Hooks ===== //
+}
 </script>
+
+<style scoped>
+    .translate-container {
+        width: 80%;
+    }
+
+    .translate-row {
+        border: 1px solid #eee;
+        border-radius: 5px;
+        width: 100%;
+    }
+</style>

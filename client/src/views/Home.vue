@@ -1,5 +1,5 @@
 <template>
-  <div class="my-4">
+  <div>
     <LandingPage />
   </div>
 </template>

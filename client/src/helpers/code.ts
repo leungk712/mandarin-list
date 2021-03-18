@@ -44,8 +44,8 @@ export const projectResources = [
         url: "https://www.npmjs.com/package/number-to-chinese-words"
     },
     {
-        name: "Hanzi-to-Pinyin",
-        url: "https://www.npmjs.com/package/hanzi-to-pinyin"
+        name: "Chinese-to-Pinyin",
+        url: "https://www.npmjs.com/package/chinese-to-pinyin"
     },
     {
         name: "Axios",

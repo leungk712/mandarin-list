@@ -1,9 +1,22 @@
 <template>
   <div>
     <ApplicationToolbar />
-    <v-container style="min-height: 80vh" fill-height>
+    <v-container style="min-height: 80vh" fill-height fluid>
       <v-row justify="center" align="center">
-          <v-img src="../assets/carousel-imgs/diem-nhi-nguyen-Y-HwuSKt6gM-unsplash.jpg" />
+        <v-carousel
+          height="750"
+          cycle
+          interval="10000"
+          hide-delimiters
+        >
+          <v-carousel-item
+            v-for="(item,idx) in carouselItems"
+            :key="idx"
+            :src="item.img"
+            reverse-transition="fade-transition"
+            transition="fade-transition"
+          />
+        </v-carousel>
       </v-row>
     </v-container>
   </div>
@@ -12,6 +25,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ApplicationToolbar from "@/components/layouts/ApplicationToolbar.vue";
+import { carouselItems } from "@/helpers/home";
 
 @Component({
   name: "LandingPage",
@@ -21,6 +35,7 @@ export default class LandingPage extends Vue {
   // ===== Store ===== //
 
   // ===== Data ===== //
+  public carouselItems = carouselItems;
 
   // ===== Methods ===== //
 
@@ -29,3 +44,6 @@ export default class LandingPage extends Vue {
   // ===== Lifecycle Hooks ===== //
 }
 </script>
+
+<style scoped>
+</style>
