@@ -16,93 +16,126 @@
           >
             <v-row>
               <v-col cols="6">
-                <v-text-field
-                  data-testid="register-first-name-input"
-                  class="register-first-name-input"
-                  v-model="registerUser.firstName"
-                  label="First Name"
-                  type="text"
-                  required
-                />
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                  <v-text-field
+                    data-testid="register-first-name-input"
+                    class="register-first-name-input"
+                    v-model="registerUser.firstName"
+                    label="First Name"
+                    type="text"
+                    required
+                    :error-messages="errors"
+                  />
+                </ValidationProvider>
               </v-col>
               <v-col cols="6">
-                <v-text-field
-                  data-testid="register-last-name-input"
-                  class="register-last-name-input"
-                  v-model="registerUser.lastName"
-                  label="Last Name"
-                  type="text"
-                  required
-                />
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                  <v-text-field
+                    data-testid="register-last-name-input"
+                    class="register-last-name-input"
+                    v-model="registerUser.lastName"
+                    label="Last Name"
+                    type="text"
+                    required
+                    :error-messages="errors"
+                  />
+                </ValidationProvider>
               </v-col>
             </v-row>
             <v-row>
               <v-col class="mt-0 pt-0">
-                <v-text-field
-                  data-testid="register-email-input"
-                  class="register-email-input"
-                  v-model="registerUser.email"
-                  label="Email"
-                  type="email"
-                  prepend-inner-icon="email"
-                  required
-                />
+                <ValidationProvider rules="required|email" v-slot="{ errors }">
+                  <v-text-field
+                    data-testid="register-email-input"
+                    class="register-email-input"
+                    v-model="registerUser.email"
+                    label="Email"
+                    type="email"
+                    prepend-inner-icon="email"
+                    required
+                    :error-messages="errors"
+                  />
+                </ValidationProvider>
               </v-col>
             </v-row>
-            <v-row>
-              <v-col class="mt-0 pt-0">
-                <v-text-field
-                  data-testid="register-password-input"
-                  class="register-last-name-input"
-                  v-model="registerUser.password"
-                  label="Password"
-                  :type="showPassword ? 'text' : 'password'"
-                  :append-icon="showPassword ? 'visibility' : 'visibility_off'"
-                  @click:append="showPassword = !showPassword"
-                  prepend-inner-icon="lock"
-                  required
-                />
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col class="mt-0 pt-0">
-                <v-text-field
-                  data-testid="register-confirm-password-input"
-                  class="register-confirm-password-input"
-                  v-model="registerUser.confirmPassword"
-                  label="Confirm Password"
-                  :type="showConfirmPassword ? 'text' : 'password'"
-                  :append-icon="
-                    showConfirmPassword ? 'visibility' : 'visibility_off'
-                  "
-                  @click:append="showConfirmPassword = !showConfirmPassword"
-                  prepend-inner-icon="lock"
-                  required
-                />
-              </v-col>
-            </v-row>
+            <ValidationObserver>
+              <v-row>
+                <v-col class="mt-0 pt-0">
+                  <ValidationProvider
+                    :rules="passwordRules"
+                    v-slot="{ errors }"
+                  >
+                    <v-text-field
+                      data-testid="register-password-input"
+                      class="register-last-name-input"
+                      v-model="registerUser.password"
+                      label="Password"
+                      name="password"
+                      :type="showPassword ? 'text' : 'password'"
+                      :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                      @click:append="showPassword = !showPassword"
+                      prepend-inner-icon="lock"
+                      required
+                      :error-messages="errors"
+                      :hint="!passwordValid ? passwordRequirementsText : ''"
+                    />
+                  </ValidationProvider>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col class="mt-0 pt-0">
+                  <ValidationProvider
+                    :rules="confirmedPasswordRules"
+                    vid="password_confirmation"
+                    v-slot="{ errors }"
+                  >
+                    <v-text-field
+                      data-testid="register-confirm-password-input"
+                      class="register-confirm-password-input"
+                      v-model="registerUser.confirmPassword"
+                      label="Confirm Password"
+                      :type="showConfirmPassword ? 'text' : 'password'"
+                      :append-icon="
+                        showConfirmPassword ? 'visibility' : 'visibility_off'
+                      "
+                      @click:append="showConfirmPassword = !showConfirmPassword"
+                      prepend-inner-icon="lock"
+                      required
+                      :error-messages="errors"
+                    />
+                  </ValidationProvider>
+                </v-col>
+              </v-row>
+            </ValidationObserver>
           </v-form>
           <v-form @submit.prevent="handleLoginRegister" v-if="loginView">
-            <v-text-field
-              data-testid="login-email-input"
-              class="login-email-input"
-              v-model="loginUser.email"
-              label="Email"
-              type="email"
-              prepend-inner-icon="email"
-            />
-            <v-text-field
-              data-testid="login-password-input"
-              class="login-password-input"
-              v-model="loginUser.password"
-              label="Password"
-              :type="showPassword ? 'text' : 'password'"
-              :append-icon="showPassword ? 'visibility' : 'visibility_off'"
-              @click:append="showPassword = !showPassword"
-              prepend-inner-icon="lock"
-            />
+            <ValidationProvider rules="required|email" v-slot="{ errors }">
+              <v-text-field
+                data-testid="login-email-input"
+                class="login-email-input"
+                v-model="loginUser.email"
+                label="Email"
+                type="email"
+                prepend-inner-icon="email"
+                :error-messages="errors"
+              />
+            </ValidationProvider>
+
+            <ValidationProvider rules="required" v-slot="{ errors }">
+              <v-text-field
+                data-testid="login-password-input"
+                class="login-password-input"
+                v-model="loginUser.password"
+                label="Password"
+                :type="showPassword ? 'text' : 'password'"
+                :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                @click:append="showPassword = !showPassword"
+                prepend-inner-icon="lock"
+                :error-messages="errors"
+              />
+            </ValidationProvider>
           </v-form>
-          <v-row class="ml-1">
+          <v-row class="ml-1 mt-2">
             <p class="font-weight-bold subtitle-2 mr-4" v-if="!loginView">
               Already have an account?
               <a
@@ -152,12 +185,19 @@ import { LoginPayload, RegisterPayload } from "@/models";
 import router from "@/router";
 import ApplicationAlert from "@/components/ApplicationAlert.vue";
 import ApplicationToolbar from "@/components/layouts/ApplicationToolbar.vue";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
+import { passwordRequirementsText } from "@/helpers/login";
 
 const user = namespace(UserModule.name);
 
 @Component({
   name: "AppLogin",
-  components: { ApplicationAlert, ApplicationToolbar }
+  components: {
+    ApplicationAlert,
+    ApplicationToolbar,
+    ValidationObserver,
+    ValidationProvider 
+  }
 })
 export default class AppLogin extends Vue {
   // ===== Store ===== //
@@ -179,6 +219,7 @@ export default class AppLogin extends Vue {
   public loginView = false;
   public showPassword = false;
   public showConfirmPassword = false;
+  public passwordRequirementsText = passwordRequirementsText;
 
   // ===== Methods ===== //
   public async handleLoginRegister(): Promise<void> {
@@ -188,9 +229,10 @@ export default class AppLogin extends Vue {
         return true;
       });
     } else {
-      this.register(this.registerUser);
+      await this.register(this.registerUser);
+      this.loginView = true;
+      this.clearInfo();
     }
-    this.clearInfo();
   }
 
   public handleLoginView(): void {
@@ -209,22 +251,39 @@ export default class AppLogin extends Vue {
   }
 
   // ===== Computed ===== //
-  get passwordsValid(): boolean {
+  get confirmedPasswordRules() {
+    return { required: true };
+  }
+  get passwordsMatch(): boolean {
     return this.registerUser.password === this.registerUser.confirmPassword;
+  }
+  get passwordRegex() {
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  }
+  get passwordRules() {
+    return { passwordValidation: this.passwordRegex, confirmed: `password_confirmation`, required: true };
+  }
+  get passwordValid(): boolean {
+    return !!(this.passwordRegex.test(this.registerUser.password));
   }
   get validForm(): boolean {
     if (this.loginView) {
       return !!(this.loginUser.email && this.loginUser.password);
     }
-
     return !!(
       this.registerUser.firstName &&
       this.registerUser.lastName &&
       this.registerUser.email &&
       this.registerUser.password &&
       this.registerUser.confirmPassword &&
-      this.passwordsValid
+      this.passwordValid &&
+      this.passwordsMatch
     );
+  }
+
+  // ===== Lifecycle Hooks ===== //
+  private beforeDestroy() {
+    this.clearInfo();
   }
 }
 </script>

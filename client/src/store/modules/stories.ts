@@ -17,11 +17,11 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
         return axios
             .get(`${process.env.VUE_APP_API_HOST}/stories/${rootState.user.user!._id}`)
             .then((resp: AxiosResponse) => {
-                commit("setStoriesList", resp.data);
+                commit("setStoriesList", resp.data.stories);
                 commit("removeFromLoadingState", "getting user stories...");
             })
             .catch(err => {
-                dispatch("snackbar/errorStatus", err, { root: true });
+                dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
                 commit("removeFromLoadingState", "getting user stories...");
                 throw new Error(err);
             });
@@ -36,7 +36,7 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
                 commit("removeFromLoadingState", "creating new story...");
             })
             .catch(err => {
-                dispatch("snackbar/errorStatus", err, { root: true });
+                dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
                 commit("removeFromLoadingState", "creating new story...");
                 throw new Error(err);
             });
@@ -51,7 +51,7 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
                 commit("removeFromLoadingState", "updating story...");
             })
             .catch(err => {
-                dispatch("snackbar/errorStatus", err, { root: true });
+                dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
                 commit("removeFromLoadingState", "updating story...");
                 throw new Error(err);
             });
@@ -66,7 +66,7 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
                 commit("removeFromLoadingState", "deleting story...");
             })
             .catch(err => {
-                dispatch("snackbar/errorStatus", err, { root: true });
+                dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
                 commit("removeFromLoadingState", "deleting story...");
                 throw new Error(err);
             });

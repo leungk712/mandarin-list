@@ -61,7 +61,7 @@ export const projectResources = [
     },
     {
         name: "Mongoose",
-        url: "https://mongoosejs.com/docs/"
+        url: "https://mongoosejs.com"
     },
     {
         name: "MongoDB",

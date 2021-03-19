@@ -11,7 +11,7 @@ const authenticateToken = (req, res, next) => {
 
     jwt.verify(token, process.env.JWT_SECRET_PASSWORD, (err, user) => {
         if (err) {
-            return res.status(403).json({ message: "Unable to verify token" });
+            return res.status(403).json({ status: 403, message: "Unable to verify token" });
         }
 
         req.user = user;

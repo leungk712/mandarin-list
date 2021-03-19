@@ -3,14 +3,14 @@ const Post = require('../models/post.model');
 
 const getPosts = async (req, res) => {
     await Post.find({ user: req.params.userId })
-        .then(posts => res.json(posts))
-        .catch(err => res.status(400).json({ message: `Error: ${err}` }));
+        .then(posts => res.status(200).json({ status: 200, posts }))
+        .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
 };
 
 const getIndividualPost = async (req, res) => {
     await Post.findById({ user: req.params.userId, _id: req.params.postId })
-        .then(post => res.json(post))
-        .catch(err => res.status(400).json({ message: `Error: ${err}` }));
+        .then(post => res.status(200).json({ status: 200, post }))
+        .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
 };
 
 const createPost = async (req, res) => {
@@ -37,8 +37,8 @@ const createPost = async (req, res) => {
     });
 
     await newPost.save()
-        .then(() => res.json({ message: 'New post created!' }))
-        .catch(err => res.status(400).json({ message: `Error: ${err}` }));
+        .then(() => res.status(200).json({ status: 200, message: 'New post created!' }))
+        .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
 };
 
 const updatePost = async (req, res) => {
@@ -64,16 +64,16 @@ const updatePost = async (req, res) => {
             post.date = Date.parse(date);
 
             post.save()
-                .then(() => res.json('Post updated!'))
-                .catch(err => res.status(400).json(`Error: ${err}`));
+                .then(() => res.status(200).json({ status: 200, message: 'Post updated!' }))
+                .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
         })
-        .catch(err => res.status(400).json({ mesasge: `Error: ${err}` }));
+        .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
 };
 
 const deletePost = async (req, res) => {
     await Post.findByIdAndDelete({ user: req.params.userId, _id: req.params.postId })
-    .then(() => res.json('Post successfully deleted!'))
-    .catch(err => res.status(400).json({ message: `Error: ${err}` }));
+    .then(() => res.status(200).json({ status: 200, message: 'Post successfully deleted!' }))
+    .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
 };
 
 module.exports = { 

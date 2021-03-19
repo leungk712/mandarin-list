@@ -10,7 +10,7 @@ import {
 
 extend("confirmed", {
   ...confirmed,
-  message: "this is not confirmed yo"
+  message: "The password and confirmation password do not match"
 });
 
 extend("email", {
@@ -31,7 +31,7 @@ extend("min", {
 extend("passwordValidation", {
   ...regex,
   message:
-    "This password must be at least 8 characters, include a number, and a special character"
+    "Password must have minimum eight characters, at least one letter, one number, and one special character"
 });
 
 extend("required", {

@@ -14,11 +14,11 @@ export const postActions: ActionTree<PostsState, RootState> = {
     return axios
       .get(`${process.env.VUE_APP_API_HOST}/posts/${userId}`)
       .then((resp: AxiosResponse) => {
-        commit("setMandarinList", resp.data);
+        commit("setMandarinList", resp.data.posts);
         commit("removeFromLoadingState", "retrieving list of mandarin characters...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
         commit("removeFromLoadingState", "retrieving list of mandarin characters...");
         throw new Error(err);
       });
@@ -31,11 +31,11 @@ export const postActions: ActionTree<PostsState, RootState> = {
         `${process.env.VUE_APP_API_HOST}/posts/${payload.userId}/post/${payload._id}`
       )
       .then((resp: AxiosResponse) => {
-        commit("setSelectedMandarin", resp.data);
+        commit("setSelectedMandarin", resp.data.post);
         commit("removeFromLoadingState", "retrieving mandarin character...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
         commit("removeFromLoadingState", "retrieving mandarin character...");
         throw new Error(err);
       });
@@ -51,7 +51,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         commit("removeFromLoadingState", "submitting mandarin character...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
         commit("removeFromLoadingState", "submitting mandarin character...");
         throw new Error(err);
       });
@@ -70,7 +70,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         commit("removeFromLoadingState", "updating mandarin character...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
         commit("removeFromLoadingState", "updating mandarin character...");
         throw new Error(err);
       });
@@ -88,7 +88,7 @@ export const postActions: ActionTree<PostsState, RootState> = {
         commit("removeFromLoadingState", "deleting mandarin character...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
         commit("removeFromLoadingState", "deleting mandarin character...");
         throw new Error(err);
       });

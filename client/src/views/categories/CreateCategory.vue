@@ -3,14 +3,17 @@
         <h3>Create a new category</h3>
         <v-row>
             <v-col cols="4">
-                <v-text-field 
-                    data-testid="category-create-name-input"
-                    class="category-create-name-input mt-2"
-                    v-model="categoryName"
-                    label="Category Name"
-                    placeholder="Ex. (nature, health, family)"
-                    outlined
-                />
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                    <v-text-field 
+                        data-testid="category-create-name-input"
+                        class="category-create-name-input mt-2"
+                        v-model="categoryName"
+                        label="Category Name"
+                        placeholder="Ex. (nature, health, family)"
+                        outlined
+                        :error-messages="errors"
+                    />
+                </ValidationProvider>
             </v-col>
             <v-col cols="2" class="mt-4">
                 <v-btn
@@ -32,17 +35,18 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { namespace, State } from "vuex-class";
 import { CategoriesState, UserState } from "@/models";
+import { CategoryPayload, UserData } from "@/models";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 import CategoriesModule from "@/store/modules/categories";
 import UserModule from "@/store/modules/user";
-import { CategoryPayload, UserData } from "@/models";
+import { ValidationProvider } from "vee-validate";
 
 const categories = namespace(CategoriesModule.name);
 const user = namespace(UserModule.name);
 
 @Component({
     name: "CreateCategory",
-    components: { ApplicationLayout }
+    components: { ApplicationLayout, ValidationProvider }
 })
 export default class CreateCategory extends Vue {
     // ===== Store ====== //

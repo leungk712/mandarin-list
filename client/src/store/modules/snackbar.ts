@@ -7,7 +7,7 @@ import { AxiosError } from "axios";
 
 export const processErrorMessage = (error: AxiosError | string) => {
   let errorMessage = "Uh oh! An error occurred";
-  if (typeof error !== 'string' && error && error.response && error.response.data) {
+  if (typeof error !== 'string' && error && error.response && error.response.data.message) {
     errorMessage = error.response.data.message;
   } else if (typeof error === 'string' && error !== '') {
     errorMessage = error;

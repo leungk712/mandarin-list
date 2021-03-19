@@ -15,24 +15,30 @@
       <div v-else>
         <v-row>
           <v-col cols="12" class="pb-0">
-            <v-text-field 
-              data-testid="create-story-title-input"
-              class="create-story-title-input"
-              v-model="storyPayload.title"
-              label="Title"
-              placeholder="Buying Clothes | 买衣服"
-              outlined
-            />
+            <ValidationProvider rules="required" v-slot="{ errors }">
+              <v-text-field 
+                data-testid="create-story-title-input"
+                class="create-story-title-input"
+                v-model="storyPayload.title"
+                label="Title"
+                placeholder="Buying Clothes | 买衣服"
+                outlined
+                :error-messages="errors"
+              />
+            </ValidationProvider>
           </v-col>
           <v-col cols="12" class="pt-0">
-            <v-textarea 
-              data-testid="create-story-content-input"
-              class="create-story-content-input"
-              v-model="storyPayload.content"
-              label="Content"
-              placeholder="Today I went to buy clothes... | 今天我去了买衣服..."
-              outlined
-            />
+            <ValidationProvider rules="required" v-slot="{ errors }">
+              <v-textarea 
+                data-testid="create-story-content-textarea"
+                class="create-story-content-textarea"
+                v-model="storyPayload.content"
+                label="Content"
+                placeholder="Today I went to buy clothes... | 今天我去了买衣服..."
+                outlined
+                :error-messages="errors"
+              />
+            </ValidationProvider>
           </v-col>
         </v-row>
         <v-row class="mr-1">
@@ -66,12 +72,14 @@ import { StoryPayload, StoriesState, UserState } from "@/models";
 import UserModule from "@/store/modules/user";
 import StoriesModule from "@/store/modules/stories";
 import { storiesOverview } from "@/helpers/stories-text";
+import { ValidationProvider } from "vee-validate";
 
 const user = namespace(UserModule.name);
 const stories = namespace(StoriesModule.name);
 
 @Component({
-  name: "CreateStory"
+  name: "CreateStory",
+  components: { ValidationProvider }
 })
 export default class CreateStory extends Vue {
   // ===== Store ===== //

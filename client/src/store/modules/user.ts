@@ -38,7 +38,7 @@ export const userActions: ActionTree<UserState, RootState> = {
         commit("removeFromLoadingState", "attemping to log in...");
       })
       .catch(err => {
-        dispatch("alert/errorStatus", err.message, { root: true });
+        dispatch("alert/errorStatus", err.response.data.message, { root: true });
         commit("removeFromLoadingState", "attempting to log in...");
         throw new Error(err);
       });
@@ -48,14 +48,16 @@ export const userActions: ActionTree<UserState, RootState> = {
     commit("setLogout");
   },
 
-  register: ({ commit }, payload: RegisterPayload) => {
+  register: ({ commit, dispatch }, payload: RegisterPayload) => {
     commit("addToLoadingState", "registering user...");
     return axios
       .post(`${process.env.VUE_APP_API_HOST}/users/register`, payload)
-      .then((resp: AxiosResponse) => {
+      .then(() => {
+        dispatch("alert/successStatus", "Successfully registered! You can now log in!", { root: true });
         commit("removeFromLoadingState", "registering user...");
       })
       .catch(err => {
+        dispatch("alert/errorStatus", err.response.data.message, { root: true });
         commit("removeFromLoadingState", "registering user...");
         throw new Error(err);
       });

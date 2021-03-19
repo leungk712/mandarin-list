@@ -1,5 +1,5 @@
 <template>
-  <v-container class="py-6">
+  <v-container class="container-border py-6">
     <v-row align-content="center" justify="center">
       <div class="display-4" style="height: 15vh; width: 35vw">
         <p class="text-center">
@@ -9,34 +9,43 @@
     </v-row>
     <v-row align-content="center" justify="center" class="mt-3">
       <v-col sm="12" md="3" xl="2">
-        <v-text-field
-          data-testid="new-example-character-input"
-          class="new-example-character-input"
-          v-model="newExample.character"
-          label="Chinese Character"
-          placeholder="Ex. (你好)"
-          outlined
-        />
+        <ValidationProvider rules="required" v-slot="{ errors }">
+          <v-text-field
+            data-testid="new-example-character-input"
+            class="new-example-character-input"
+            v-model="newExample.character"
+            label="Chinese Character"
+            placeholder="Ex. (你好)"
+            outlined
+            :error-messages="errors"
+          />
+        </ValidationProvider>
       </v-col>
       <v-col sm="12" md="3" xl="2">
-        <v-text-field
-          data-testid="new-example-pinyin-input"
-          class="new-example-pinyin-input"
-          v-model="newExample.pinyin"
-          label="Pinyin"
-          placeholder="Ex. (ni2hao3)"
-          outlined
-        />
+        <ValidationProvider rules="required" v-slot="{ errors }">
+          <v-text-field
+            data-testid="new-example-pinyin-input"
+            class="new-example-pinyin-input"
+            v-model="newExample.pinyin"
+            label="Pinyin"
+            placeholder="Ex. (ni2hao3)"
+            outlined
+            :error-messages="errors"
+          />
+        </ValidationProvider>
       </v-col>
       <v-col sm="12" md="3" xl="2">
-        <v-text-field
-          data-testid="new-example-english-input"
-          class="new-example-english-input"
-          v-model="newExample.english"
-          label="English"
-          placeholder="Ex. (Hello)"
-          outlined
-        />
+        <ValidationProvider rules="required" v-slot="{ errors }">
+          <v-text-field
+            data-testid="new-example-english-input"
+            class="new-example-english-input"
+            v-model="newExample.english"
+            label="English"
+            placeholder="Ex. (Hello)"
+            outlined
+            :error-messages="errors"
+          />
+        </ValidationProvider>
       </v-col>
     </v-row>
     <v-row align-content="center" justify="center">
@@ -70,28 +79,29 @@
       </v-col>
     </v-row>
     <v-row align-content="center" justify="center">
-      <div>
-        <ul
-          v-for="example in newExample.examples"
-          :key="example.id"
-          class="my-4"
-        >
-          <span>
-            <v-icon class="mr-1">chevron_right</v-icon>
-            <span class="title">{{ example.sentence }}</span>
-            <v-icon
-              data-testid="delete-sentence-btn"
-              class="delete-sentence-btn ml-4 mb-1"
-              @click="handleDeleteSentence(example.id)"
-            >
-              cancel
-            </v-icon>
-          </span>
-        </ul>
-      </div>
+      <v-chip
+        v-for="example in newExample.examples"
+        :key="example.id"
+        class="my-4 pa-4"
+        outlined
+        label
+      >
+        <v-row>
+          <p class="title">{{ example.sentence }}</p>
+          <v-spacer />
+          <v-icon
+            data-testid="delete-sentence-btn"
+            class="delete-sentence-btn ml-4"
+            @click="handleDeleteSentence(example.id)"
+            small
+          >
+            cancel
+          </v-icon>
+        </v-row>
+      </v-chip>
     </v-row>
     <v-row justify="center" align-content="center" class="mt-4">
-      <v-col cols="6">
+      <v-col cols="8">
         <v-row justify="end">
           <v-btn
             data-testid="add-example-btn"
@@ -104,7 +114,7 @@
           </v-btn>
           <v-btn
             data-testid="submit-character-btn"
-            class="submit-character-btn mr-4"
+            class="submit-character-btn"
             @click.native="handleSubmit"
             :disabled="!newExample.character.length"
             color="teal lighten-2"
@@ -125,13 +135,15 @@ import { CategoriesState, Example, PostPayload, PostsState, UserState } from "@/
 import CategoriesModule from "@/store/modules/categories";
 import PostsModule from "@/store/modules/posts";
 import UserModule from "@/store/modules/user";
+import { ValidationProvider } from "vee-validate";
 
 const categories = namespace(CategoriesModule.name);
 const posts = namespace(PostsModule.name);
 const user = namespace(UserModule.name);
 
 @Component({
-  name: "CreateCharacter"
+  name: "CreateCharacter",
+  components: { ValidationProvider }
 })
 export default class CreateCharacter extends Vue {
   // ===== Store ===== //

@@ -5,10 +5,6 @@ import {
 import { ActionTree, MutationTree } from "vuex";
 import { AxiosError } from "axios";
 
-// export const processErrorMessage = (err: AxiosError | string) => {
-//   let errorMessage = "Invalid"
-// };
-
 export const alertState = {
   display: false,
   message: "",

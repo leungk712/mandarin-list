@@ -23,31 +23,40 @@
             <v-container>
               <v-row>
                 <v-col cols="4">
-                  <v-text-field
-                    data-testid="update-character-character-input"
-                    class="update-character-character-input"
-                    label="Character"
-                    v-model="updateCharacter.character"
-                    outlined
-                  />
+                  <ValidationProvider rules="required" v-slot="{ errors }">
+                    <v-text-field
+                      data-testid="update-character-character-input"
+                      class="update-character-character-input"
+                      v-model="updateCharacter.character"
+                      label="Character"
+                      outlined
+                      :error-messages="errors"
+                    />
+                  </ValidationProvider>
                 </v-col>
                 <v-col cols="4">
-                  <v-text-field
-                    data-testid="update-character-pinyin-input"
-                    class="update-character-pinyin-input"
-                    label="Pinyin"
-                    v-model="updateCharacter.pinyin"
-                    outlined
-                  />
+                  <ValidationProvider rules="required" v-slot="{ errors }">
+                    <v-text-field
+                      data-testid="update-character-pinyin-input"
+                      class="update-character-pinyin-input"
+                      v-model="updateCharacter.pinyin"
+                      label="Pinyin"
+                      outlined
+                      :error-messages="errors"
+                    />
+                  </ValidationProvider>
                 </v-col>
                 <v-col cols="4">
-                  <v-text-field
-                    data-testid="update-character-english-input"
-                    class="update-character-english-input"
-                    label="English"
-                    v-model="updateCharacter.english"
-                    outlined
-                  />
+                  <ValidationProvider rules="required" v-slot="{ errors }">
+                    <v-text-field
+                      data-testid="update-character-english-input"
+                      class="update-character-english-input"
+                      v-model="updateCharacter.english"
+                      label="English"
+                      outlined
+                      :error-messages="errors"
+                    />
+                  </ValidationProvider>
                 </v-col>
               </v-row>
               <v-row>
@@ -132,22 +141,22 @@
 </template>
 
 <script lang="ts">
-import { Component } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
 import { Example, PostsState, SelectedCharacter, UserState } from "@/models";
-import Vue from "vue";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 import PostsModule from "@/store/modules/posts";
 import UserModule from "@/store/modules/user";
 import router from "@/router";
 import converter from "number-to-chinese-words";
+import { ValidationProvider } from "vee-validate";
 
 const posts = namespace(PostsModule.name);
 const user = namespace(UserModule.name);
 
 @Component({
   name: "CharacterCard",
-  components: { ApplicationLayout }
+  components: { ApplicationLayout, ValidationProvider }
 })
 export default class CharacterCard extends Vue {
   // ===== Store ===== //

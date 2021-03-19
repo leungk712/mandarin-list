@@ -6,7 +6,7 @@
             </v-row>
             <v-row justify="space-around" align="center" class="translate-row mt-6">
                 <v-col cols="6">
-                    <h4>Simplified Chinese Characters</h4>
+                    <h4>Simplified Chinese Characters | 简体中文</h4>
                     <v-textarea
                         v-model="characters"
                         outlined
@@ -16,7 +16,7 @@
                     />
                 </v-col>
                 <v-col>
-                    <h4>Pinyin</h4>
+                    <h4>Pinyin | 拼音</h4>
                     <v-textarea
                         v-model="converted"
                         outlined
