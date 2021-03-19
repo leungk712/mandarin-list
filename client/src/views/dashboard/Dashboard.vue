@@ -31,7 +31,22 @@
             <v-card flat class="ma-6">
                 <CreateCharacter class="mt-6" />
                 <v-divider class="my-8" />
-                <ListCard />
+                <v-select
+                  data-testid="view-cards-category-menu"
+                  class="view-cards-category-menu my-0 py-0"
+                  v-model="selectedCategories"
+                  :items="categories.categoriesList"
+                  label="Select one or more categories to view the associated characters"
+                  outlined
+                  chips
+                  multiple
+                  item-value="name"
+                  item-text="name"
+                />
+                <ListCard
+                  :categories="selectedCategories"
+                  :view="'character'"
+                />
             </v-card>
           </v-tab-item>
           <v-tab-item>
@@ -62,9 +77,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { UserState } from "@/models";
+import { CategoriesState, UserState } from "@/models";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 import CategoryIndex from "@/views/categories/CategoryIndex.vue";
+import CategoriesModule from "@/store/modules/categories";
 import CreateCategory from "@/views/categories/CreateCategory.vue";
 import CreateCharacter from "@/components/CreateCharacter.vue";
 import CreateStory from "@/views/stories/CreateStory.vue";
@@ -73,6 +89,7 @@ import StoriesIndex from "@/views/stories/StoriesIndex.vue";
 import Translate from "@/views/translate/Translate.vue";
 import UserModule from "@/store/modules/user";
 
+const categories = namespace(CategoriesModule.name);
 const user = namespace(UserModule.name);
 
 @Component({
@@ -90,7 +107,11 @@ const user = namespace(UserModule.name);
 })
 export default class Dashboard extends Vue {
     // ===== Store ===== //
+    @State("categories") public categories!: CategoriesState;
     @State("user") public user!: UserState;
+
+    // ===== Data ===== //
+    public selectedCategories = [];
 
     // ===== Computed ===== //
     get loadingState(): string[] {

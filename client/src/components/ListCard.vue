@@ -1,16 +1,11 @@
 <template>
-  <div class="my-8 pa-4">
-    <v-skeleton-loader
-      v-if="posts.loadingState.includes('retrieving list of mandarin characters...')"
-      type="card@8"
-    />
-    <div v-else>
+    <div>
       <v-row>
         <v-col
           v-for="(character, idx) in updatedCharactersList"
           :key="character._id"
           xl="3"
-          :lg="categoryView ? 6 : 4"
+          :lg="view && view === 'category' ? 6 : 4"
         >
         <v-card
           class="mx-auto my-2 pa-2"
@@ -108,7 +103,6 @@
         </v-col>
       </v-row>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
@@ -130,7 +124,9 @@ const user = namespace(UserModule.name);
 })
 export default class ListCard extends Vue {
   // ===== Props ===== //
-  @Prop({ default: false }) private readonly categoryView?: boolean;
+  @Prop({ default: "" }) private readonly view?: string;
+  @Prop({ default: "" }) private readonly selectedCategory?: string;
+  @Prop(Array) private readonly categories?: [];
 
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
@@ -191,11 +187,21 @@ export default class ListCard extends Vue {
   }
 
   // ===== Computed ===== //
+  get charactersList(): SelectedCharacter[] {
+    return this.posts.mandarinList;
+  }
+
   get converter(): {} {
     return converter;
   }
 
   get updatedCharactersList(): SelectedCharacter[] {
+    if (this.view === 'character' && this.categories && this.categories.length) {
+      return this.charactersList.filter(cards => cards.categories.includes(...this.categories));
+    } else if (this.view === 'category' && this.selectedCategory) {
+      return this.charactersList.filter(cards => cards.categories.includes(this.selectedCategory))
+    } 
+    
     return this.posts.mandarinList;
   }
 }

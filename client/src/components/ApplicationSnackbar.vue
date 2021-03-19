@@ -10,8 +10,8 @@
     >
       <v-row justify="space-between" align="center">
         <v-col cols="1" class="title py-0 mr-2">
-          <v-icon v-if="snackbar.type === 'success'">check</v-icon>
-          <v-icon v-else>error</v-icon>
+          <v-icon v-if="snackbar.type === 'success'" :color="snackbar.type">check</v-icon>
+          <v-icon v-else :color="snackbar.type">error</v-icon>
         </v-col>
         <v-col class="py-0 mt-1 title">
           <div>{{ snackbar.message }}</div>

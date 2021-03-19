@@ -2,7 +2,7 @@
     <application-layout>
         <v-container class="container-border">
           <h1>Mandarin Resources</h1>
-          <p>These are some resources to help you learn mandarin and/or look into traveling throughout China!</p>
+          <p>Here are some resources to help you learn mandarin and/or look into traveling throughout China!</p>
           <v-divider />
           <v-list three-line>
             <template v-for="(resource, idx) in resources">

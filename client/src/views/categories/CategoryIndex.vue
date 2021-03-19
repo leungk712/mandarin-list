@@ -2,7 +2,6 @@
   <div>
     <v-container
       class="my-4 category-index-container"
-      fill-height
     >
       <v-row>
         <v-col md="4" lg="3" class="categories-list" fill-height>
@@ -24,7 +23,10 @@
         </v-card>
         </v-col>
         <v-col md="8" lg="9">
-          <ListCard :categoryView="true" />
+          <ListCard
+            :view="'category'"
+            :selectedCategory="this.selectedCategory"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -50,10 +52,11 @@ export default class CategoryIndex extends Vue {
     @categories.Action("getCategories") public getCategories!: () => void;
 
     // ===== Data ===== //
+    public selectedCategory = "";
 
     // ===== Methods ===== //
     public handleViewCategory(category: Category):void  {
-      console.log("cate", category);
+      this.selectedCategory = category.name;
     }
 
     // ===== Computed ===== //
