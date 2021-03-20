@@ -60,10 +60,25 @@
                 </v-col>
               </v-row>
               <v-row>
+                <v-col cols="8">
+                  <v-select
+                    data-testid="edit-card-category-menu"
+                    class="edit-card-category-menu my-0 py-0"
+                    v-model="posts.selectedMandarin.categories"
+                    :items="categories.categoriesList"
+                    outlined
+                    chips
+                    multiple
+                    item-value="value"
+                    item-text="name"
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
                 <div>
                   <v-expansion-panels focusable style="width: 40vw">
                     <v-expansion-panel
-                      v-for="(example, i) in combinedExamples"
+                      v-for="(example, i) in posts.selectedMandarinExamples"
                       :key="example.id"
                       class="my-1"
                     >
@@ -143,14 +158,16 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { Example, PostsState, SelectedCharacter, UserState } from "@/models";
+import { CategoriesState, PostsState, SelectedCharacter, UserState } from "@/models";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
+import CategoriesModule from "@/store/modules/categories";
 import PostsModule from "@/store/modules/posts";
 import UserModule from "@/store/modules/user";
 import router from "@/router";
 import converter from "number-to-chinese-words";
 import { ValidationProvider } from "vee-validate";
 
+const categories = namespace(CategoriesModule.name);
 const posts = namespace(PostsModule.name);
 const user = namespace(UserModule.name);
 
@@ -160,19 +177,17 @@ const user = namespace(UserModule.name);
 })
 export default class CharacterCard extends Vue {
   // ===== Store ===== //
+  @State("categories") public categories!: CategoriesState;
   @State("posts") public posts!: PostsState;
   @State("user") public user!: UserState;
-  @posts.Action("clearSelectedMandarin")
-  public clearSelectedMandarin!: () => void;
-  @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (
-    id: string
-  ) => void;
-  @posts.Action("updateMandarinCharacter")
-  public updateMandarinCharacter!: (payload: SelectedCharacter) => void;
+  @posts.Action("clearSelectedMandarin") public clearSelectedMandarin!: () => void;
+  @posts.Action("getIndividualCharacter") public getIndividualCharacter!: (id: string) => void;
+  @posts.Action("handleAddMandarinExample") public handleAddMandarinExample!: () => void;
+  @posts.Action("handleDeleteMandarinExample") public handleDeleteMandarinExample!: (id: number) => void;
+  @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (payload: SelectedCharacter) => void;
 
   // ===== Data ===== //
   public editing = false;
-  public newExamples: Example[] = [];
   public loading = false;
 
   // ===== Methods ===== //
@@ -182,10 +197,7 @@ export default class CharacterCard extends Vue {
   }
 
   public handleDeleteSentence(id: number): void {
-    const filteredList = this.combinedExamples.filter(
-      examples => examples.id !== id
-    );
-    this.newExamples = filteredList;
+    this.handleDeleteMandarinExample(id);
   }
 
   public handleEditSentence(): void {
@@ -193,11 +205,7 @@ export default class CharacterCard extends Vue {
   }
 
   public handleAddNewExample(): void {
-    const example = {
-      id: Math.floor(Math.random() * 1000),
-      sentence: ""
-    };
-    this.newExamples.push(example);
+    this.handleAddMandarinExample();
   }
 
   public async handleSubmitUpdate(): Promise<void> {
@@ -236,51 +244,34 @@ export default class CharacterCard extends Vue {
       _id: this.selectedCharacter._id,
       __v: this.selectedCharacter.__v,
       character: this.selectedCharacter ? this.selectedCharacter.character : "",
-      categories: this.selectedCharacter ? this.selectedCharacter.categories : [],
+      categories: this.selectedCharacter
+        ? this.selectedCharacter.categories
+        : [],
       createdAt: this.selectedCharacter.createdAt,
       date: this.selectedCharacter.date,
       pinyin: this.selectedCharacter ? this.selectedCharacter.pinyin : "",
       english: this.selectedCharacter ? this.selectedCharacter.english : "",
-      examples: this.combinedExamples,
+      examples: this.posts.selectedMandarinExamples,
       starred: this.selectedCharacter ? this.selectedCharacter.starred : false,
       user: this.user.user!._id,
       updatedAt: this.selectedCharacter.updatedAt
     };
   }
-  get combinedExamples() {
-    return [...this.selectedCharacter.examples, ...this.newExamples];
-  }
-  // get invalidUpdate() {
-  //   const validExamples = this.combinedExamples.every(
-  //     example => example.sentence.length
-  //   );
-  //   return !!(
-  //     this.updateCharacter.character &&
-  //     this.updateCharacter.pinyin &&
-  //     this.updateCharacter.english &&
-  //     validExamples
-  //   );
-  // }
-
-  // ===== Lifecycle ===== //
-  // private created(): void {
-  //   this.getIndividualCharacter(this.$route.params.id);
-  // }
 }
 </script>
 
 <style>
-.character-divider {
-  width: 350px;
-  margin: 0px auto;
-}
+  .character-divider {
+    width: 350px;
+    margin: 0px auto;
+  }
 
-.update-container {
-  border: 1px solid gray;
-  border-radius: 5px;
-}
+  .update-container {
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
 
-.example-sentence-input {
-  width: 10vw;
-}
+  .example-sentence-input {
+    width: 10vw;
+  }
 </style>

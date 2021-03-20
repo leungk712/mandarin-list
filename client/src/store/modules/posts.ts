@@ -5,7 +5,8 @@ import axios, { AxiosResponse } from "axios";
 export const postState: PostsState = {
   loadingState: [],
   mandarinList: [],
-  selectedMandarin: null
+  selectedMandarin: null,
+  selectedMandarinExamples: []
 };
 
 export const postActions: ActionTree<PostsState, RootState> = {
@@ -15,15 +16,22 @@ export const postActions: ActionTree<PostsState, RootState> = {
       .get(`${process.env.VUE_APP_API_HOST}/posts/${userId}`)
       .then((resp: AxiosResponse) => {
         commit("setMandarinList", resp.data.posts);
-        commit("removeFromLoadingState", "retrieving list of mandarin characters...");
+        commit(
+          "removeFromLoadingState",
+          "retrieving list of mandarin characters..."
+        );
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
-        commit("removeFromLoadingState", "retrieving list of mandarin characters...");
+        dispatch("snackbar/errorStatus", err.response.data.message, {
+          root: true
+        });
+        commit(
+          "removeFromLoadingState",
+          "retrieving list of mandarin characters..."
+        );
         throw new Error(err);
       });
   },
-
   getIndividualCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "retrieving mandarin character...");
     return axios
@@ -32,31 +40,38 @@ export const postActions: ActionTree<PostsState, RootState> = {
       )
       .then((resp: AxiosResponse) => {
         commit("setSelectedMandarin", resp.data.post);
+        commit("setSelectedMandarinExamples", resp.data.post.examples);
         commit("removeFromLoadingState", "retrieving mandarin character...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, {
+          root: true
+        });
         commit("removeFromLoadingState", "retrieving mandarin character...");
         throw new Error(err);
       });
   },
-
   submitMandarinCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "submitting mandarin character...");
     return axios
       .post(`${process.env.VUE_APP_API_HOST}/posts/${payload.user}`, payload)
       .then(() => {
         dispatch("getMandarinList", payload.user);
-        dispatch("snackbar/successStatus", "Successfully created a new character!", { root: true });
+        dispatch(
+          "snackbar/successStatus",
+          "Successfully created a new character!",
+          { root: true }
+        );
         commit("removeFromLoadingState", "submitting mandarin character...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, {
+          root: true
+        });
         commit("removeFromLoadingState", "submitting mandarin character...");
         throw new Error(err);
       });
   },
-
   updateMandarinCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "updating mandarin character...");
     return axios
@@ -66,16 +81,19 @@ export const postActions: ActionTree<PostsState, RootState> = {
       )
       .then(() => {
         dispatch("getMandarinList", payload.user);
-        dispatch("snackbar/successStatus", "Successfully updated character!", { root: true });
+        dispatch("snackbar/successStatus", "Successfully updated character!", {
+          root: true
+        });
         commit("removeFromLoadingState", "updating mandarin character...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, {
+          root: true
+        });
         commit("removeFromLoadingState", "updating mandarin character...");
         throw new Error(err);
       });
   },
-
   deleteMandarinCharacter: ({ commit, dispatch }, payload) => {
     commit("addToLoadingState", "deleting mandarin character...");
     return axios
@@ -84,16 +102,25 @@ export const postActions: ActionTree<PostsState, RootState> = {
       )
       .then(() => {
         dispatch("getMandarinList", payload.user);
-        dispatch("snackbar/successStatus", "Successfully deleted character!", { root: true });
+        dispatch("snackbar/successStatus", "Successfully deleted character!", {
+          root: true
+        });
         commit("removeFromLoadingState", "deleting mandarin character...");
       })
       .catch(err => {
-        dispatch("snackbar/errorStatus", err.response.data.message, { root: true });
+        dispatch("snackbar/errorStatus", err.response.data.message, {
+          root: true
+        });
         commit("removeFromLoadingState", "deleting mandarin character...");
         throw new Error(err);
       });
   },
-
+  handleAddMandarinExample: ({ commit }) => {
+    commit("createMandarinExample");
+  },
+  handleDeleteMandarinExample: ({ commit }, id: number) => {
+    commit("deleteMandarinExample", id);
+  },
   clearSelectedMandarin: ({ commit }) => {
     commit("resetSelectedMandarin");
   }
@@ -108,7 +135,17 @@ export const postMutations: MutationTree<PostsState> = {
       loadMessages => loadMessages !== message
     );
   },
-  resetSelectedMandarin: state => {
+  createMandarinExample: (state) => {
+    const example = {
+      id: Math.floor(Math.random() * 1000),
+      sentence: ""
+    };
+    state.selectedMandarinExamples.push(example);
+  },
+  deleteMandarinExample: (state, id: number) => {
+    state.selectedMandarinExamples = state.selectedMandarinExamples.filter(examples => examples.id !== id);
+  },
+  resetSelectedMandarin: (state) => {
     state.selectedMandarin = null;
   },
   setMandarinList: (state, list) => {
@@ -116,6 +153,9 @@ export const postMutations: MutationTree<PostsState> = {
   },
   setSelectedMandarin: (state, character: SelectedCharacter) => {
     state.selectedMandarin = character;
+  },
+  setSelectedMandarinExamples: (state, examples) => {
+    state.selectedMandarinExamples = examples;
   }
 };
 

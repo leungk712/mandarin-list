@@ -1,7 +1,4 @@
-import {
-    RootState,
-    AlertState
-  } from "@/models";
+import { RootState, AlertState } from "@/models";
 import { ActionTree, MutationTree } from "vuex";
 import { AxiosError } from "axios";
 
@@ -13,7 +10,7 @@ export const alertState = {
 
 export const alertActions: ActionTree<AlertState, RootState> = {
   clearAlert: ({ commit }) => {
-    commit("resetAlert")
+    commit("resetAlert");
   },
   errorStatus: ({ commit }, errorMessage: AxiosError | string) => {
     commit("setMessage", errorMessage);
@@ -40,7 +37,7 @@ export const alertMutations: MutationTree<AlertState> = {
   setMessage: (state: AlertState, message: string) => {
     state.message = message;
   },
-  setType: (state: AlertState, type: string ) => {
+  setType: (state: AlertState, type: string) => {
     state.type = type;
   }
 };
@@ -52,4 +49,3 @@ export default {
   actions: alertActions,
   mutations: alertMutations
 };
-  

@@ -79,26 +79,35 @@
       </v-col>
     </v-row>
     <v-row align-content="center" justify="center">
-      <v-chip
-        v-for="example in newExample.examples"
-        :key="example.id"
-        class="my-4 pa-4"
-        outlined
-        label
-      >
-        <v-row>
-          <p class="title">{{ example.sentence }}</p>
-          <v-spacer />
-          <v-icon
-            data-testid="delete-sentence-btn"
-            class="delete-sentence-btn ml-4"
-            @click="handleDeleteSentence(example.id)"
-            small
-          >
-            cancel
-          </v-icon>
-        </v-row>
-      </v-chip>
+      <v-col cols="8">
+        <div
+          v-for="example in newExample.examples"
+          :key="example.id"
+          class="my-2 px-4 py-2 example-card"
+          outlined
+          label
+        >
+          <v-row>
+            <v-col cols="10">
+
+              <p class="title pt-1 my-auto">
+                <v-icon>chevron_right</v-icon>
+                {{ example.sentence }}
+              </p>
+            </v-col>
+            <v-spacer />
+            <v-col cols="1">
+              <v-icon
+                data-testid="delete-sentence-btn"
+                class="delete-sentence-btn ml-4"
+                @click="handleDeleteSentence(example.id)"
+              >
+                clear
+              </v-icon>
+            </v-col>
+          </v-row>
+        </div>
+      </v-col>
     </v-row>
     <v-row justify="center" align-content="center" class="mt-4">
       <v-col cols="8">
@@ -131,7 +140,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { CategoriesState, Example, PostPayload, PostsState, UserState } from "@/models";
+import {
+  CategoriesState,
+  Example,
+  PostPayload,
+  PostsState,
+  UserState
+} from "@/models";
 import CategoriesModule from "@/store/modules/categories";
 import PostsModule from "@/store/modules/posts";
 import UserModule from "@/store/modules/user";
@@ -221,3 +236,10 @@ export default class CreateCharacter extends Vue {
   // ===== Lifecycle Hooks ===== //
 }
 </script>
+
+<style scoped>
+  .example-card {
+    border: 1px solid #eee;
+    border-radius: 5px;
+  }
+</style>

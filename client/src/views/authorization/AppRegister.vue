@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <v-row justify="center" class="mt-4">
+  <div>
+    <v-row justify="center" class="mt-4">
       <v-col cols="4">
         <v-card class="pa-4" color="grey lighten-5">
           <v-card-title class="pl-0">
@@ -109,16 +109,14 @@
         </v-card>
       </v-col>
     </v-row>
-    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
-    name: "AppRegister"
+  name: "AppRegister"
 })
-export default class AppRegister extends Vue {
-    
-}
+export default class AppRegister extends Vue {}
 </script>

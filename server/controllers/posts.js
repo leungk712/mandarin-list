@@ -4,13 +4,13 @@ const Post = require('../models/post.model');
 const getPosts = async (req, res) => {
     await Post.find({ user: req.params.userId })
         .then(posts => res.status(200).json({ status: 200, posts }))
-        .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
+        .catch(err => res.status(400).json({ status: 400, message: "Unable to get posts", error: err }));
 };
 
 const getIndividualPost = async (req, res) => {
     await Post.findById({ user: req.params.userId, _id: req.params.postId })
         .then(post => res.status(200).json({ status: 200, post }))
-        .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
+        .catch(err => res.status(400).json({ status: 400, message: "Unable to get individual post", error: err }));
 };
 
 const createPost = async (req, res) => {
@@ -38,7 +38,7 @@ const createPost = async (req, res) => {
 
     await newPost.save()
         .then(() => res.status(200).json({ status: 200, message: 'New post created!' }))
-        .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
+        .catch(err => res.status(400).json({ status: 400, message: "Unable to create post", error: err }));
 };
 
 const updatePost = async (req, res) => {
@@ -65,15 +65,15 @@ const updatePost = async (req, res) => {
 
             post.save()
                 .then(() => res.status(200).json({ status: 200, message: 'Post updated!' }))
-                .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
+                .catch(err => res.status(400).json({ status: 400, message: "Unable to update post", error: err }));
         })
-        .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
+        .catch(err => res.status(400).json({ status: 400, error: err }));
 };
 
 const deletePost = async (req, res) => {
     await Post.findByIdAndDelete({ user: req.params.userId, _id: req.params.postId })
     .then(() => res.status(200).json({ status: 200, message: 'Post successfully deleted!' }))
-    .catch(err => res.status(400).json({ status: 400, message: `Error: ${err}` }));
+    .catch(err => res.status(400).json({ status: 400, message: "Unable to delete post", error: err }));
 };
 
 module.exports = { 

@@ -1,13 +1,9 @@
 <template>
   <v-app>
-    <transition
-      appear
-      name="slide-x-transition"
-      mode="out-in"
-    >
-    <v-main>
-      <router-view />
-    </v-main>
+    <transition appear name="slide-x-transition" mode="out-in">
+      <v-main>
+        <router-view />
+      </v-main>
     </transition>
   </v-app>
 </template>

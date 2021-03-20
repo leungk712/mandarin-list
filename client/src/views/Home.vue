@@ -14,13 +14,9 @@ import LandingPage from "@/components/LandingPage.vue";
 })
 export default class Home extends Vue {
   // ===== Store ===== //
-
   // ===== Data ===== //
-
   // ===== Methods ===== //
-
   // ===== Computed ===== //
-
   // ===== Lifecycle Hooks ===== //
 }
 </script>

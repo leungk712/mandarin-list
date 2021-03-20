@@ -10,7 +10,7 @@ import axios, { AxiosResponse } from "axios";
 import { avatarColors } from "@/helpers/avatar-colors";
 
 function generateAvatarColor() {
-    return avatarColors[Math.floor(Math.random() * avatarColors.length)];
+  return avatarColors[Math.floor(Math.random() * avatarColors.length)];
 }
 
 export const userState = {
@@ -38,7 +38,9 @@ export const userActions: ActionTree<UserState, RootState> = {
         commit("removeFromLoadingState", "attemping to log in...");
       })
       .catch(err => {
-        dispatch("alert/errorStatus", err.response.data.message, { root: true });
+        dispatch("alert/errorStatus", err.response.data.message, {
+          root: true
+        });
         commit("removeFromLoadingState", "attempting to log in...");
         throw new Error(err);
       });
@@ -53,11 +55,17 @@ export const userActions: ActionTree<UserState, RootState> = {
     return axios
       .post(`${process.env.VUE_APP_API_HOST}/users/register`, payload)
       .then(() => {
-        dispatch("alert/successStatus", "Successfully registered! You can now log in!", { root: true });
+        dispatch(
+          "alert/successStatus",
+          "Successfully registered! You can now log in!",
+          { root: true }
+        );
         commit("removeFromLoadingState", "registering user...");
       })
       .catch(err => {
-        dispatch("alert/errorStatus", err.response.data.message, { root: true });
+        dispatch("alert/errorStatus", err.response.data.message, {
+          root: true
+        });
         commit("removeFromLoadingState", "registering user...");
         throw new Error(err);
       });

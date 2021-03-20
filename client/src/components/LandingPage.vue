@@ -3,14 +3,9 @@
     <ApplicationToolbar />
     <v-container style="min-height: 80vh" fill-height fluid>
       <v-row justify="center" align="center">
-        <v-carousel
-          height="750"
-          cycle
-          interval="10000"
-          hide-delimiters
-        >
+        <v-carousel height="750" cycle interval="10000" hide-delimiters>
           <v-carousel-item
-            v-for="(item,idx) in carouselItems"
+            v-for="(item, idx) in carouselItems"
             :key="idx"
             :src="item.img"
             reverse-transition="fade-transition"
@@ -45,5 +40,4 @@ export default class LandingPage extends Vue {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

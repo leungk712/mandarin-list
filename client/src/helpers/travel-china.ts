@@ -31,94 +31,110 @@ const xianDescription = `Terracotta warriors, fortresses, pagodas. Xi'an is home
     military defense systems in the world. Witness the history of an ancient city wall in a bustling city.`;
 
 export const cities = [
-    {
-        id: 1,
-        name: "Beijing",
-        pinyin: "北京",
-        img: require("@/assets/travel/beijing-ling-tang.jpg"),
-        description: beijingDescription,
-        attractions: ["Forbidden City", "Great Wall", "Temple of Heaven"],
-        url: "https://unsplash.com/photos/yBroAF1cN3I"
-    },
-    {
-        id: 3,
-        name: "Shanghai",
-        pinyin: "上海",
-        img: require("@/assets/travel/shanghai-li-yang.jpg"),
-        description: shanghaiDescription,
-        attractions: ["The Bund", "Oriental Pearl TV Tower", "Nanjing Road"],
-        url: "https://unsplash.com/photos/5h_dMuX_7RE"
-    },
-    {
-        id: 5,
-        name: "Suzhou",
-        pinyin: "苏州",
-        img: require("@/assets/travel/suzhou-zhang-kaiyv.jpg"),
-        description: suzhouDescription,
-        attractions: ["Humble Administrator's Garden", "Tiger Hill", "Zhouzhuang Water Town"],
-        url: "https://unsplash.com/photos/T6E_WftGLQs"
-    },
-    {
-        id: 7,
-        name: "Harbin",
-        pinyin: "哈尔滨",
-        img: require("@/assets/travel/harbin-erica-li.jpg"),
-        description: harbinDescription,
-        attractions: ["Ice & Snow World Festival", "Saint Sophia's Church", "Yabuli Ski Resort"],
-        url: "https://unsplash.com/photos/HsqB3X2tiOA"
-    },
-    {
-        id: 9,
-        name: "Guangzhou",
-        pinyin: "广州",
-        img: require("@/assets/travel/guangzhou-jason-yuen.jpg"),
-        description: guangzhouDescription,
-        attractions: ["Canton Tower", "Baiyun Mountain", "Shamian Island"],
-        url: "https://unsplash.com/photos/jd2YTPu_q1Y"
-    },
-    {
-        id: 11,
-        name: "Hangzhou",
-        pinyin: "杭州",
-        img: require("@/assets/travel/hangzhou-max-van-den-oetelaar.jpg"),
-        description: hangzhouDescription,
-        attractions: ["West Lake", "Lingyin Temple", "Wuzhen Water Town"],
-        url: "https://unsplash.com/photos/AxIS3R2_hBU"
-    },
-    {
-        id: 13,
-        name: "Guilin",
-        pinyin: "桂林",
-        img: require("@/assets/travel/guilin-farfar.jpg"),
-        description: guilinDescription,
-        attractions: ["Li River", "Yangshuo", "Longji Terraced Rice Fields"],
-        url: "https://unsplash.com/photos/peK8iXqGMzQ"
-    },
-    {
-        id: 15,
-        name: "Chengdu",
-        pinyin: "成都",
-        img: require("@/assets/travel/chengdu-pascal-muller.jpg"),
-        description: chengduDescription,
-        attractions: ["Chengdu Research Base of Giant Panda Breeding", "Leshan Giant Budda", "Mount Emei"],
-        url: "https://unsplash.com/photos/wFUyCqW9tS4"
-    },
-    {
-        id: 17,
-        name: "Lhasa",
-        pinyin: "拉萨",
-        img: require("@/assets/travel/lhasa-citext-wing.jpg"),
-        description: lhasaDescription,
-        attractions: ["Potala Palace", "Jokhang Temple", "Ganden Monastery"],
-        url: "https://unsplash.com/photos/2-gqoWYa3KM"
-    },
-    {
-        id: 19,
-        name: "Xi'an",
-        pinyin: "西安",
-        img: require("@/assets/travel/xian-aaron-greenwood.jpg"),
-        description: xianDescription,
-        attractions: ["Terracotta Warriors", "Giant Wild Goose Pagoda", "Bell Tower"],
-        url: "https://unsplash.com/photos/xZDWEEMS3sA"
-    },
+  {
+    id: 1,
+    name: "Beijing",
+    pinyin: "北京",
+    img: require("@/assets/travel/beijing-ling-tang.jpg"),
+    description: beijingDescription,
+    attractions: ["Forbidden City", "Great Wall", "Temple of Heaven"],
+    url: "https://unsplash.com/photos/yBroAF1cN3I"
+  },
+  {
+    id: 3,
+    name: "Shanghai",
+    pinyin: "上海",
+    img: require("@/assets/travel/shanghai-li-yang.jpg"),
+    description: shanghaiDescription,
+    attractions: ["The Bund", "Oriental Pearl TV Tower", "Nanjing Road"],
+    url: "https://unsplash.com/photos/5h_dMuX_7RE"
+  },
+  {
+    id: 5,
+    name: "Suzhou",
+    pinyin: "苏州",
+    img: require("@/assets/travel/suzhou-zhang-kaiyv.jpg"),
+    description: suzhouDescription,
+    attractions: [
+      "Humble Administrator's Garden",
+      "Tiger Hill",
+      "Zhouzhuang Water Town"
+    ],
+    url: "https://unsplash.com/photos/T6E_WftGLQs"
+  },
+  {
+    id: 7,
+    name: "Harbin",
+    pinyin: "哈尔滨",
+    img: require("@/assets/travel/harbin-erica-li.jpg"),
+    description: harbinDescription,
+    attractions: [
+      "Ice & Snow World Festival",
+      "Saint Sophia's Church",
+      "Yabuli Ski Resort"
+    ],
+    url: "https://unsplash.com/photos/HsqB3X2tiOA"
+  },
+  {
+    id: 9,
+    name: "Guangzhou",
+    pinyin: "广州",
+    img: require("@/assets/travel/guangzhou-jason-yuen.jpg"),
+    description: guangzhouDescription,
+    attractions: ["Canton Tower", "Baiyun Mountain", "Shamian Island"],
+    url: "https://unsplash.com/photos/jd2YTPu_q1Y"
+  },
+  {
+    id: 11,
+    name: "Hangzhou",
+    pinyin: "杭州",
+    img: require("@/assets/travel/hangzhou-max-van-den-oetelaar.jpg"),
+    description: hangzhouDescription,
+    attractions: ["West Lake", "Lingyin Temple", "Wuzhen Water Town"],
+    url: "https://unsplash.com/photos/AxIS3R2_hBU"
+  },
+  {
+    id: 13,
+    name: "Guilin",
+    pinyin: "桂林",
+    img: require("@/assets/travel/guilin-farfar.jpg"),
+    description: guilinDescription,
+    attractions: ["Li River", "Yangshuo", "Longji Terraced Rice Fields"],
+    url: "https://unsplash.com/photos/peK8iXqGMzQ"
+  },
+  {
+    id: 15,
+    name: "Chengdu",
+    pinyin: "成都",
+    img: require("@/assets/travel/chengdu-pascal-muller.jpg"),
+    description: chengduDescription,
+    attractions: [
+      "Chengdu Research Base of Giant Panda Breeding",
+      "Leshan Giant Budda",
+      "Mount Emei"
+    ],
+    url: "https://unsplash.com/photos/wFUyCqW9tS4"
+  },
+  {
+    id: 17,
+    name: "Lhasa",
+    pinyin: "拉萨",
+    img: require("@/assets/travel/lhasa-citext-wing.jpg"),
+    description: lhasaDescription,
+    attractions: ["Potala Palace", "Jokhang Temple", "Ganden Monastery"],
+    url: "https://unsplash.com/photos/2-gqoWYa3KM"
+  },
+  {
+    id: 19,
+    name: "Xi'an",
+    pinyin: "西安",
+    img: require("@/assets/travel/xian-aaron-greenwood.jpg"),
+    description: xianDescription,
+    attractions: [
+      "Terracotta Warriors",
+      "Giant Wild Goose Pagoda",
+      "Bell Tower"
+    ],
+    url: "https://unsplash.com/photos/xZDWEEMS3sA"
+  }
 ];

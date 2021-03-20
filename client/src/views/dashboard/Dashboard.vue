@@ -2,11 +2,7 @@
   <application-layout>
     <v-container class="mb-6">
       <v-card>
-        <v-toolbar
-          flat
-          color="blue-grey lighten-2"
-          dark
-        >
+        <v-toolbar flat color="blue-grey lighten-2" dark>
           <v-toolbar-title>Dashboard</v-toolbar-title>
         </v-toolbar>
         <v-tabs vertical background-color="blue-grey lighten-4">
@@ -29,38 +25,38 @@
 
           <v-tab-item>
             <v-card flat class="ma-6">
-                <CreateCharacter class="mt-6" />
-                <v-divider class="my-8" />
-                <v-select
-                  data-testid="view-cards-category-menu"
-                  class="view-cards-category-menu my-0 py-0"
-                  v-model="selectedCategories"
-                  :items="categories.categoriesList"
-                  label="Select one or more categories to view the associated characters"
-                  outlined
-                  chips
-                  multiple
-                  item-value="name"
-                  item-text="name"
-                />
-                <ListCard
-                  :categories="selectedCategories"
-                  :view="'character'"
-                />
+              <CreateCharacter class="mt-6" />
+              <v-divider class="my-8" />
+              <v-select
+                data-testid="view-cards-category-menu"
+                class="view-cards-category-menu my-0 py-0"
+                v-model="selectedCategories"
+                :items="categories.categoriesList"
+                label="Select one or more categories to view the associated characters"
+                outlined
+                chips
+                multiple
+                item-value="name"
+                item-text="name"
+              />
+              <ListCard
+                :selectedCategories="selectedCategories"
+                :view="'character'"
+              />
             </v-card>
           </v-tab-item>
           <v-tab-item>
             <v-card flat class="ma-6">
-                <CreateCategory class="ml-6" />
-                <v-divider />
-                <CategoryIndex />
+              <CreateCategory class="ml-6" />
+              <v-divider />
+              <CategoryIndex />
             </v-card>
           </v-tab-item>
           <v-tab-item>
             <v-card flat class="ma-6">
-                <CreateStory />
-                <v-divider class="my-4" />
-                <StoriesIndex />
+              <CreateStory />
+              <v-divider class="my-4" />
+              <StoriesIndex />
             </v-card>
           </v-tab-item>
           <v-tab-item>
@@ -106,17 +102,16 @@ const user = namespace(UserModule.name);
   }
 })
 export default class Dashboard extends Vue {
-    // ===== Store ===== //
-    @State("categories") public categories!: CategoriesState;
-    @State("user") public user!: UserState;
+  // ===== Store ===== //
+  @State("categories") public categories!: CategoriesState;
+  @State("user") public user!: UserState;
 
-    // ===== Data ===== //
-    public selectedCategories = [];
+  // ===== Data ===== //
+  public selectedCategories = [];
 
-    // ===== Computed ===== //
-    get loadingState(): string[] {
-      return this.user.loadingState;
-    }
-
+  // ===== Computed ===== //
+  get loadingState(): string[] {
+    return this.user.loadingState;
+  }
 }
 </script>

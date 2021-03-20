@@ -29,7 +29,9 @@ const store: StoreOptions<RootState> = {
 export default new Vuex.Store<RootState>(store);
 
 if (sessionStorage.getItem("access_token")) {
-  axios.defaults.headers.common.Authorization = sessionStorage.getItem("access_token");
+  axios.defaults.headers.common.Authorization = sessionStorage.getItem(
+    "access_token"
+  );
 }
 
 // ===== Axios Setup ===== //

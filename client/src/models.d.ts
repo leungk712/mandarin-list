@@ -110,6 +110,7 @@ export interface PostsState {
   loadingState: string[];
   mandarinList: SelectedCharacter[];
   selectedMandarin?: null | SelectedCharacter;
+  selectedMandarinExamples: Example[];
 }
 
 export interface SnackbarState {

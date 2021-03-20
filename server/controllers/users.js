@@ -13,20 +13,20 @@ const loginUser = async (req, res) => {
         const existingUser = await User.findOne({ email });
 
         if (!existingUser) {
-            return res.status(404).json({ status: 404, message: "User does not exist.", data: null });
+            return res.status(404).json({ status: 404, message: "User does not exist.", error: null });
         }
 
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
 
         if (!isPasswordCorrect) {
-            return res.status(400).json({ status: 400, message: "Invalid credentials.", data: null });
+            return res.status(400).json({ status: 400, message: "Invalid credentials. Please try again.", error: null });
         }
 
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id, }, secret, { expiresIn: "1h"});
 
         res.status(200).json({ status: 200, message: "Log in successful!", user: existingUser, token });
     } catch(err) {
-        res.status(500).json({ status: 500, message: "Uh oh. Something went wrong. Try again later." });
+        res.status(500).json({ status: 500, message: "Uh oh. Something went wrong. Try again later.", error: err });
     }
 };
 
@@ -41,17 +41,17 @@ const registerUser = async (req, res) => {
 
     try {
         if (!firstName || !lastName || !email || !password || !confirmPassword) {
-            return res.status(404).json({ status: 404, message: "Please fill in all fields.", data: null });
+            return res.status(404).json({ status: 404, message: "Please fill in all fields.", error: null });
         };
 
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
-            return res.status(400).json({ status: 404, message: "An account with this email already exists.", data: null });
+            return res.status(400).json({ status: 404, message: "An account with this email already exists.", error: null });
         }
 
         if (password !== confirmPassword) {
-            return res.status(400).json({ status: 404, message: "Passwords do not match.", data: null });
+            return res.status(400).json({ status: 404, message: "Passwords do not match.", error: null });
         };
 
         const hashedPassword = await bcrypt.hash(password, 12);
@@ -62,7 +62,7 @@ const registerUser = async (req, res) => {
 
         res.status(200).json({ status: 200 });
     } catch(err) {
-        res.status(500).json({ status: 500, message: "Uh oh! Something went wrong." });
+        res.status(500).json({ status: 500, message: "Uh oh! Something went wrong.", error: err });
     }
 };
 

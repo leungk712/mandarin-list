@@ -72,7 +72,9 @@
                       label="Password"
                       name="password"
                       :type="showPassword ? 'text' : 'password'"
-                      :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                      :append-icon="
+                        showPassword ? 'visibility' : 'visibility_off'
+                      "
                       @click:append="showPassword = !showPassword"
                       prepend-inner-icon="lock"
                       required
@@ -196,7 +198,7 @@ const user = namespace(UserModule.name);
     ApplicationAlert,
     ApplicationToolbar,
     ValidationObserver,
-    ValidationProvider 
+    ValidationProvider
   }
 })
 export default class AppLogin extends Vue {
@@ -224,7 +226,7 @@ export default class AppLogin extends Vue {
   // ===== Methods ===== //
   public async handleLoginRegister(): Promise<void> {
     if (this.loginView) {
-      await this.login(this.loginUser)
+      await this.login(this.loginUser);
       router.push({ name: "Dashboard" }).catch(() => {
         return true;
       });
@@ -261,10 +263,14 @@ export default class AppLogin extends Vue {
     return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   }
   get passwordRules() {
-    return { passwordValidation: this.passwordRegex, confirmed: `password_confirmation`, required: true };
+    return {
+      passwordValidation: this.passwordRegex,
+      confirmed: `password_confirmation`,
+      required: true
+    };
   }
   get passwordValid(): boolean {
-    return !!(this.passwordRegex.test(this.registerUser.password));
+    return !!this.passwordRegex.test(this.registerUser.password);
   }
   get validForm(): boolean {
     if (this.loginView) {

@@ -2,7 +2,11 @@ import store from "@/store";
 import Vue from "vue";
 import VueRouter, { NavigationGuardNext, Route, RouteConfig } from "vue-router";
 
-export function ifAuthenticated(to: Route, from: Route, next: NavigationGuardNext) {
+export function ifAuthenticated(
+  to: Route,
+  from: Route,
+  next: NavigationGuardNext
+) {
   if (store.getters["user/isAuthenticated" || to.path === "/login"]) {
     next();
     return;
@@ -13,7 +17,7 @@ export function ifAuthenticated(to: Route, from: Route, next: NavigationGuardNex
     return;
   }
 
-  next("/login")
+  next("/login");
 }
 
 Vue.use(VueRouter);

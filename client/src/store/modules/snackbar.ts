@@ -1,15 +1,17 @@
-import {
-    RootState,
-    SnackbarState
-  } from "@/models";
+import { RootState, SnackbarState } from "@/models";
 import { ActionTree, MutationTree } from "vuex";
 import { AxiosError } from "axios";
 
 export const processErrorMessage = (error: AxiosError | string) => {
   let errorMessage = "Uh oh! An error occurred";
-  if (typeof error !== 'string' && error && error.response && error.response.data.message) {
+  if (
+    typeof error !== "string" &&
+    error &&
+    error.response &&
+    error.response.data.message
+  ) {
     errorMessage = error.response.data.message;
-  } else if (typeof error === 'string' && error !== '') {
+  } else if (typeof error === "string" && error !== "") {
     errorMessage = error;
   }
   return errorMessage;
@@ -23,7 +25,7 @@ export const snackbarState = {
 
 export const snackbarActions: ActionTree<SnackbarState, RootState> = {
   clearSnackbarMessage: ({ commit }) => {
-    commit("resetSnackbarState")
+    commit("resetSnackbarState");
   },
   errorStatus: ({ commit }, error: AxiosError | string) => {
     commit("setMessage", processErrorMessage(error));
@@ -50,7 +52,7 @@ export const snackbarMutations: MutationTree<SnackbarState> = {
   setMessage: (state: SnackbarState, message: string) => {
     state.message = message;
   },
-  setType: (state: SnackbarState, type: string ) => {
+  setType: (state: SnackbarState, type: string) => {
     state.type = type;
   }
 };
@@ -62,4 +64,3 @@ export default {
   actions: snackbarActions,
   mutations: snackbarMutations
 };
-  

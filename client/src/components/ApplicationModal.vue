@@ -1,15 +1,12 @@
 <template>
-    <v-row justify="center">
-    </v-row>
+  <v-row justify="center"> </v-row>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
-    name: "ApplicationModal"
+  name: "ApplicationModal"
 })
-export default class ApplicationModal extends Vue {
-    
-}
+export default class ApplicationModal extends Vue {}
 </script>

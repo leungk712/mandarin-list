@@ -1,12 +1,7 @@
 <template>
   <div class="ma-4 pa-4">
     <v-card>
-      <v-navigation-drawer
-        app
-        expand-on-hover
-        mini-variant-width="60"
-        clipped
-      >
+      <v-navigation-drawer app expand-on-hover mini-variant-width="60" clipped>
         <v-list>
           <v-list-item class="px-2">
             <v-list-item-avatar
@@ -31,7 +26,10 @@
 
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title>China <v-icon small>schedule</v-icon>: {{ clock }}</v-list-item-title>
+              <v-list-item-title
+                >China <v-icon small>schedule</v-icon>:
+                {{ clock }}</v-list-item-title
+              >
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -95,36 +93,45 @@ const user = namespace(UserModule.name);
   name: "NavigationDrawer"
 })
 export default class NavigationDrawer extends Vue {
-    // ===== Store ===== //
-    @State("user") public user!: UserState;
-    @user.Action("logout") public logout!: () => void;
+  // ===== Store ===== //
+  @State("user") public user!: UserState;
+  @user.Action("logout") public logout!: () => void;
 
-    // ===== Data ===== //
-    public clock = "";
+  // ===== Data ===== //
+  public clock = "";
 
-    // ===== Methods ===== //
-    public handleLogout(): void {
-        this.logout()
-        router.push({ name: "Home" }).catch(() => {
-          return true;
-        });
-    }
+  // ===== Methods ===== //
+  public handleLogout(): void {
+    this.logout();
+    router.push({ name: "Home" }).catch(() => {
+      return true;
+    });
+  }
 
-    public handleChinaTime(): void {
-      this.clock = moment.utc().tz("Asia/Shanghai").format("MM/DD, h:mm:ss a");
-    }
+  public handleChinaTime(): void {
+    this.clock = moment
+      .utc()
+      .tz("Asia/Shanghai")
+      .format("MM/DD, h:mm:ss a");
+  }
 
-    // ===== Computed ===== //
-    get userInfo(): UserData {
-        return this.user.user!;
-    }
-    get userInitials(): string {
-        return this.userInfo ? `${this.userInfo.firstName.charAt(0)}${this.userInfo.lastName.charAt(0)}` : "";
-    }
+  // ===== Computed ===== //
+  get userInfo(): UserData {
+    return this.user.user!;
+  }
+  get userInitials(): string {
+    return this.userInfo
+      ? `${this.userInfo.firstName.charAt(0)}${this.userInfo.lastName.charAt(
+          0
+        )}`
+      : "";
+  }
 
-    // ===== Lifecycle Hooks ===== //
-    private mounted() {
-      setInterval(() => { this.handleChinaTime() }, 1000);
-    }
+  // ===== Lifecycle Hooks ===== //
+  private mounted() {
+    setInterval(() => {
+      this.handleChinaTime();
+    }, 1000);
+  }
 }
 </script>
