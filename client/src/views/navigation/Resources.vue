@@ -1,6 +1,6 @@
 <template>
   <application-layout>
-    <v-container class="container-border">
+    <v-container class="container-border resources-container">
       <h1>Mandarin Resources</h1>
       <p>
         Here are some resources to help you learn mandarin and/or look into
@@ -62,3 +62,9 @@ export default class Resources extends Vue {
   // ===== Lifecycle Hooks ===== //
 }
 </script>
+
+<style scoped>
+  .resources-container {
+    width: 85%;
+  }
+</style>

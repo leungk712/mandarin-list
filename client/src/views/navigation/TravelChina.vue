@@ -1,6 +1,6 @@
 <template>
   <application-layout>
-    <v-container class="container-border">
+    <v-container class="container-border travel-container">
       <div class="my-4">
         <h1>Travel China</h1>
         <p class="ml-1">
@@ -16,8 +16,19 @@
         <v-divider />
       </div>
       <v-row>
-        <v-col v-for="city in cities" :key="city.id" sm="12" md="6" lg="4">
-          <v-card class="mx-auto" max-width="344" height="550">
+        <v-col
+          v-for="city in cities"
+          :key="city.id"
+          sm="12"
+          md="6"
+          lg="4"
+          xl="3"
+        >
+          <v-card
+            class="mx-auto"
+            max-width="344"
+            height="575"
+          >
             <v-img
               :src="city.img"
               height="200px"
@@ -73,3 +84,9 @@ export default class TravelChina extends Vue {
   // ===== Lifecycle Hooks ===== //
 }
 </script>
+
+<style scoped>
+  .travel-container {
+    width: 85%;
+  }
+</style>

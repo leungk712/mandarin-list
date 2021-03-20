@@ -10,7 +10,7 @@
     <v-col
       v-for="(character, idx) in updatedCharactersList"
       :key="character._id"
-      xl="3"
+      xl="4"
       :lg="view && view === 'category' ? 6 : 4"
     >
       <v-card

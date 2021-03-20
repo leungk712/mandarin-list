@@ -11,6 +11,8 @@
         <v-col cols="6">
           <h4>Simplified Chinese Characters | 简体中文</h4>
           <v-textarea
+            data-testid="translate-simplified-textarea"
+            class="translate-simplified-textarea"
             v-model="characters"
             outlined
             placeholder="你好"
@@ -21,6 +23,8 @@
         <v-col>
           <h4>Pinyin | 拼音</h4>
           <v-textarea
+            data-testid="translate-result-textarea"
+            class="translate-result-textarea"
             v-model="converted"
             outlined
             readonly

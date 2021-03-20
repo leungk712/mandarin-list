@@ -1,6 +1,6 @@
 <template>
   <application-layout>
-    <v-container class="mb-6">
+    <v-container class="mb-6 dashboard-container">
       <v-card>
         <v-toolbar flat color="blue-grey lighten-2" dark>
           <v-toolbar-title>Dashboard</v-toolbar-title>
@@ -21,6 +21,10 @@
           <v-tab>
             <v-icon left>translate</v-icon>
             Translate
+          </v-tab>
+          <v-tab>
+            <v-icon left>search</v-icon>
+            Dictionary
           </v-tab>
 
           <v-tab-item>
@@ -64,6 +68,11 @@
               <Translate />
             </v-card>
           </v-tab-item>
+          <v-tab-item>
+            <v-card flat class="ma-6">
+              <Dictionary />
+            </v-card>
+          </v-tab-item>
         </v-tabs>
       </v-card>
     </v-container>
@@ -80,6 +89,7 @@ import CategoriesModule from "@/store/modules/categories";
 import CreateCategory from "@/views/categories/CreateCategory.vue";
 import CreateCharacter from "@/components/CreateCharacter.vue";
 import CreateStory from "@/views/stories/CreateStory.vue";
+import Dictionary from "@/views/dictionary/Dictionary.vue";
 import ListCard from "@/components/ListCard.vue";
 import StoriesIndex from "@/views/stories/StoriesIndex.vue";
 import Translate from "@/views/translate/Translate.vue";
@@ -96,6 +106,7 @@ const user = namespace(UserModule.name);
     CreateCategory,
     CreateCharacter,
     CreateStory,
+    Dictionary,
     ListCard,
     StoriesIndex,
     Translate
@@ -108,10 +119,21 @@ export default class Dashboard extends Vue {
 
   // ===== Data ===== //
   public selectedCategories = [];
+  public hello = [];
+
+  // ===== Methods ===== //
 
   // ===== Computed ===== //
   get loadingState(): string[] {
     return this.user.loadingState;
   }
+
+  // ===== Lifecycle Hooks ===== //
 }
 </script>
+
+<style scoped>
+  .dashboard-container {
+    width: 95%;
+  }
+</style>

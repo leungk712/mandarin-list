@@ -1,6 +1,6 @@
 <template>
   <application-layout>
-    <v-container class="container-border">
+    <v-container class="container-border code-container">
       <h1>Code Overview</h1>
       <v-divider />
       <div class="mt-4">
@@ -94,9 +94,9 @@ export default class Code extends Vue {
 </script>
 
 <style scoped>
-/* .fa-github, .fa-linkedin {
-    color: black;
-  } */
+.code-container {
+  width: 85%;
+}
 
 .github-icon {
   color: #6e5494;

@@ -1,6 +1,6 @@
 <template>
   <application-layout>
-    <v-container class="container-border">
+    <v-container class="container-border profile-container">
       <h1>
         <v-icon large class="pb-1">
           person_outline
@@ -132,3 +132,9 @@ export default class Profile extends Vue {
   // ===== Lifecycle Hooks ===== //
 }
 </script>
+
+<style scoped>
+  .profile-container {
+    width: 85%;
+  }
+</style>
