@@ -36,7 +36,7 @@
                 outlined
                 chips
                 multiple
-                item-value="name"
+                item-value="value"
                 item-text="name"
               />
               <ListCard

@@ -121,6 +121,9 @@ export const postActions: ActionTree<PostsState, RootState> = {
   handleDeleteMandarinExample: ({ commit }, id: number) => {
     commit("deleteMandarinExample", id);
   },
+  handleResetPostsState: ({ commit }) => {
+    commit("resetPostsState");
+  },
   clearSelectedMandarin: ({ commit }) => {
     commit("resetSelectedMandarin");
   }
@@ -135,27 +138,34 @@ export const postMutations: MutationTree<PostsState> = {
       loadMessages => loadMessages !== message
     );
   },
-  createMandarinExample: (state) => {
+  createMandarinExample: (state: PostsState) => {
     const example = {
       id: Math.floor(Math.random() * 1000),
       sentence: ""
     };
     state.selectedMandarinExamples.push(example);
   },
-  deleteMandarinExample: (state, id: number) => {
+  deleteMandarinExample: (state: PostsState, id: number) => {
     state.selectedMandarinExamples = state.selectedMandarinExamples.filter(examples => examples.id !== id);
   },
-  resetSelectedMandarin: (state) => {
+  resetSelectedMandarin: (state: PostsState) => {
     state.selectedMandarin = null;
+    state.selectedMandarinExamples = [];
   },
-  setMandarinList: (state, list) => {
+  setMandarinList: (state: PostsState, list) => {
     state.mandarinList = list;
   },
-  setSelectedMandarin: (state, character: SelectedCharacter) => {
+  setSelectedMandarin: (state: PostsState, character: SelectedCharacter) => {
     state.selectedMandarin = character;
   },
-  setSelectedMandarinExamples: (state, examples) => {
+  setSelectedMandarinExamples: (state: PostsState, examples) => {
     state.selectedMandarinExamples = examples;
+  },
+  resetPostsState: (state: PostsState) => {
+    state.loadingState = [];
+    state.mandarinList = [];
+    state.selectedMandarin = null;
+    state.selectedMandarinExamples = [];
   }
 };
 

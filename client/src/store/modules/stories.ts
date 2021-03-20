@@ -97,6 +97,9 @@ export const storyActions: ActionTree<StoriesState, RootState> = {
         commit("removeFromLoadingState", "deleting story...");
         throw new Error(err);
       });
+  },
+  handleResetStoriesState: ({ commit }) => {
+    commit("resetStoriesState");
   }
 };
 
@@ -108,6 +111,11 @@ export const storyMutations: MutationTree<StoriesState> = {
     state.loadingState = state.loadingState.filter(
       loadMessages => loadMessages !== message
     );
+  },
+  resetStoriesState: (state: StoriesState) => {
+    state.storiesList = [];
+    state.loadingState = [];
+    state.selectedStory = null;
   },
   setStoriesList: (state: StoriesState, stories) => {
     state.storiesList = stories;

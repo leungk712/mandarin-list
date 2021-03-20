@@ -97,6 +97,9 @@ export const categoriesActions: ActionTree<CategoriesState, RootState> = {
         commit("removeFromLoadingState", "deleting category...");
         throw new Error(err);
       });
+  },
+  handleResetCategoriesState: ({ commit }) => {
+    commit("resetCategoriesState");
   }
 };
 
@@ -111,6 +114,11 @@ export const categoriesMutations: MutationTree<CategoriesState> = {
   },
   setCategoriesList: (state: CategoriesState, categories) => {
     state.categoriesList = categories;
+  },
+  resetCategoriesState: (state: CategoriesState) => {
+    state.categoriesList = [];
+    state.loadingState = [];
+    state.selectedCategory = null;
   }
 };
 

@@ -35,6 +35,8 @@ export const userActions: ActionTree<UserState, RootState> = {
         commit("setLoginSuccess", resp.data);
         dispatch("handleAvatarColor");
         dispatch("posts/getMandarinList", resp.data.user._id, { root: true });
+        dispatch("categories/getCategories", resp.data.user._id, { root: true });
+        dispatch("stories/getStories", resp.data.user._id, { root: true });
         commit("removeFromLoadingState", "attemping to log in...");
       })
       .catch(err => {
@@ -46,8 +48,11 @@ export const userActions: ActionTree<UserState, RootState> = {
       });
   },
 
-  logout: ({ commit }) => {
+  logout: ({ commit, dispatch }) => {
     commit("setLogout");
+    dispatch("posts/handleResetPostsState", null, { root: true });
+    dispatch("stories/handleResetStoriesState", null, { root: true });
+    dispatch("categories/handleResetCategoriesState", null, { root: true });
   },
 
   register: ({ commit, dispatch }, payload: RegisterPayload) => {
@@ -93,6 +98,7 @@ export const userMutations: MutationTree<UserState> = {
   },
   setLogout: (state: UserState) => {
     state.accessToken = "";
+    state.avatarColor = "";
     state.user = null;
     state.isLoggedIn = false;
     sessionStorage.removeItem("access_token");

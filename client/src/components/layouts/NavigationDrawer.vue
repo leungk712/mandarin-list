@@ -80,7 +80,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
 import { UserData, UserState } from "@/models";
 import router from "@/router";
@@ -101,8 +101,8 @@ export default class NavigationDrawer extends Vue {
   public clock = "";
 
   // ===== Methods ===== //
-  public handleLogout(): void {
-    this.logout();
+  public async handleLogout(): Promise<void> {
+    await this.logout();
     router.push({ name: "Home" }).catch(() => {
       return true;
     });

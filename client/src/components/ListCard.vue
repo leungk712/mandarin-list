@@ -113,7 +113,7 @@
 // @ts-nocheck
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { Category, PostsState, SelectedCharacter, UserState } from "@/models";
+import { PostsState, SelectedCharacter, UserState } from "@/models";
 import PostsModule from "@/store/modules/posts";
 import UserModule from "@/store/modules/user";
 import router from "@/router";
@@ -127,9 +127,9 @@ const user = namespace(UserModule.name);
 })
 export default class ListCard extends Vue {
   // ===== Props ===== //
-  @Prop({ default: "" }) readonly view?: string;
-  @Prop({ default: "" }) readonly selectedCategory?: string;
-  @Prop(Array) readonly selectedCategories?: [];
+  @Prop({ default: "" }) private readonly view?: string;
+  @Prop({ default: "" }) private readonly selectedCategory?: string;
+  @Prop(Array) private readonly selectedCategories?: [];
 
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
@@ -200,7 +200,7 @@ export default class ListCard extends Vue {
 
   // ===== Computed ===== //
   get charactersList(): SelectedCharacter[] {
-    return this.posts.mandarinList!;
+    return this.posts.mandarinList;
   }
 
   get converter(): {} {

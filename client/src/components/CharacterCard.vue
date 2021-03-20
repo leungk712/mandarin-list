@@ -244,9 +244,7 @@ export default class CharacterCard extends Vue {
       _id: this.selectedCharacter._id,
       __v: this.selectedCharacter.__v,
       character: this.selectedCharacter ? this.selectedCharacter.character : "",
-      categories: this.selectedCharacter
-        ? this.selectedCharacter.categories
-        : [],
+      categories: this.selectedCharacter.categories,
       createdAt: this.selectedCharacter.createdAt,
       date: this.selectedCharacter.date,
       pinyin: this.selectedCharacter ? this.selectedCharacter.pinyin : "",

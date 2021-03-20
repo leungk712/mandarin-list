@@ -24,7 +24,7 @@
           text
           @click="clearSnackbarMessage"
         >
-          <v-icon color="grey darken-2">close</v-icon>
+          <v-icon>close</v-icon>
         </v-btn>
       </v-col>
     </v-row>

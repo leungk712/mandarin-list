@@ -16,8 +16,8 @@
             <h2>Statistics</h2>
           </v-row>
         </v-col>
-        <v-col cols="4">
-          <v-card class="mx-auto" color="#eee" max-width="400">
+        <v-col cols="6">
+          <v-card class="mx-auto" color="#eee" max-width="600">
             <v-card-title>
               <v-icon large left>
                 mdi-ideogram-cjk
@@ -30,8 +30,8 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col cols="4">
-          <v-card class="mx-auto" color="#26c6da" dark max-width="400">
+        <v-col cols="6">
+          <v-card class="mx-auto" color="#26c6da" dark max-width="600">
             <v-card-title>
               <v-icon large left>
                 mdi-format-list-bulleted
@@ -44,8 +44,8 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col cols="4">
-          <v-card class="mx-auto" color="#BA68C8" dark max-width="400">
+        <v-col cols="6">
+          <v-card class="mx-auto" color="#BA68C8" dark max-width="600">
             <v-card-title>
               <v-icon large left>
                 mdi-book-open-variant
@@ -55,6 +55,20 @@
 
             <v-card-text class="display-1 font-weight-bold text-center">
               {{ stories.storiesList.length }} stories
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="6">
+          <v-card class="mx-auto" color="#F06292" dark max-width="600">
+            <v-card-title>
+              <v-icon large left>
+                favorite_border
+              </v-icon>
+              <span class="title font-weight-light">Favorites</span>
+            </v-card-title>
+
+            <v-card-text class="display-1 font-weight-bold text-center">
+              {{ favorites }} favorites
             </v-card-text>
           </v-card>
         </v-col>
@@ -109,6 +123,10 @@ export default class Profile extends Vue {
     return moment(this.userInfo.date)
       .utc()
       .format("MMMM Do, YYYY");
+  }
+
+  get favorites() {
+    return this.posts.mandarinList.filter(characters => characters.starred).length;
   }
 
   // ===== Lifecycle Hooks ===== //
