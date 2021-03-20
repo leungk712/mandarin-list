@@ -1,4 +1,5 @@
 <template>
+  <div>
   <v-row>
     <div
       v-if="!updatedCharactersList.length"
@@ -71,7 +72,7 @@
           <v-icon
             data-testid="edit-card-btn"
             class="edit-card-btn mr-2"
-            @click="handleDelete(character)"
+            @click="handleDeleteModal(character)"
             color="red"
           >
             delete_outline
@@ -107,6 +108,27 @@
       </v-card>
     </v-col>
   </v-row>
+  <ApplicationModal
+    data-testid="list-card-modal"
+    class="list-card-modal"
+    v-model="deleteCharacterModal"
+    @handleCancel="handleCloseDeleteCharacterModal"
+    @handleConfirm="handleDelete"
+    @click:outside="deleteCharacterModal = false"
+  >
+    <div slot="modal-title" class="display-1">
+      Delete Character 
+      <span v-if="selectedCharacter">({{ selectedCharacter.character }})</span>
+    </div>
+    <div slot="modal-body" class="mt-4 font-weight-bold title">
+      <p>Are you sure you want to delete this character?</p>
+      <p>
+        <v-icon class="mr-2" color="error">error</v-icon>
+        This action cannot be undone.
+      </p>
+    </div>
+  </ApplicationModal>
+  </div>
 </template>
 
 <script lang="ts">
@@ -118,24 +140,26 @@ import PostsModule from "@/store/modules/posts";
 import UserModule from "@/store/modules/user";
 import router from "@/router";
 import converter from "number-to-chinese-words";
+import ApplicationModal from "@/components/ApplicationModal.vue";
 
 const posts = namespace(PostsModule.name);
 const user = namespace(UserModule.name);
 
 @Component({
-  name: "ListCard"
+  name: "ListCard",
+  components: { ApplicationModal }
 })
 export default class ListCard extends Vue {
   // ===== Props ===== //
   @Prop({ default: "" }) private readonly view?: string;
   @Prop({ default: "" }) private readonly selectedCategory?: string;
-  @Prop(Array) private readonly selectedCategories?: [];
+  @Prop(Array) private readonly dashboardCategories?: string[];
 
   // ===== Store ===== //
   @State("posts") public posts!: PostsState;
   @State("user") public user!: UserState;
   @posts.Action("deleteMandarinCharacter")
-  public deleteMandarinCharacter!: (payload: {}) => void;
+  public deleteMandarinCharacter!: (payload: SelectedCharacter) => void;
   @posts.Action("getIndividualCharacter")
   public getIndividualCharacter!: (payload: {}) => void;
   @posts.Action("updateMandarinCharacter") public updateMandarinCharacter!: (
@@ -149,6 +173,8 @@ export default class ListCard extends Vue {
   public reveal = true;
   public selectedIdx = -1;
   public favorited = false;
+  public selectedCharacter: SelectedCharacter | null = null;
+  public deleteCharacterModal = false;
 
   // ===== Methods ===== //
   public handleRating(character: SelectedCharacter): void {
@@ -194,8 +220,20 @@ export default class ListCard extends Vue {
     });
   }
 
-  public handleDelete(character: SelectedCharacter): void {
-    this.deleteMandarinCharacter(character);
+  public async handleDelete(): Promise<void> {
+    await this.deleteMandarinCharacter(this.selectedCharacter!);
+    this.deleteCharacterModal = false;
+    this.selectedCharacter = null;
+  }
+
+  public handleDeleteModal(character: SelectedCharacter): void {
+    this.selectedCharacter = character;
+    this.deleteCharacterModal = true;
+  }
+
+  public handleCloseDeleteCharacterModal(): void {
+    this.deleteCharacterModal = false;
+    this.selectedCharacter = null;
   }
 
   // ===== Computed ===== //
@@ -207,15 +245,16 @@ export default class ListCard extends Vue {
     return converter;
   }
 
-  get updatedCharactersList(): SelectedCharacter[] {
-    if (this.view === "character" && this.selectedCategories && this.selectedCategories.length) {
-      return this.charactersList.filter(characters =>
-        characters.categories.includes(...this.selectedCategories)
+  get updatedCharactersList() {
+    if (this.view === "character" && this.dashboardCategories && this.dashboardCategories.length) {
+      return this.charactersList.filter(cards =>
+        this.dashboardCategories.some(category => cards.categories.includes(category))
       );
     }
+
     if (this.view === "category" && this.selectedCategory) {
-      return this.charactersList.filter(characters =>
-        characters.categories.includes(this.selectedCategory)
+      return this.charactersList.filter(cards =>
+        cards.categories.includes(this.selectedCategory)
       );
     }
 
