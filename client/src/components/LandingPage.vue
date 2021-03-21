@@ -1,17 +1,36 @@
 <template>
-  <div>
+  <div style="background: #eee">
     <ApplicationToolbar />
-    <v-container style="min-height: 80vh" fill-height fluid>
-      <v-row justify="center" align="center">
-        <v-carousel height="750" cycle interval="10000" hide-delimiters>
-          <v-carousel-item
-            v-for="(item, idx) in carouselItems"
-            :key="idx"
-            :src="item.img"
-            reverse-transition="fade-transition"
-            transition="fade-transition"
-          />
-        </v-carousel>
+    <v-container class="vocab-container" fill-height>
+      <v-row
+        justify="center"
+        align-content="center"
+        class="my-10"
+      >
+        <v-col
+          v-for="item in vocabItems"
+          :key="item.id"
+          cols="4"
+          class="pa-0 ma-0"
+        >
+          <v-card
+            :color="item.backgroundColor"
+            class="vocab-card rounded-0"
+            flat
+          >
+            <v-row
+              justify="center"
+              align-content="center"
+              style="height: 100%"
+            >
+              <p
+                :class="$vuetify.breakpoint.lg ? 'display-3' :'display-4'"
+              >
+                {{ item.character }}
+              </p>
+            </v-row>
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -20,7 +39,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ApplicationToolbar from "@/components/layouts/ApplicationToolbar.vue";
-import { carouselItems } from "@/helpers/home";
+import { vocabItems } from "@/helpers/home";
 
 @Component({
   name: "LandingPage",
@@ -30,7 +49,7 @@ export default class LandingPage extends Vue {
   // ===== Store ===== //
 
   // ===== Data ===== //
-  public carouselItems = carouselItems;
+  public vocabItems = vocabItems;
 
   // ===== Methods ===== //
 
@@ -40,4 +59,12 @@ export default class LandingPage extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+  .vocab-container {
+    min-height: 65vh;
+  }
+
+  .vocab-card {
+    height: 35vh;
+  }
+</style>
