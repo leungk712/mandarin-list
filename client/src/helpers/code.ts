@@ -81,3 +81,5 @@ export const codeNote = `This project is by far the most favorite project I've e
     people who have come before me paving the way so that I can create this project with the knowledge and resources to execute my vision. 
     As I continue to create new projects that excite me, I want to continue to prioritize building this project out with future bug fixes, new features, and
     continued improvement of the user interface and experience. Thank you for using this application. - KL`;
+
+export const imageNote = `Below is the image of my first iteration of this project back in January. No user profiles, categories, stories.`;

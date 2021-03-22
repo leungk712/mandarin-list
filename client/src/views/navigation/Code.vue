@@ -6,18 +6,12 @@
       <div class="mt-4">
         <h3>Project Timeline</h3>
         <v-timeline>
-          <v-timeline-item color="red lighten-2"
-            >Jan '21 - Project idea enters brain</v-timeline-item
-          >
+          <v-timeline-item color="red lighten-2">Jan '21 - Project idea enters brain</v-timeline-item>
           <v-timeline-item class="text-right" color="purple lighten-2">
             Jan '21 - Mar '21 - Coding & suffering
           </v-timeline-item>
-          <v-timeline-item color="green lighten-2"
-            >Mar '21 - Project v1.0 release</v-timeline-item
-          >
-          <v-timeline-item class="text-right"
-            >Apr '21 - Beyond - ???</v-timeline-item
-          >
+          <v-timeline-item color="green lighten-2">Mar '21 - Project v1.0 release</v-timeline-item>
+          <v-timeline-item class="text-right">Apr '21 - Beyond - ???</v-timeline-item>
         </v-timeline>
       </div>
       <v-divider class="mt-4" />
@@ -47,6 +41,11 @@
                 </a>
               </div>
             </v-row>
+            <v-divider class="mt-6" />
+            <div class="mt-6">
+              <p>{{ imageNote }}</p>
+              <v-img class="mt-6" src="@/assets/code/mandarin-list-original.png" />
+            </div>
           </v-col>
           <v-col cols="6">
             <h3>Project Resources</h3>
@@ -72,7 +71,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
-import { codeNote, projectResources } from "@/helpers/code.ts";
+import { codeNote, imageNote, projectResources } from "@/helpers/code.ts";
 
 @Component({
   name: "Code",
@@ -82,8 +81,9 @@ export default class Code extends Vue {
   // ===== Store ===== //
 
   // ===== Data ===== //
-  public projectResources = projectResources;
   public codeNote = codeNote;
+  public imageNote = imageNote;
+  public projectResources = projectResources;
 
   // ===== Methods ===== //
 
