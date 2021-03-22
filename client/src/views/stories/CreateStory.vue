@@ -13,34 +13,40 @@
       </v-btn>
     </div>
     <div v-else>
-      <v-row>
-        <v-col cols="12" class="pb-0">
-          <ValidationProvider rules="required" v-slot="{ errors }">
-            <v-text-field
-              data-testid="create-story-title-input"
-              class="create-story-title-input"
-              v-model="storyPayload.title"
-              label="Title"
-              placeholder="Buying Clothes | 买衣服"
-              outlined
-              :error-messages="errors"
-            />
-          </ValidationProvider>
-        </v-col>
-        <v-col cols="12" class="pt-0">
-          <ValidationProvider rules="required" v-slot="{ errors }">
-            <v-textarea
-              data-testid="create-story-content-textarea"
-              class="create-story-content-textarea"
-              v-model="storyPayload.content"
-              label="Content"
-              placeholder="Today I went to buy clothes... | 今天我去了买衣服..."
-              outlined
-              :error-messages="errors"
-            />
-          </ValidationProvider>
-        </v-col>
-      </v-row>
+      <ValidationObserver ref="storyForm">
+        <v-row>
+          <v-col cols="12" class="pb-0">
+            <ValidationProvider mode="eager" rules="required">
+              <v-text-field
+                data-testid="create-story-title-input"
+                class="create-story-title-input"
+                v-model="storyPayload.title"
+                label="Title"
+                placeholder="Buying Clothes | 买衣服"
+                outlined
+                slot-scope="{ errors, valid }"
+                :error-messages="errors"
+                :success="valid"
+              />
+            </ValidationProvider>
+          </v-col>
+          <v-col cols="12" class="pt-0">
+            <ValidationProvider mode="eager" rules="required">
+              <v-textarea
+                data-testid="create-story-content-textarea"
+                class="create-story-content-textarea"
+                v-model="storyPayload.content"
+                label="Content"
+                placeholder="Today I went to buy clothes... | 今天我去了买衣服..."
+                outlined
+                slot-scope="{ errors, valid }"
+                :error-messages="errors"
+                :success="valid"
+              />
+            </ValidationProvider>
+          </v-col>
+        </v-row>
+      </ValidationObserver>
       <v-row class="mr-1">
         <v-spacer />
         <v-btn
@@ -54,7 +60,7 @@
         <v-btn
           data-testid="create-story-submit-btn"
           class="create-story-submit-btn ml-4"
-          color="primary"
+          color="teal lighten-2 white--text"
           @click="handleSubmitStory"
           :loading="loadingState.includes('creating new story...')"
         >
@@ -72,16 +78,19 @@ import { StoryPayload, StoriesState, UserState } from "@/models";
 import UserModule from "@/store/modules/user";
 import StoriesModule from "@/store/modules/stories";
 import { storiesOverview } from "@/helpers/stories-text";
-import { ValidationProvider } from "vee-validate";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 const user = namespace(UserModule.name);
 const stories = namespace(StoriesModule.name);
 
 @Component({
   name: "CreateStory",
-  components: { ValidationProvider }
+  components: { ValidationObserver, ValidationProvider }
 })
 export default class CreateStory extends Vue {
+  $refs!: {
+    storyForm: InstanceType<typeof ValidationObserver>
+  }
   // ===== Store ===== //
   @State("stories") public stories!: StoriesState;
   @State("user") public user!: UserState;
@@ -115,6 +124,7 @@ export default class CreateStory extends Vue {
     await this.createStory(payload);
     this.resetStoryPayload();
     this.addStory = false;
+    this.$refs.storyForm.reset();
   }
 
   public resetStoryPayload(): void {

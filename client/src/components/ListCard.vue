@@ -17,6 +17,7 @@
       <v-card
         class="mx-auto my-2 pa-2"
         max-width="400"
+        min-height="225"
         outlined
         tag="div"
         hover

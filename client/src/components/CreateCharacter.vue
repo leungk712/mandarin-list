@@ -1,53 +1,73 @@
 <template>
   <v-container class="container-border py-6">
     <v-row align-content="center" justify="center">
-      <div class="display-4" style="height: 15vh; width: 35vw">
+      <div class="display-4 character-text-box">
         <p class="text-center">
           {{ newExample.character ? newExample.character : "大家好！" }}
         </p>
       </div>
     </v-row>
-    <v-row align-content="center" justify="center" class="mt-3">
-      <v-col sm="12" md="3" xl="2">
-        <ValidationProvider rules="required" v-slot="{ errors }">
-          <v-text-field
-            data-testid="new-example-character-input"
-            class="new-example-character-input"
-            v-model="newExample.character"
-            label="Chinese Character"
-            placeholder="Ex. (你好)"
-            outlined
-            :error-messages="errors"
-          />
-        </ValidationProvider>
-      </v-col>
-      <v-col sm="12" md="3" xl="2">
-        <ValidationProvider rules="required" v-slot="{ errors }">
-          <v-text-field
-            data-testid="new-example-pinyin-input"
-            class="new-example-pinyin-input"
-            v-model="newExample.pinyin"
-            label="Pinyin"
-            placeholder="Ex. (ni2hao3)"
-            outlined
-            :error-messages="errors"
-          />
-        </ValidationProvider>
-      </v-col>
-      <v-col sm="12" md="3" xl="2">
-        <ValidationProvider rules="required" v-slot="{ errors }">
-          <v-text-field
-            data-testid="new-example-english-input"
-            class="new-example-english-input"
-            v-model="newExample.english"
-            label="English"
-            placeholder="Ex. (Hello)"
-            outlined
-            :error-messages="errors"
-          />
-        </ValidationProvider>
-      </v-col>
-    </v-row>
+    <ValidationObserver ref="characterForm">
+      <v-row
+        align-content="center"
+        justify="center"
+        class="mt-3"
+      >
+        <v-col sm="12" md="3" xl="2">
+          <ValidationProvider
+            mode="eager"
+            :rules="'required'"
+          >
+            <v-text-field
+              data-testid="new-example-character-input"
+              class="new-example-character-input"
+              v-model="newExample.character"
+              label="Chinese Character"
+              placeholder="Ex. (你好)"
+              outlined
+              :error-messages="errors"
+              :success="valid"
+            />
+          </ValidationProvider>
+        </v-col>
+        <v-col sm="12" md="3" xl="2">
+          <ValidationProvider
+            mode="eager"
+            :rules="'required'"
+          >
+            <v-text-field
+              data-testid="new-example-pinyin-input"
+              class="new-example-pinyin-input"
+              v-model="newExample.pinyin"
+              label="Pinyin"
+              placeholder="Ex. (ni2hao3)"
+              outlined
+              slot-scope="{ errors, valid }"
+              :error-messages="errors"
+              :success="valid"
+            />
+          </ValidationProvider>
+        </v-col>
+        <v-col sm="12" md="3" xl="2">
+          <ValidationProvider
+            mode="eager"
+            :rules="'required'"
+          >
+            <v-text-field
+              data-testid="new-example-english-input"
+              class="new-example-english-input"
+              v-model="newExample.english"
+              label="English"
+              placeholder="Ex. (Hello)"
+              outlined
+              slot-scope="{ errors, valid }"
+              :error-messages="errors"
+              :success="valid"
+            />
+          </ValidationProvider>
+        </v-col>
+      </v-row>
+    </ValidationObserver>
     <v-row align-content="center" justify="center">
       <v-col sm="12" md="9" xl="6">
         <p class="font-weight-bold">Select 1 or more categories:</p>
@@ -116,7 +136,7 @@
             data-testid="add-example-btn"
             class="add-example-btn mx-4"
             @click.native="handleAddExample"
-            color="purple lighten-2"
+            color="purple lighten-2 white--text"
             :disabled="!example.sentence.length"
           >
             <v-icon class="mr-1">add_circle_outline</v-icon> Add Example
@@ -125,8 +145,8 @@
             data-testid="submit-character-btn"
             class="submit-character-btn"
             @click.native="handleSubmit"
-            :disabled="!newExample.character.length"
-            color="teal lighten-2"
+            :disabled="!validForm"
+            color="teal lighten-2 white--text"
             :loading="loading"
           >
             Submit
@@ -150,7 +170,7 @@ import {
 import CategoriesModule from "@/store/modules/categories";
 import PostsModule from "@/store/modules/posts";
 import UserModule from "@/store/modules/user";
-import { ValidationProvider } from "vee-validate";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 const categories = namespace(CategoriesModule.name);
 const posts = namespace(PostsModule.name);
@@ -158,9 +178,12 @@ const user = namespace(UserModule.name);
 
 @Component({
   name: "CreateCharacter",
-  components: { ValidationProvider }
+  components: { ValidationObserver, ValidationProvider }
 })
 export default class CreateCharacter extends Vue {
+  $refs!: {
+    characterForm: InstanceType<typeof ValidationObserver>
+  }
   // ===== Store ===== //
   @State("categories") public categories!: CategoriesState;
   @State("posts") public posts!: PostsState;
@@ -210,6 +233,7 @@ export default class CreateCharacter extends Vue {
     await this.submitMandarinCharacter(payload);
     this.loading = false;
     this.resetExample();
+    this.$refs.characterForm.reset();
   }
 
   public resetExample(): void {
@@ -232,12 +256,22 @@ export default class CreateCharacter extends Vue {
   }
 
   // ===== Computed ===== //
+  get validForm() {
+    return this.newExample.character.length &&
+      this.newExample.pinyin.length &&
+      this.newExample.english.length &&
+      this.newExample.categories.length
+  }
 
   // ===== Lifecycle Hooks ===== //
 }
 </script>
 
 <style scoped>
+  .character-text-box {
+    height: 15vh;
+    width: 35vw;
+  }
   .example-card {
     border: 1px solid #eee;
     border-radius: 5px;

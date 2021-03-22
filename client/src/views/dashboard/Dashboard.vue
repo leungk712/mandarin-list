@@ -34,6 +34,7 @@
               <v-select
                 data-testid="view-cards-category-menu"
                 class="view-cards-category-menu my-0 py-0"
+                :class="$vuetify.breakpoint.xl ? 'mx-8' : ''"
                 v-model="selectedCategories"
                 :items="categories.categoriesList"
                 label="Select one or more categories to view the associated characters"

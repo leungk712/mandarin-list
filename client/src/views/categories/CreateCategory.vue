@@ -3,23 +3,30 @@
     <h3>Create a new category</h3>
     <v-row>
       <v-col cols="4">
-        <ValidationProvider rules="required" v-slot="{ errors }">
-          <v-text-field
-            data-testid="category-create-name-input"
-            class="category-create-name-input mt-2"
-            v-model="categoryName"
-            label="Category Name"
-            placeholder="Ex. (nature, health, family)"
-            outlined
-            :error-messages="errors"
-          />
-        </ValidationProvider>
+        <ValidationObserver ref="categoryForm">
+          <ValidationProvider
+            mode="eager"
+            rules="required"
+          >
+            <v-text-field
+              data-testid="category-create-name-input"
+              class="category-create-name-input mt-2"
+              v-model="categoryName"
+              label="Category Name"
+              placeholder="Ex. (nature, health, family)"
+              outlined
+              slot-scope="{ errors, valid }"
+              :error-messages="errors"
+              :success="valid"
+            />
+          </ValidationProvider>
+        </ValidationObserver>
       </v-col>
       <v-col cols="2" class="mt-4">
         <v-btn
           data-testid="category-create-btn"
           class="category-create-btn"
-          color="primary"
+          color="teal lighten-2 white--text"
           @click="handleCreateCategory"
           :loading="loadingState.includes('creating new category...')"
           :disabled="!validCategory"
@@ -39,16 +46,19 @@ import { CategoryPayload, UserData } from "@/models";
 import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 import CategoriesModule from "@/store/modules/categories";
 import UserModule from "@/store/modules/user";
-import { ValidationProvider } from "vee-validate";
+import { ValidationProvider, ValidationObserver } from "vee-validate";
 
 const categories = namespace(CategoriesModule.name);
 const user = namespace(UserModule.name);
 
 @Component({
   name: "CreateCategory",
-  components: { ApplicationLayout, ValidationProvider }
+  components: { ApplicationLayout, ValidationObserver, ValidationProvider }
 })
 export default class CreateCategory extends Vue {
+  $refs!: {
+    categoryForm: InstanceType<typeof ValidationObserver>
+  }
   // ===== Store ====== //
   @State("categories") public categories!: CategoriesState;
   @State("user") public user!: UserState;
@@ -67,6 +77,7 @@ export default class CreateCategory extends Vue {
     };
     await this.createCategory(categoryPayload);
     this.categoryName = "";
+    this.$refs.categoryForm.reset();
   }
 
   // ===== Computed ===== //
