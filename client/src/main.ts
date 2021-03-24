@@ -4,8 +4,14 @@ import router from "./router";
 import store from "./store";
 import VuetifyConfig from "@/plugins/vuetify";
 import Vuetify from "vuetify";
+import "@/helpers/vee-validate-rules";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
+import moment from "moment";
 
 Vue.use(Vuetify);
+Vue.use(moment);
+Vue.component("ValidationObserver", ValidationObserver);
+Vue.component("ValidationProvider", ValidationProvider);
 
 Vue.config.productionTip = false;
 

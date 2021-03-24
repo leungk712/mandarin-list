@@ -1,38 +1,22 @@
 <template>
   <v-app>
-    <v-toolbar color="#8bbf9f" max-height="6vh">
-      <v-toolbar-title class="white--text font-weight-bold">
-        Community Mandarin List
-      </v-toolbar-title>
-      <v-spacer />
-      <v-icon
-        data-testid="navbar-home-btn"
-        class="navbar-home-btn"
-        color="white"
-        large
-        @click="handleReturnHome"
-      >
-        home
-      </v-icon>
-    </v-toolbar>
     <transition appear name="slide-x-transition" mode="out-in">
-      <router-view />
+      <v-main>
+        <router-view />
+      </v-main>
     </transition>
   </v-app>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import router from "@/router";
+import ApplicationToolbar from "@/components/layouts/ApplicationToolbar.vue";
 
 @Component({
-  name: "App"
+  name: "App",
+  components: { ApplicationToolbar }
 })
-export default class App extends Vue {
-  public handleReturnHome(): void {
-    router.push({ name: "Home" });
-  }
-}
+export default class App extends Vue {}
 </script>
 
 <style>
@@ -40,5 +24,11 @@ export default class App extends Vue {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.container-border {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin-bottom: 40px;
 }
 </style>
