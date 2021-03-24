@@ -35,7 +35,7 @@ const uriDev = process.env.ATLAS_URI;
 const uriProd = process.env.ATLAS_URI_PRODUCTION;
 const db = process.env.NODE_ENV === 'production' ? uriProd : uriDev;
 const connectDB = async() => {
-    await mongoose.connect(db, { 
+    await mongoose.connect(uriDev, { 
         useNewUrlParser: true, 
         useCreateIndex: true, 
         useUnifiedTopology: true, 
