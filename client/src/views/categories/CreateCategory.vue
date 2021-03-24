@@ -1,8 +1,8 @@
 <template>
   <div class="mt-4">
-    <h3>Create a new category</h3>
+    <h3 :class="$vuetify.breakpoint.xl ? 'ml-3' : ''">Create a new category</h3>
     <v-row>
-      <v-col cols="4">
+      <v-col cols="4" :class="$vuetify.breakpoint.xl ? 'ml-3' : ''">
         <ValidationObserver ref="categoryForm">
           <ValidationProvider
             mode="eager"

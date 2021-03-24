@@ -131,7 +131,7 @@
       </v-col>
     </v-row>
     <v-row justify="center" align-content="center" class="mt-4">
-      <v-col cols="8">
+      <v-col lg="9" xl="6" class="mr-6">
         <v-row justify="end">
           <v-btn
             data-testid="add-example-btn"

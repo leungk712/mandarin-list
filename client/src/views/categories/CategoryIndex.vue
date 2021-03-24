@@ -3,7 +3,7 @@
     <v-container class="my-4 category-index-container">
       <v-row>
         <v-col md="4" lg="3" class="categories-list" fill-height>
-          <h4 class="font-weight-bold">Categories</h4>
+          <h4 class="font-weight-bold">Categories (click on a category)</h4>
           <v-divider class="my-2" />
           <v-card
             v-for="category in categories.categoriesList"
@@ -13,7 +13,7 @@
             outlined
           >
             <v-row class="py-4 px-2">
-              <h4 class="font-weight-bold">{{ category.name }}</h4>
+              <h4 class="font-weight-bold pl-2">{{ category.name }}</h4>
               <v-spacer />
               <!-- <v-icon>edit</v-icon>
               <v-icon>delete_outline</v-icon> -->
