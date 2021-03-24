@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <div v-if="!addStory">
+    <transition name="scroll-x-transition" mode="out-in">
+    <div v-if="!addStory" :key="'add-story-key'">
       <h2>What are stories?</h2>
       <p>{{ storiesOverview }}</p>
       <v-btn
@@ -12,7 +13,7 @@
         Add New Story
       </v-btn>
     </div>
-    <div v-else>
+    <div v-else :key="'story-form-key'">
       <ValidationObserver ref="storyForm">
         <v-row>
           <v-col cols="12" class="pb-0">
@@ -68,6 +69,7 @@
         </v-btn>
       </v-row>
     </div>
+    </transition>
   </v-container>
 </template>
 

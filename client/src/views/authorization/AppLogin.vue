@@ -9,134 +9,137 @@
           </v-card-title>
           <application-alert />
           <v-divider />
-          <v-form
-            v-if="!loginView"
-            ref="form"
-            @submit.prevent="handleLoginRegister"
-          >
-            <v-row>
-              <v-col cols="6">
-                <ValidationProvider rules="required" v-slot="{ errors }">
-                  <v-text-field
-                    data-testid="register-first-name-input"
-                    class="register-first-name-input"
-                    v-model="registerUser.firstName"
-                    label="First Name"
-                    type="text"
-                    required
-                    :error-messages="errors"
-                  />
-                </ValidationProvider>
-              </v-col>
-              <v-col cols="6">
-                <ValidationProvider rules="required" v-slot="{ errors }">
-                  <v-text-field
-                    data-testid="register-last-name-input"
-                    class="register-last-name-input"
-                    v-model="registerUser.lastName"
-                    label="Last Name"
-                    type="text"
-                    required
-                    :error-messages="errors"
-                  />
-                </ValidationProvider>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col class="mt-0 pt-0">
-                <ValidationProvider rules="required|email" v-slot="{ errors }">
-                  <v-text-field
-                    data-testid="register-email-input"
-                    class="register-email-input"
-                    v-model="registerUser.email"
-                    label="Email"
-                    type="email"
-                    prepend-inner-icon="email"
-                    required
-                    :error-messages="errors"
-                  />
-                </ValidationProvider>
-              </v-col>
-            </v-row>
-            <ValidationObserver>
+          <transition name="scroll-y-transition" mode="out-in">
+            <v-form
+              v-if="!loginView"
+              ref="form"
+              @submit.prevent="handleLoginRegister"
+              :key="'register-transition-key'"
+            >
               <v-row>
-                <v-col class="mt-0 pt-0">
-                  <ValidationProvider
-                    :rules="passwordRules"
-                    v-slot="{ errors }"
-                  >
+                <v-col cols="6">
+                  <ValidationProvider rules="required" v-slot="{ errors }">
                     <v-text-field
-                      data-testid="register-password-input"
+                      data-testid="register-first-name-input"
+                      class="register-first-name-input"
+                      v-model="registerUser.firstName"
+                      label="First Name"
+                      type="text"
+                      required
+                      :error-messages="errors"
+                    />
+                  </ValidationProvider>
+                </v-col>
+                <v-col cols="6">
+                  <ValidationProvider rules="required" v-slot="{ errors }">
+                    <v-text-field
+                      data-testid="register-last-name-input"
                       class="register-last-name-input"
-                      v-model="registerUser.password"
-                      label="Password"
-                      name="password"
-                      :type="showPassword ? 'text' : 'password'"
-                      :append-icon="
-                        showPassword ? 'visibility' : 'visibility_off'
-                      "
-                      @click:append="showPassword = !showPassword"
-                      prepend-inner-icon="lock"
+                      v-model="registerUser.lastName"
+                      label="Last Name"
+                      type="text"
                       required
                       :error-messages="errors"
-                      :hint="!passwordValid ? passwordRequirementsText : ''"
                     />
                   </ValidationProvider>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col class="mt-0 pt-0">
-                  <ValidationProvider
-                    :rules="confirmedPasswordRules"
-                    vid="password_confirmation"
-                    v-slot="{ errors }"
-                  >
+                  <ValidationProvider rules="required|email" v-slot="{ errors }">
                     <v-text-field
-                      data-testid="register-confirm-password-input"
-                      class="register-confirm-password-input"
-                      v-model="registerUser.confirmPassword"
-                      label="Confirm Password"
-                      :type="showConfirmPassword ? 'text' : 'password'"
-                      :append-icon="
-                        showConfirmPassword ? 'visibility' : 'visibility_off'
-                      "
-                      @click:append="showConfirmPassword = !showConfirmPassword"
-                      prepend-inner-icon="lock"
+                      data-testid="register-email-input"
+                      class="register-email-input"
+                      v-model="registerUser.email"
+                      label="Email"
+                      type="email"
+                      prepend-inner-icon="email"
                       required
                       :error-messages="errors"
                     />
                   </ValidationProvider>
                 </v-col>
               </v-row>
-            </ValidationObserver>
-          </v-form>
-          <v-form @submit.prevent="handleLoginRegister" v-if="loginView">
-            <ValidationProvider rules="required|email" v-slot="{ errors }">
-              <v-text-field
-                data-testid="login-email-input"
-                class="login-email-input"
-                v-model="loginUser.email"
-                label="Email"
-                type="email"
-                prepend-inner-icon="email"
-                :error-messages="errors"
-              />
-            </ValidationProvider>
+              <ValidationObserver>
+                <v-row>
+                  <v-col class="mt-0 pt-0">
+                    <ValidationProvider
+                      :rules="passwordRules"
+                      v-slot="{ errors }"
+                    >
+                      <v-text-field
+                        data-testid="register-password-input"
+                        class="register-last-name-input"
+                        v-model="registerUser.password"
+                        label="Password"
+                        name="password"
+                        :type="showPassword ? 'text' : 'password'"
+                        :append-icon="
+                          showPassword ? 'visibility' : 'visibility_off'
+                        "
+                        @click:append="showPassword = !showPassword"
+                        prepend-inner-icon="lock"
+                        required
+                        :error-messages="errors"
+                        :hint="!passwordValid ? passwordRequirementsText : ''"
+                      />
+                    </ValidationProvider>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col class="mt-0 pt-0">
+                    <ValidationProvider
+                      :rules="confirmedPasswordRules"
+                      vid="password_confirmation"
+                      v-slot="{ errors }"
+                    >
+                      <v-text-field
+                        data-testid="register-confirm-password-input"
+                        class="register-confirm-password-input"
+                        v-model="registerUser.confirmPassword"
+                        label="Confirm Password"
+                        :type="showConfirmPassword ? 'text' : 'password'"
+                        :append-icon="
+                          showConfirmPassword ? 'visibility' : 'visibility_off'
+                        "
+                        @click:append="showConfirmPassword = !showConfirmPassword"
+                        prepend-inner-icon="lock"
+                        required
+                        :error-messages="errors"
+                      />
+                    </ValidationProvider>
+                  </v-col>
+                </v-row>
+              </ValidationObserver>
+            </v-form>
+            <v-form @submit.prevent="handleLoginRegister" v-else :key="'login-transition-key'">
+              <ValidationProvider rules="required|email" v-slot="{ errors }">
+                <v-text-field
+                  data-testid="login-email-input"
+                  class="login-email-input"
+                  v-model="loginUser.email"
+                  label="Email"
+                  type="email"
+                  prepend-inner-icon="email"
+                  :error-messages="errors"
+                />
+              </ValidationProvider>
 
-            <ValidationProvider rules="required" v-slot="{ errors }">
-              <v-text-field
-                data-testid="login-password-input"
-                class="login-password-input"
-                v-model="loginUser.password"
-                label="Password"
-                :type="showPassword ? 'text' : 'password'"
-                :append-icon="showPassword ? 'visibility' : 'visibility_off'"
-                @click:append="showPassword = !showPassword"
-                prepend-inner-icon="lock"
-                :error-messages="errors"
-              />
-            </ValidationProvider>
-          </v-form>
+              <ValidationProvider rules="required" v-slot="{ errors }">
+                <v-text-field
+                  data-testid="login-password-input"
+                  class="login-password-input"
+                  v-model="loginUser.password"
+                  label="Password"
+                  :type="showPassword ? 'text' : 'password'"
+                  :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                  @click:append="showPassword = !showPassword"
+                  prepend-inner-icon="lock"
+                  :error-messages="errors"
+                />
+              </ValidationProvider>
+            </v-form>
+          </transition>
           <v-row class="ml-1 mt-2">
             <p class="font-weight-bold subtitle-2 mr-4" v-if="!loginView">
               Already have an account?
@@ -166,7 +169,7 @@
             <v-btn
               data-testid="submit-login-register-btn"
               class="submit-login-register-btn"
-              color="blue lighten-grey darken-2 white--text"
+              color="teal lighten-1 white--text"
               @click="handleLoginRegister"
               :disabled="!validForm"
             >

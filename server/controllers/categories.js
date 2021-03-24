@@ -1,5 +1,6 @@
 const express = require('express');
 const Category = require('../models/category.model');
+const Post = require('../models/post.model');
 
 const getCategories = async (req, res) => {
     await Category.find({ user: req.params.userId })

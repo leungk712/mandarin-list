@@ -25,6 +25,7 @@
               label="Chinese Character"
               placeholder="Ex. (你好)"
               outlined
+              slot-scope="{ errors, valid }"
               :error-messages="errors"
               :success="valid"
             />

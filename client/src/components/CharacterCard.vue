@@ -144,7 +144,7 @@
                   @click.once="handleSubmitUpdate"
                   :loading="loading"
                 >
-                  Submit Update
+                  Update
                 </v-btn>
               </v-row>
             </v-container>

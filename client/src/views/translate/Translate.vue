@@ -15,12 +15,12 @@
             class="translate-simplified-textarea"
             v-model="characters"
             outlined
-            placeholder="你好"
+            placeholder="你好..."
             rows="4"
             no-resize
           />
         </v-col>
-        <v-col>
+        <v-col cols="6">
           <h4>Pinyin | 拼音</h4>
           <v-textarea
             data-testid="translate-result-textarea"
@@ -28,7 +28,7 @@
             v-model="converted"
             outlined
             readonly
-            placeholder="Nǐ hǎo"
+            placeholder="Nǐ hǎo..."
             rows="4"
             no-resize
           />
@@ -69,5 +69,10 @@ export default class Translate extends Vue {
   border: 1px solid #eee;
   border-radius: 5px;
   width: 100%;
+}
+
+.translate-simplified-textarea, .translate-result-textarea {
+  font-size: 2rem;
+  padding-top: 10px;
 }
 </style>
