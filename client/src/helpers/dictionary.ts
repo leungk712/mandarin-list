@@ -1,0 +1,2 @@
+export const dictionaryText = `Due to the dictionary package utilized being too large, resulting in decreased application performance,
+the dictionary is on a separate website which you can click below to access. Please be patient with the loading time...`;

@@ -22,10 +22,10 @@
             <v-icon left>translate</v-icon>
             Translate
           </v-tab>
-          <!-- <v-tab>
+          <v-tab>
             <v-icon left>search</v-icon>
             Dictionary
-          </v-tab> -->
+          </v-tab>
 
           <v-tab-item>
             <v-card flat class="ma-6">
@@ -69,11 +69,11 @@
               <Translate />
             </v-card>
           </v-tab-item>
-          <!-- <v-tab-item>
+          <v-tab-item>
             <v-card flat class="ma-6">
               <Dictionary />
             </v-card>
-          </v-tab-item> -->
+          </v-tab-item>
         </v-tabs>
       </v-card>
     </v-container>
