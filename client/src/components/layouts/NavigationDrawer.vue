@@ -1,7 +1,12 @@
 <template>
   <div class="ma-4 pa-4">
     <v-card>
-      <v-navigation-drawer app expand-on-hover mini-variant-width="60" clipped>
+      <v-navigation-drawer
+        app
+        expand-on-hover
+        mini-variant-width="60"
+        clipped
+      >
         <v-list>
           <v-list-item class="px-2">
             <v-list-item-avatar

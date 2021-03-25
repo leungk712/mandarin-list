@@ -7,6 +7,11 @@
         {{ dictionaryText }}
       </p>
       <v-row justify="center" class="my-6">
+        <a
+          href="https://mandarin-list-dictionary.netlify.com"
+          target="_blank"
+          class="text-decoration-none white--text"
+        >
         <v-btn
           data-testid="dictionary-link-btn"
           class="dictionary-link-btn"
@@ -14,14 +19,10 @@
           large
         >
           <v-icon class="mr-2">open_in_new</v-icon>
-          <a
-            href="https://mandarin-list-dictionary.netlify.com"
-            target="_blank"
-            class="text-decoration-none white--text"
-          >
+
           Dictionary
-          </a>
         </v-btn>
+        </a>
       </v-row>
       <v-img src="@/assets/misc/mandarin-list-dictionary.png" />
     </v-container>
