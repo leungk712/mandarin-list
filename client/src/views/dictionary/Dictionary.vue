@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="container-border mb-6" style="width: 80%">
+    <v-container class="container-border dictionary-container mb-6">
       <p class="display-1 my-4">Chinese Dictionary</p>
       <v-divider />
       <p class="my-4 title">
@@ -46,3 +46,9 @@ export default class Dictionary extends Vue {
   // ===== Lifecycle Hooks ===== //
 }
 </script>
+
+<style scoped>
+  .dictionary-container {
+    width: 80%;
+  }
+</style>

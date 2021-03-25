@@ -26,6 +26,10 @@
             <v-icon left>search</v-icon>
             Dictionary
           </v-tab>
+          <v-tab>
+            <v-icon left>psychology</v-icon>
+            Memorize!
+          </v-tab>
 
           <v-tab-item>
             <v-card flat class="ma-6">
@@ -74,6 +78,11 @@
               <Dictionary />
             </v-card>
           </v-tab-item>
+          <v-tab-item>
+            <v-card flat class="ma-6">
+              <Memorize />
+            </v-card>
+          </v-tab-item>
         </v-tabs>
       </v-card>
     </v-container>
@@ -92,6 +101,7 @@ import CreateCharacter from "@/components/CreateCharacter.vue";
 import CreateStory from "@/views/stories/CreateStory.vue";
 import Dictionary from "@/views/dictionary/Dictionary.vue";
 import ListCard from "@/components/ListCard.vue";
+import Memorize from "@/views/memorize/Memorize.vue";
 import StoriesIndex from "@/views/stories/StoriesIndex.vue";
 import Translate from "@/views/translate/Translate.vue";
 import UserModule from "@/store/modules/user";
@@ -109,6 +119,7 @@ const user = namespace(UserModule.name);
     CreateStory,
     Dictionary,
     ListCard,
+    Memorize,
     StoriesIndex,
     Translate
   }

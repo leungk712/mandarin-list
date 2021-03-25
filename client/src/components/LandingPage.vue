@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #eee">
+  <div class="landing-background">
     <ApplicationToolbar />
     <v-container class="vocab-container" fill-height>
       <v-row
@@ -21,7 +21,7 @@
             <v-row
               justify="center"
               align-content="center"
-              style="height: 100%"
+              class="vocab-card-row"
             >
               <p
                 :class="$vuetify.breakpoint.lg ? 'display-3' :'display-4'"
@@ -60,11 +60,19 @@ export default class LandingPage extends Vue {
 </script>
 
 <style scoped>
+  .landing-background {
+    background: #eee;
+  }
+
   .vocab-container {
     min-height: 65vh;
   }
 
   .vocab-card {
     height: 35vh;
+  }
+
+  .vocab-card-row {
+    height: 100%;
   }
 </style>

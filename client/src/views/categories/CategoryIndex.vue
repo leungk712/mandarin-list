@@ -3,9 +3,13 @@
     <v-container class="my-4 category-index-container">
       <v-row>
         <v-col md="4" lg="3" class="categories-list" fill-height>
-          <h4 class="font-weight-bold">Categories (click on a category)</h4>
+          <h4 class="font-weight-bold">Categories List</h4>
           <v-divider class="my-2" />
+          <div v-if="!categories.categoriesList.length" class="mt-6 font-italic">
+            No categories. Create a category!
+          </div>
           <v-card
+            v-else
             v-for="category in categories.categoriesList"
             :key="category._id"
             class="my-2 py-2 px-2"
@@ -69,6 +73,7 @@ export default class CategoryIndex extends Vue {
 <style scoped>
 .categories-list {
   border-right: 1px solid #eee;
+  min-height: 100vh;
 }
 .category-index-container {
   border: 1px solid #eee;

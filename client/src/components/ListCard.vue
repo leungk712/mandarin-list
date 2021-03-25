@@ -6,7 +6,8 @@
       class="d-flex mx-auto"
       :class="this.view === 'category' ? 'mt-16' : ''"
     >
-      <h2>No results found. Select a different category.</h2>
+      <h2 v-if="!charactersList.length">You have no characters. Go create a character!</h2>
+      <h2 v-else>No cards found. Select a different category.</h2>
     </div>
     <v-col
       v-for="(character, idx) in updatedCharactersList"
@@ -85,7 +86,6 @@
             v-model="selectedIdx"
             v-show="selectedIdx === idx"
             class="transition-fast-in-fast-out v-card--reveal"
-            style="height: 100%;"
           >
             <v-card-text class="pb-0">
               <p class="title font-weight-bold text--primary">Example(s)</p>
@@ -266,6 +266,10 @@ export default class ListCard extends Vue {
 
 <style scoped>
   .favorite-icon-select {
+    height: 100%;
+  }
+
+  .v-card--reveal {
     height: 100%;
   }
 </style>
