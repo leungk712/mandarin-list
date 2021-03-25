@@ -8,6 +8,8 @@
         <v-col
             v-for="(character) in charactersList"
             :key="character._id"
+            sm="6"
+            md="4"
             lg="3"
             xl="2"
         >
@@ -84,7 +86,7 @@ get charactersList(): SelectedCharacter[] {
 
 <style scoped>
     .memorize-container {
-        width: 95%;
+        width: 100%;
     }
     .memorize-card {
         height: 200px;
