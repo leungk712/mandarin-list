@@ -7,7 +7,11 @@
           characters and we'll produce a pinyin version
         </h4>
       </v-row>
-      <v-row justify="space-around" align="center" class="translate-row mt-6">
+      <v-row
+        justify="space-around"
+        align="center"
+        class="translate-row mt-6"
+      >
         <v-col cols="6">
           <h4>Simplified Chinese Characters | 简体中文</h4>
           <v-textarea
@@ -72,7 +76,7 @@ export default class Translate extends Vue {
 }
 
 .translate-simplified-textarea, .translate-result-textarea {
-  font-size: 2rem;
+  font-size: 1.75rem;
   padding-top: 10px;
 }
 </style>

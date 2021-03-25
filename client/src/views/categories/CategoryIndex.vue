@@ -2,7 +2,12 @@
   <div>
     <v-container class="my-4 category-index-container">
       <v-row>
-        <v-col md="4" lg="3" class="categories-list" fill-height>
+        <v-col
+          md="4"
+          lg="3"
+          class="categories-list"
+          fill-height
+        >
           <h4 class="font-weight-bold">Categories List</h4>
           <v-divider class="my-2" />
           <div v-if="!categories.categoriesList.length" class="mt-6 font-italic">
