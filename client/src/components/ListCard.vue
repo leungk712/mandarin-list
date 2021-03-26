@@ -43,7 +43,7 @@
           <v-chip
             v-for="(category, idx) in character.categories"
             :key="idx"
-            class="mx-1"
+            class="ma-1"
             color="deep-purple lighten-4"
           >
             {{ category }}
@@ -58,7 +58,6 @@
             color="teal accent-4"
             @click.native="handleReveal(idx)"
           >
-            {{ character.character }}
             Examples ({{ character.examples.length }} |
             {{ converter.toWords(character.examples.length) }})
           </v-btn>
