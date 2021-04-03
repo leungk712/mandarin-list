@@ -12,15 +12,16 @@
     <v-spacer />
     <h3 class="white--text font-weight-bold ml-4">Mandarin List</h3>
     <v-spacer />
-    <v-icon
+    <v-btn
       v-if="nonDashboard"
       data-testid="navbar-login-btn"
       class="navbar-login-btn"
       color="white"
       @click="handleLogin"
+      outlined
     >
-      login
-    </v-icon>
+      Login
+    </v-btn>
   </v-app-bar>
 </template>
 

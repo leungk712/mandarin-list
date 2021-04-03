@@ -26,11 +26,6 @@ export const alertActions: ActionTree<AlertState, RootState> = {
 };
 
 export const alertMutations: MutationTree<AlertState> = {
-  resetAlert: (state: AlertState) => {
-    state.message = "";
-    state.display = false;
-    state.type = "";
-  },
   displayAlert: (state: AlertState) => {
     state.display = true;
   },
@@ -39,6 +34,11 @@ export const alertMutations: MutationTree<AlertState> = {
   },
   setType: (state: AlertState, type: string) => {
     state.type = type;
+  },
+  resetAlert: (state: AlertState) => {
+    state.message = "";
+    state.display = false;
+    state.type = "";
   }
 };
 

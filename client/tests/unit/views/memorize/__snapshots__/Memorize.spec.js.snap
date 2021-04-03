@@ -55,6 +55,291 @@ exports[`Memorize template should match snapshot 1`] = `
                     <p
                       class="display-2 text--primary"
                     >
+                      你好
+                    </p>
+                  </v-col-stub>
+                </v-row-stub>
+              </v-card-text-stub>
+            </v-card-stub>
+             
+            <v-card-stub
+              class="mx-auto my-2 pa-2 memorize-card-back"
+              hover="true"
+              loaderheight="4"
+              outlined="true"
+              tag="div"
+            >
+              <v-card-text-stub>
+                <v-row-stub
+                  align="center"
+                  justify="center"
+                  tag="div"
+                >
+                  <v-col-stub
+                    class="ma-0 pa-0"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="title"
+                    >
+                      Nǐ hǎo
+                    </p>
+                  </v-col-stub>
+                   
+                  <v-col-stub
+                    class="ma-0 pa-0"
+                    cols="12"
+                    tag="div"
+                  >
+                    <h1
+                      class="display-2"
+                    >
+                      你好
+                    </h1>
+                  </v-col-stub>
+                   
+                  <v-col-stub
+                    class="mt-3"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="title"
+                    >
+                      Hello
+                    </p>
+                  </v-col-stub>
+                </v-row-stub>
+              </v-card-text-stub>
+            </v-card-stub>
+          </div>
+        </div>
+      </v-col-stub>
+      <v-col-stub
+        lg="3"
+        md="4"
+        sm="6"
+        tag="div"
+        xl="2"
+      >
+        <div
+          class="memorize-card"
+        >
+          <div
+            class="memorize-card-inner"
+          >
+            <v-card-stub
+              class="my-2 pa-2 memorize-card-front"
+              hover="true"
+              loaderheight="4"
+              outlined="true"
+              tag="div"
+            >
+              <v-card-text-stub>
+                <v-row-stub
+                  align="center"
+                  justify="center"
+                  tag="div"
+                >
+                  <v-col-stub
+                    class="mt-10"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="display-2 text--primary"
+                    >
+                      再见
+                    </p>
+                  </v-col-stub>
+                </v-row-stub>
+              </v-card-text-stub>
+            </v-card-stub>
+             
+            <v-card-stub
+              class="mx-auto my-2 pa-2 memorize-card-back"
+              hover="true"
+              loaderheight="4"
+              outlined="true"
+              tag="div"
+            >
+              <v-card-text-stub>
+                <v-row-stub
+                  align="center"
+                  justify="center"
+                  tag="div"
+                >
+                  <v-col-stub
+                    class="ma-0 pa-0"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="title"
+                    >
+                      Zàijiàn
+                    </p>
+                  </v-col-stub>
+                   
+                  <v-col-stub
+                    class="ma-0 pa-0"
+                    cols="12"
+                    tag="div"
+                  >
+                    <h1
+                      class="display-2"
+                    >
+                      再见
+                    </h1>
+                  </v-col-stub>
+                   
+                  <v-col-stub
+                    class="mt-3"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="title"
+                    >
+                      Goodbye
+                    </p>
+                  </v-col-stub>
+                </v-row-stub>
+              </v-card-text-stub>
+            </v-card-stub>
+          </div>
+        </div>
+      </v-col-stub>
+      <v-col-stub
+        lg="3"
+        md="4"
+        sm="6"
+        tag="div"
+        xl="2"
+      >
+        <div
+          class="memorize-card"
+        >
+          <div
+            class="memorize-card-inner"
+          >
+            <v-card-stub
+              class="my-2 pa-2 memorize-card-front"
+              hover="true"
+              loaderheight="4"
+              outlined="true"
+              tag="div"
+            >
+              <v-card-text-stub>
+                <v-row-stub
+                  align="center"
+                  justify="center"
+                  tag="div"
+                >
+                  <v-col-stub
+                    class="mt-10"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="display-2 text--primary"
+                    >
+                      山
+                    </p>
+                  </v-col-stub>
+                </v-row-stub>
+              </v-card-text-stub>
+            </v-card-stub>
+             
+            <v-card-stub
+              class="mx-auto my-2 pa-2 memorize-card-back"
+              hover="true"
+              loaderheight="4"
+              outlined="true"
+              tag="div"
+            >
+              <v-card-text-stub>
+                <v-row-stub
+                  align="center"
+                  justify="center"
+                  tag="div"
+                >
+                  <v-col-stub
+                    class="ma-0 pa-0"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="title"
+                    >
+                      Shān
+                    </p>
+                  </v-col-stub>
+                   
+                  <v-col-stub
+                    class="ma-0 pa-0"
+                    cols="12"
+                    tag="div"
+                  >
+                    <h1
+                      class="display-2"
+                    >
+                      山
+                    </h1>
+                  </v-col-stub>
+                   
+                  <v-col-stub
+                    class="mt-3"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="title"
+                    >
+                      Mountain
+                    </p>
+                  </v-col-stub>
+                </v-row-stub>
+              </v-card-text-stub>
+            </v-card-stub>
+          </div>
+        </div>
+      </v-col-stub>
+      <v-col-stub
+        lg="3"
+        md="4"
+        sm="6"
+        tag="div"
+        xl="2"
+      >
+        <div
+          class="memorize-card"
+        >
+          <div
+            class="memorize-card-inner"
+          >
+            <v-card-stub
+              class="my-2 pa-2 memorize-card-front"
+              hover="true"
+              loaderheight="4"
+              outlined="true"
+              tag="div"
+            >
+              <v-card-text-stub>
+                <v-row-stub
+                  align="center"
+                  justify="center"
+                  tag="div"
+                >
+                  <v-col-stub
+                    class="mt-10"
+                    cols="12"
+                    tag="div"
+                  >
+                    <p
+                      class="display-2 text--primary"
+                    >
                       痛
                     </p>
                   </v-col-stub>
@@ -203,291 +488,6 @@ exports[`Memorize template should match snapshot 1`] = `
                       class="title"
                     >
                       Forest
-                    </p>
-                  </v-col-stub>
-                </v-row-stub>
-              </v-card-text-stub>
-            </v-card-stub>
-          </div>
-        </div>
-      </v-col-stub>
-      <v-col-stub
-        lg="3"
-        md="4"
-        sm="6"
-        tag="div"
-        xl="2"
-      >
-        <div
-          class="memorize-card"
-        >
-          <div
-            class="memorize-card-inner"
-          >
-            <v-card-stub
-              class="my-2 pa-2 memorize-card-front"
-              hover="true"
-              loaderheight="4"
-              outlined="true"
-              tag="div"
-            >
-              <v-card-text-stub>
-                <v-row-stub
-                  align="center"
-                  justify="center"
-                  tag="div"
-                >
-                  <v-col-stub
-                    class="mt-10"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="display-2 text--primary"
-                    >
-                      山
-                    </p>
-                  </v-col-stub>
-                </v-row-stub>
-              </v-card-text-stub>
-            </v-card-stub>
-             
-            <v-card-stub
-              class="mx-auto my-2 pa-2 memorize-card-back"
-              hover="true"
-              loaderheight="4"
-              outlined="true"
-              tag="div"
-            >
-              <v-card-text-stub>
-                <v-row-stub
-                  align="center"
-                  justify="center"
-                  tag="div"
-                >
-                  <v-col-stub
-                    class="ma-0 pa-0"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="title"
-                    >
-                      Shān
-                    </p>
-                  </v-col-stub>
-                   
-                  <v-col-stub
-                    class="ma-0 pa-0"
-                    cols="12"
-                    tag="div"
-                  >
-                    <h1
-                      class="display-2"
-                    >
-                      山
-                    </h1>
-                  </v-col-stub>
-                   
-                  <v-col-stub
-                    class="mt-3"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="title"
-                    >
-                      Mountain
-                    </p>
-                  </v-col-stub>
-                </v-row-stub>
-              </v-card-text-stub>
-            </v-card-stub>
-          </div>
-        </div>
-      </v-col-stub>
-      <v-col-stub
-        lg="3"
-        md="4"
-        sm="6"
-        tag="div"
-        xl="2"
-      >
-        <div
-          class="memorize-card"
-        >
-          <div
-            class="memorize-card-inner"
-          >
-            <v-card-stub
-              class="my-2 pa-2 memorize-card-front"
-              hover="true"
-              loaderheight="4"
-              outlined="true"
-              tag="div"
-            >
-              <v-card-text-stub>
-                <v-row-stub
-                  align="center"
-                  justify="center"
-                  tag="div"
-                >
-                  <v-col-stub
-                    class="mt-10"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="display-2 text--primary"
-                    >
-                      再见
-                    </p>
-                  </v-col-stub>
-                </v-row-stub>
-              </v-card-text-stub>
-            </v-card-stub>
-             
-            <v-card-stub
-              class="mx-auto my-2 pa-2 memorize-card-back"
-              hover="true"
-              loaderheight="4"
-              outlined="true"
-              tag="div"
-            >
-              <v-card-text-stub>
-                <v-row-stub
-                  align="center"
-                  justify="center"
-                  tag="div"
-                >
-                  <v-col-stub
-                    class="ma-0 pa-0"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="title"
-                    >
-                      Zàijiàn
-                    </p>
-                  </v-col-stub>
-                   
-                  <v-col-stub
-                    class="ma-0 pa-0"
-                    cols="12"
-                    tag="div"
-                  >
-                    <h1
-                      class="display-2"
-                    >
-                      再见
-                    </h1>
-                  </v-col-stub>
-                   
-                  <v-col-stub
-                    class="mt-3"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="title"
-                    >
-                      Goodbye
-                    </p>
-                  </v-col-stub>
-                </v-row-stub>
-              </v-card-text-stub>
-            </v-card-stub>
-          </div>
-        </div>
-      </v-col-stub>
-      <v-col-stub
-        lg="3"
-        md="4"
-        sm="6"
-        tag="div"
-        xl="2"
-      >
-        <div
-          class="memorize-card"
-        >
-          <div
-            class="memorize-card-inner"
-          >
-            <v-card-stub
-              class="my-2 pa-2 memorize-card-front"
-              hover="true"
-              loaderheight="4"
-              outlined="true"
-              tag="div"
-            >
-              <v-card-text-stub>
-                <v-row-stub
-                  align="center"
-                  justify="center"
-                  tag="div"
-                >
-                  <v-col-stub
-                    class="mt-10"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="display-2 text--primary"
-                    >
-                      你好
-                    </p>
-                  </v-col-stub>
-                </v-row-stub>
-              </v-card-text-stub>
-            </v-card-stub>
-             
-            <v-card-stub
-              class="mx-auto my-2 pa-2 memorize-card-back"
-              hover="true"
-              loaderheight="4"
-              outlined="true"
-              tag="div"
-            >
-              <v-card-text-stub>
-                <v-row-stub
-                  align="center"
-                  justify="center"
-                  tag="div"
-                >
-                  <v-col-stub
-                    class="ma-0 pa-0"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="title"
-                    >
-                      Nǐ hǎo
-                    </p>
-                  </v-col-stub>
-                   
-                  <v-col-stub
-                    class="ma-0 pa-0"
-                    cols="12"
-                    tag="div"
-                  >
-                    <h1
-                      class="display-2"
-                    >
-                      你好
-                    </h1>
-                  </v-col-stub>
-                   
-                  <v-col-stub
-                    class="mt-3"
-                    cols="12"
-                    tag="div"
-                  >
-                    <p
-                      class="title"
-                    >
-                      Hello
                     </p>
                   </v-col-stub>
                 </v-row-stub>
