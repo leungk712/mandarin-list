@@ -1,0 +1,747 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resources template should match snapshot 1`] = `
+<application-layout-stub>
+  <v-container-stub
+    class="container-border travel-container"
+    tag="div"
+  >
+    <div
+      class="my-4"
+    >
+      <h1>
+        Travel China
+      </h1>
+       
+      <p
+        class="ml-1"
+      >
+        
+        China is a country of both ancient and modern. Over 55 ethnic groups
+        live in China offering a range of different cultures, languages,
+        cuisine.
+      
+      </p>
+       
+      <p
+        class="ml-1"
+      >
+        
+        From the Great Wall of China to Zhangjiajie (home of Avatar Mountains)
+        to the ancient water towns, there is a lot of natural beauty to
+        witness.
+      
+      </p>
+       
+      <v-divider-stub />
+    </div>
+     
+    <v-row-stub
+      tag="div"
+    >
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/yBroAF1cN3I"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Beijing | 北京 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            Home to the capital of China, 
+    Beijing offers visitors the chance to witness both its ancient and modern blend.
+    From the Forbidden City to the Great Wall of China, Beijing is one of the must-visit cities in China.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                Forbidden City
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Great Wall
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Temple of Heaven
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/5h_dMuX_7RE"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Shanghai | 上海 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            One of the most modern cities in the world, 
+    Shanghai offers a blend of Chinese and European influence. Shanghai is a city that never sleeps.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                The Bund
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Oriental Pearl TV Tower
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Nanjing Road
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/T6E_WftGLQs"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Suzhou | 苏州 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            Considered as one of the most beautiful places to visit in China, Suzhou offers
+    beautiful water towns showing the charm and beauty of Suzhou gardens. A short distance from Shanghai makes a
+    perfect day trip via the bullet train
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                Humble Administrator's Garden
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Tiger Hill
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Zhouzhuang Water Town
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/HsqB3X2tiOA"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Harbin | 哈尔滨 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            Home to the world's largest ice festival, Harbin from December to February is one of the must-see
+    places in the entire world. Ice sculptors all around the world gather to create some of the most stunning ice sculptures out there.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                Ice & Snow World Festival
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Saint Sophia's Church
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Yabuli Ski Resort
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/jd2YTPu_q1Y"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Guangzhou | 广州 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            Home to dimsum, Guangzhou is a food lover's heaven. From the Canton Tower to the natural beauty of Baiyun Mountain,
+    one thing is for certain. Everyone eats dimsum in Guangzhou.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                Canton Tower
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Baiyun Mountain
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Shamian Island
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/AxIS3R2_hBU"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Hangzhou | 杭州 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            Known for West Lake, Hangzhou is known for its beautiful scenery. Fog-filled hills, stunning sunsets have inspired
+    Hangzhou to have been talked about throughout China's history as one of the most beautiful places.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                West Lake
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Lingyin Temple
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Wuzhen Water Town
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/peK8iXqGMzQ"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Guilin | 桂林 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            A land filled with karsts, Guilin is a must visit. Taking a cruise down the Li River from Guilin to Yangshou allows you
+    to take in the sights of famous karst landscapes seen on Chinese monetary bills and paintings.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                Li River
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Yangshuo
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Longji Terraced Rice Fields
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/wFUyCqW9tS4"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Chengdu | 成都 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            Pandas. Pandas. Pandas. Chengdu is home to the world's largest panda research base. It is also known to be filled with 
+    an abundance of hotpot restaurants, one of the top must-have meals in China.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                Chengdu Research Base of Giant Panda Breeding
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Leshan Giant Budda
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Mount Emei
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/2-gqoWYa3KM"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Lhasa | 拉萨 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            Home of the Tibetan people, Lhasa is one of the highest cities in the world at nearly 12,000 feet. With the Himalayan Mountains
+    within sight, experience the beauty of Tibetan monestaries alongside Tibetan culture.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                Potala Palace
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Jokhang Temple
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Ganden Monastery
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+      <v-col-stub
+        lg="4"
+        md="6"
+        sm="12"
+        tag="div"
+        xl="3"
+      >
+        <v-card-stub
+          class="mx-auto"
+          height="575"
+          loaderheight="4"
+          maxwidth="344"
+          tag="div"
+        >
+          <v-img-stub
+            aspectratio="1"
+            height="200px"
+            options="[object Object]"
+            position="center center"
+            src=""
+            transition="fade-transition"
+            width="100%"
+          />
+           
+          <a
+            class="caption text-decoration-none ml-1"
+            href="https://unsplash.com/photos/xZDWEEMS3sA"
+            target="_blank"
+          >
+            
+            Image source
+          
+          </a>
+           
+          <v-card-title-stub>
+             Xi'an | 西安 
+          </v-card-title-stub>
+           
+          <v-card-subtitle-stub
+            style="height: 18vh;"
+          >
+            
+            Terracotta warriors, fortresses, pagodas. Xi'an is home to the world famous Terracotta Warriors alongside one of the largest ancient
+    military defense systems in the world. Witness the history of an ancient city wall in a bustling city.
+          
+          </v-card-subtitle-stub>
+           
+          <v-card-subtitle-stub>
+            <h4>
+              Main Attractions:
+            </h4>
+             
+            <ul>
+              <li>
+                Terracotta Warriors
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Giant Wild Goose Pagoda
+              </li>
+            </ul>
+            <ul>
+              <li>
+                Bell Tower
+              </li>
+            </ul>
+          </v-card-subtitle-stub>
+        </v-card-stub>
+      </v-col-stub>
+    </v-row-stub>
+  </v-container-stub>
+</application-layout-stub>
+`;

@@ -25,7 +25,10 @@
               <span class="title font-weight-light">Characters</span>
             </v-card-title>
 
-            <v-card-text class="display-1 font-weight-bold text-center">
+            <v-card-text
+              data-testid="profile-characters-card-text"
+              class="profile-characters-card-text display-1 font-weight-bold text-center"
+            >
               {{ posts.mandarinList.length }} characters
             </v-card-text>
           </v-card>
@@ -39,7 +42,10 @@
               <span class="title font-weight-light">Categories</span>
             </v-card-title>
 
-            <v-card-text class="display-1 font-weight-bold text-center">
+            <v-card-text
+              data-testid="profile-categories-card-text"
+              class="profile-categories-card-text display-1 font-weight-bold text-center"
+            >
               {{ categories.categoriesList.length }} categories
             </v-card-text>
           </v-card>
@@ -53,7 +59,10 @@
               <span class="title font-weight-light">Stories</span>
             </v-card-title>
 
-            <v-card-text class="display-1 font-weight-bold text-center">
+            <v-card-text
+              data-testid="profile-stories-card-text"
+              class="profile-stories-card-text display-1 font-weight-bold text-center"
+            >
               {{ stories.storiesList.length }} stories
             </v-card-text>
           </v-card>
@@ -67,7 +76,10 @@
               <span class="title font-weight-light">Favorites</span>
             </v-card-title>
 
-            <v-card-text class="display-1 font-weight-bold text-center">
+            <v-card-text
+              data-testid="profile-favorites-card-text"
+              class="profile-favorites-card-text display-1 font-weight-bold text-center"
+            >
               {{ favorites }} favorites
             </v-card-text>
           </v-card>

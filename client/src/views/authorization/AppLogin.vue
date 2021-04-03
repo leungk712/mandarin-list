@@ -69,7 +69,7 @@
                     >
                       <v-text-field
                         data-testid="register-password-input"
-                        class="register-last-name-input"
+                        class="register-password-input"
                         v-model="registerUser.password"
                         label="Password"
                         name="password"

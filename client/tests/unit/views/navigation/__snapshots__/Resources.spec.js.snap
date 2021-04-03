@@ -1,0 +1,372 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resources template should match snapshot 1`] = `
+<application-layout-stub>
+  <v-container-stub
+    class="container-border resources-container"
+    tag="div"
+  >
+    <h1>
+      Mandarin Resources
+    </h1>
+     
+    <p>
+      
+      Here are some resources to help you learn mandarin and/or look into
+      traveling throughout China!
+    
+    </p>
+     
+    <v-divider-stub />
+     
+    <v-list-stub
+      tag="div"
+      threeline="true"
+    >
+      <v-list-item-stub
+        activeclass=""
+        tag="div"
+      >
+        <v-list-item-content-stub>
+          <v-list-item-title-stub>
+            <span>
+              <v-icon-stub>
+                horizontal_rule 
+              </v-icon-stub>
+               
+              <span
+                class="font-weight-bold title"
+              >
+                HelloChinese
+                
+              </span>
+               
+              <v-icon-stub>
+                horizontal_rule
+              </v-icon-stub>
+               
+              <a
+                class="text-decoration-none"
+                href="http://www.hellochinese.cc/"
+                target="_blank"
+              >
+                <v-icon-stub
+                  color="teal"
+                  small=""
+                >
+                  open_in_new
+                </v-icon-stub>
+              </a>
+            </span>
+          </v-list-item-title-stub>
+           
+          <v-list-item-subtitle-stub>
+            One of my favorite apps to use, this has helped me tremendously learning mandarin!
+          </v-list-item-subtitle-stub>
+        </v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-divider-stub />
+      <v-list-item-stub
+        activeclass=""
+        tag="div"
+      >
+        <v-list-item-content-stub>
+          <v-list-item-title-stub>
+            <span>
+              <v-icon-stub>
+                horizontal_rule 
+              </v-icon-stub>
+               
+              <span
+                class="font-weight-bold title"
+              >
+                Duolingo
+                
+              </span>
+               
+              <v-icon-stub>
+                horizontal_rule
+              </v-icon-stub>
+               
+              <a
+                class="text-decoration-none"
+                href="https://www.duolingo.com/"
+                target="_blank"
+              >
+                <v-icon-stub
+                  color="teal"
+                  small=""
+                >
+                  open_in_new
+                </v-icon-stub>
+              </a>
+            </span>
+          </v-list-item-title-stub>
+           
+          <v-list-item-subtitle-stub>
+            One of the most used apps around the world, Duolingo is great for beginners!
+          </v-list-item-subtitle-stub>
+        </v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-divider-stub />
+      <v-list-item-stub
+        activeclass=""
+        tag="div"
+      >
+        <v-list-item-content-stub>
+          <v-list-item-title-stub>
+            <span>
+              <v-icon-stub>
+                horizontal_rule 
+              </v-icon-stub>
+               
+              <span
+                class="font-weight-bold title"
+              >
+                Memrise
+                
+              </span>
+               
+              <v-icon-stub>
+                horizontal_rule
+              </v-icon-stub>
+               
+              <a
+                class="text-decoration-none"
+                href="https://www.memrise.com/"
+                target="_blank"
+              >
+                <v-icon-stub
+                  color="teal"
+                  small=""
+                >
+                  open_in_new
+                </v-icon-stub>
+              </a>
+            </span>
+          </v-list-item-title-stub>
+           
+          <v-list-item-subtitle-stub>
+            Memrise is one of the more underrated apps out there. Check it out!
+          </v-list-item-subtitle-stub>
+        </v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-divider-stub />
+      <v-list-item-stub
+        activeclass=""
+        tag="div"
+      >
+        <v-list-item-content-stub>
+          <v-list-item-title-stub>
+            <span>
+              <v-icon-stub>
+                horizontal_rule 
+              </v-icon-stub>
+               
+              <span
+                class="font-weight-bold title"
+              >
+                DuChinese
+                
+              </span>
+               
+              <v-icon-stub>
+                horizontal_rule
+              </v-icon-stub>
+               
+              <a
+                class="text-decoration-none"
+                href="https://www.duchinese.net/"
+                target="_blank"
+              >
+                <v-icon-stub
+                  color="teal"
+                  small=""
+                >
+                  open_in_new
+                </v-icon-stub>
+              </a>
+            </span>
+          </v-list-item-title-stub>
+           
+          <v-list-item-subtitle-stub>
+            Hundreds of chinese stories from beginner to advanced with new lessons being released weekly!
+          </v-list-item-subtitle-stub>
+        </v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-divider-stub />
+      <v-list-item-stub
+        activeclass=""
+        tag="div"
+      >
+        <v-list-item-content-stub>
+          <v-list-item-title-stub>
+            <span>
+              <v-icon-stub>
+                horizontal_rule 
+              </v-icon-stub>
+               
+              <span
+                class="font-weight-bold title"
+              >
+                Yoyo Chinese
+                
+              </span>
+               
+              <v-icon-stub>
+                horizontal_rule
+              </v-icon-stub>
+               
+              <a
+                class="text-decoration-none"
+                href="https://www.youtube.com/user/sloppycheng"
+                target="_blank"
+              >
+                <v-icon-stub
+                  color="teal"
+                  small=""
+                >
+                  open_in_new
+                </v-icon-stub>
+              </a>
+            </span>
+          </v-list-item-title-stub>
+           
+          <v-list-item-subtitle-stub>
+            One of my favorite YouTube channels, the crew at Yoyo Chinese do an excellent job!
+          </v-list-item-subtitle-stub>
+        </v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-divider-stub />
+      <v-list-item-stub
+        activeclass=""
+        tag="div"
+      >
+        <v-list-item-content-stub>
+          <v-list-item-title-stub>
+            <span>
+              <v-icon-stub>
+                horizontal_rule 
+              </v-icon-stub>
+               
+              <span
+                class="font-weight-bold title"
+              >
+                SMART Mandarin - Katrina Lee
+                
+              </span>
+               
+              <v-icon-stub>
+                horizontal_rule
+              </v-icon-stub>
+               
+              <a
+                class="text-decoration-none"
+                href="https://www.youtube.com/user/katrinasmartmandarin"
+                target="_blank"
+              >
+                <v-icon-stub
+                  color="teal"
+                  small=""
+                >
+                  open_in_new
+                </v-icon-stub>
+              </a>
+            </span>
+          </v-list-item-title-stub>
+           
+          <v-list-item-subtitle-stub>
+            SMART Mandarin produces consistent videos teaching you common daily use mandarin!
+          </v-list-item-subtitle-stub>
+        </v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-divider-stub />
+      <v-list-item-stub
+        activeclass=""
+        tag="div"
+      >
+        <v-list-item-content-stub>
+          <v-list-item-title-stub>
+            <span>
+              <v-icon-stub>
+                horizontal_rule 
+              </v-icon-stub>
+               
+              <span
+                class="font-weight-bold title"
+              >
+                Travel China Guide
+                
+              </span>
+               
+              <v-icon-stub>
+                horizontal_rule
+              </v-icon-stub>
+               
+              <a
+                class="text-decoration-none"
+                href="https://www.travelchinaguide.com/"
+                target="_blank"
+              >
+                <v-icon-stub
+                  color="teal"
+                  small=""
+                >
+                  open_in_new
+                </v-icon-stub>
+              </a>
+            </span>
+          </v-list-item-title-stub>
+           
+          <v-list-item-subtitle-stub>
+            Need some ideas on where to visit in China? Trains, flights, group tours all in one site!
+          </v-list-item-subtitle-stub>
+        </v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-divider-stub />
+      <v-list-item-stub
+        activeclass=""
+        tag="div"
+      >
+        <v-list-item-content-stub>
+          <v-list-item-title-stub>
+            <span>
+              <v-icon-stub>
+                horizontal_rule 
+              </v-icon-stub>
+               
+              <span
+                class="font-weight-bold title"
+              >
+                China Highlights
+                
+              </span>
+               
+              <v-icon-stub>
+                horizontal_rule
+              </v-icon-stub>
+               
+              <a
+                class="text-decoration-none"
+                href="https://www.chinahighlights.com/travelguide/"
+                target="_blank"
+              >
+                <v-icon-stub
+                  color="teal"
+                  small=""
+                >
+                  open_in_new
+                </v-icon-stub>
+              </a>
+            </span>
+          </v-list-item-title-stub>
+           
+          <v-list-item-subtitle-stub>
+            Check out their travel guides, top destinations to visit. Beautiful photos alongside great content!
+          </v-list-item-subtitle-stub>
+        </v-list-item-content-stub>
+      </v-list-item-stub>
+    </v-list-stub>
+  </v-container-stub>
+</application-layout-stub>
+`;

@@ -1,7 +1,14 @@
 <template>
   <div class="ma-4 pa-4">
     <v-card>
-      <v-navigation-drawer app expand-on-hover mini-variant-width="60" clipped>
+      <v-navigation-drawer
+        data-testid="navigation-drawer"
+        class="navigation-drawer"
+        app
+        expand-on-hover
+        mini-variant-width="60"
+        clipped
+      >
         <v-list>
           <v-list-item class="px-2">
             <v-list-item-avatar
@@ -37,37 +44,67 @@
         <v-divider />
 
         <v-list nav dense>
-          <v-list-item link :to="{ name: 'Dashboard' }">
+          <v-list-item
+            data-testid="nav-drawer-dashboard-link"
+            class="nav-drawer-dashboard-link"
+            link
+            :to="{ name: 'Dashboard' }"
+          >
             <v-list-item-icon>
               <v-icon>dashboard</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item>
-          <v-list-item link :to="{ name: 'Profile' }">
+          <v-list-item
+            data-testid="nav-drawer-profile-link"
+            class="nav-drawer-profile-link"
+            link
+            :to="{ name: 'Profile' }"
+          >
             <v-list-item-icon>
               <v-icon>person</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
-          <v-list-item link :to="{ name: 'TravelChina' }">
+          <v-list-item
+            data-testid="nav-drawer-travel-link"
+            class="nav-drawer-travel-link"
+            link
+            :to="{ name: 'TravelChina' }"
+          >
             <v-list-item-icon>
               <v-icon>map</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Travel China</v-list-item-title>
           </v-list-item>
-          <v-list-item link :to="{ name: 'Resources' }">
+          <v-list-item
+            data-testid="nav-drawer-resources-link"
+            class="nav-drawer-resources-link"
+            link
+            :to="{ name: 'Resources' }"
+          >
             <v-list-item-icon>
               <v-icon>folder</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Resources</v-list-item-title>
           </v-list-item>
-          <v-list-item link :to="{ name: 'Code' }">
+          <v-list-item
+            data-testid="nav-drawer-code-link"
+            class="nav-drawer-code-link"
+            link
+            :to="{ name: 'Code' }"
+          >
             <v-list-item-icon>
               <v-icon>code</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Code</v-list-item-title>
           </v-list-item>
-          <v-list-item link @click="handleLogout">
+          <v-list-item
+            data-testid="nav-drawer-logout-link"
+            class="nav-drawer-logout-link"
+            link
+            @click="handleLogout"
+          >
             <v-list-item-icon>
               <v-icon>logout</v-icon>
             </v-list-item-icon>
