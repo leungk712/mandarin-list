@@ -1,5 +1,5 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
-import Dictionary from "@/views/dictionary/Dictionary.vue";
+import NavigationDrawer from "@/components/layouts/NavigationDrawer.vue";
 import Vue from "vue";
 import Vuex from "vuex";
 import Vuetify from "vuetify";
@@ -20,13 +20,13 @@ const actions = {};
 
 const mockStore = {};
 
-describe('Dictionary', () => {
+describe('NavigationDrawer', () => {
     let wrapper;
     const store = new Vuex.Store({
         modules: mockStore
     });
     const mountFunction = (options, store = mockStore) => {
-        return shallowMount(Dictionary, {
+        return shallowMount(NavigationDrawer, {
            attachTo: elem,
            localVue,
            store,

@@ -1,5 +1,5 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
-import Dictionary from "@/views/dictionary/Dictionary.vue";
+import ApplicationLayout from "@/components/layouts/ApplicationLayout.vue";
 import Vue from "vue";
 import Vuex from "vuex";
 import Vuetify from "vuetify";
@@ -20,13 +20,13 @@ const actions = {};
 
 const mockStore = {};
 
-describe('Dictionary', () => {
+describe('ApplicationLayout', () => {
     let wrapper;
     const store = new Vuex.Store({
         modules: mockStore
     });
     const mountFunction = (options, store = mockStore) => {
-        return shallowMount(Dictionary, {
+        return shallowMount(ApplicationLayout, {
            attachTo: elem,
            localVue,
            store,

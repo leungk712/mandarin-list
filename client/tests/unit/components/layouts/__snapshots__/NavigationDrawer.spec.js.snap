@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationDrawer template should match snapshot 1`] = `
+<div
+  class="ma-4 pa-4"
+>
+  <v-card-stub
+    loaderheight="4"
+    tag="div"
+  >
+    <v-navigation-drawer-stub
+      app="true"
+      class="navigation-drawer"
+      clipped="true"
+      data-testid="navigation-drawer"
+      expandonhover="true"
+      height="100vh"
+      minivariantwidth="60"
+      mobilebreakpoint="1264"
+      src=""
+      tag="nav"
+      width="256"
+    >
+      <v-list-stub
+        tag="div"
+      >
+        <v-list-item-stub
+          activeclass=""
+          class="px-2"
+          tag="div"
+        >
+          <!---->
+        </v-list-item-stub>
+         
+        <v-list-item-stub
+          activeclass=""
+          tag="div"
+        >
+          <!---->
+        </v-list-item-stub>
+         
+        <v-list-item-stub
+          activeclass=""
+          tag="div"
+        >
+          <v-list-item-content-stub>
+            <v-list-item-title-stub>
+              China 
+              <v-icon-stub
+                small=""
+              >
+                schedule
+              </v-icon-stub>
+              :
+              
+            </v-list-item-title-stub>
+          </v-list-item-content-stub>
+        </v-list-item-stub>
+      </v-list-stub>
+       
+      <v-divider-stub />
+       
+      <v-list-stub
+        dense="true"
+        nav="true"
+        tag="div"
+      >
+        <v-list-item-stub
+          activeclass=""
+          class="nav-drawer-dashboard-link"
+          data-testid="nav-drawer-dashboard-link"
+          link="true"
+          tag="div"
+          to="[object Object]"
+        >
+          <v-list-item-icon-stub>
+            <v-icon-stub>
+              dashboard
+            </v-icon-stub>
+          </v-list-item-icon-stub>
+           
+          <v-list-item-title-stub>
+            Dashboard
+          </v-list-item-title-stub>
+        </v-list-item-stub>
+         
+        <v-list-item-stub
+          activeclass=""
+          class="nav-drawer-profile-link"
+          data-testid="nav-drawer-profile-link"
+          link="true"
+          tag="div"
+          to="[object Object]"
+        >
+          <v-list-item-icon-stub>
+            <v-icon-stub>
+              person
+            </v-icon-stub>
+          </v-list-item-icon-stub>
+           
+          <v-list-item-title-stub>
+            Profile
+          </v-list-item-title-stub>
+        </v-list-item-stub>
+         
+        <v-list-item-stub
+          activeclass=""
+          class="nav-drawer-travel-link"
+          data-testid="nav-drawer-travel-link"
+          link="true"
+          tag="div"
+          to="[object Object]"
+        >
+          <v-list-item-icon-stub>
+            <v-icon-stub>
+              map
+            </v-icon-stub>
+          </v-list-item-icon-stub>
+           
+          <v-list-item-title-stub>
+            Travel China
+          </v-list-item-title-stub>
+        </v-list-item-stub>
+         
+        <v-list-item-stub
+          activeclass=""
+          class="nav-drawer-resources-link"
+          data-testid="nav-drawer-resources-link"
+          link="true"
+          tag="div"
+          to="[object Object]"
+        >
+          <v-list-item-icon-stub>
+            <v-icon-stub>
+              folder
+            </v-icon-stub>
+          </v-list-item-icon-stub>
+           
+          <v-list-item-title-stub>
+            Resources
+          </v-list-item-title-stub>
+        </v-list-item-stub>
+         
+        <v-list-item-stub
+          activeclass=""
+          class="nav-drawer-code-link"
+          data-testid="nav-drawer-code-link"
+          link="true"
+          tag="div"
+          to="[object Object]"
+        >
+          <v-list-item-icon-stub>
+            <v-icon-stub>
+              code
+            </v-icon-stub>
+          </v-list-item-icon-stub>
+           
+          <v-list-item-title-stub>
+            Code
+          </v-list-item-title-stub>
+        </v-list-item-stub>
+         
+        <v-list-item-stub
+          activeclass=""
+          class="nav-drawer-logout-link"
+          data-testid="nav-drawer-logout-link"
+          link="true"
+          tag="div"
+        >
+          <v-list-item-icon-stub>
+            <v-icon-stub>
+              logout
+            </v-icon-stub>
+          </v-list-item-icon-stub>
+           
+          <v-list-item-title-stub>
+            Logout
+          </v-list-item-title-stub>
+        </v-list-item-stub>
+      </v-list-stub>
+    </v-navigation-drawer-stub>
+  </v-card-stub>
+</div>
+`;

@@ -1,5 +1,8 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 import { mockUser } from "../../mocks/mock-user";
+import { mockMandarinList } from "../../mocks/mock-mandarin-list";
+import { mockStories } from "../../mocks/mock-stories";
+import { mockCategories } from "../../mocks/mock-categories-list";
 import Profile from "@/views/navigation/Profile.vue";
 import Vue from "vue";
 import Vuex from "vuex";
@@ -20,6 +23,12 @@ document.body.setAttribute("data-app", true);
 const actions = {};
 
 const mockStore = {
+    categories: {
+        state: {
+            categoriesList: mockCategories
+        },
+        actions
+    },
     user: {
         state: {
             accessToken: "Bearer et2085ofgu",
@@ -31,7 +40,15 @@ const mockStore = {
         actions
     },
     posts: {
-        state: {},
+        state: {
+            mandarinList: mockMandarinList
+        },
+        actions
+    },
+    stories: {
+        state: {
+            storiesList: mockStories
+        },
         actions
     }
 };

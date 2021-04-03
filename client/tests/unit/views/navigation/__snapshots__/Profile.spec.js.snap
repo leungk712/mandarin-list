@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile template should match snapshot 1`] = `
+<application-layout-stub>
+  <v-container-stub
+    class="container-border profile-container"
+    tag="div"
+  >
+    <h1>
+      <v-icon-stub
+        class="pb-1"
+        large=""
+      >
+        
+        person_outline
+      
+      </v-icon-stub>
+      
+      My Profile
+    
+    </h1>
+     
+    <p>
+      Member since February 20th, 2021
+    </p>
+     
+    <v-divider-stub />
+     
+    <v-row-stub
+      class="my-6"
+      tag="div"
+    >
+      <v-col-stub
+        cols="12 py-0"
+        tag="div"
+      >
+        <v-row-stub
+          class="ml-1 mb-2"
+          tag="div"
+        >
+          <v-icon-stub
+            class="mr-1"
+          >
+            analytics
+          </v-icon-stub>
+           
+          <h2>
+            Statistics
+          </h2>
+        </v-row-stub>
+      </v-col-stub>
+       
+      <v-col-stub
+        cols="6"
+        tag="div"
+      >
+        <v-card-stub
+          class="mx-auto"
+          color="#eee"
+          loaderheight="4"
+          maxwidth="600"
+          tag="div"
+        >
+          <v-card-title-stub>
+            <v-icon-stub
+              large=""
+              left=""
+            >
+              
+              mdi-ideogram-cjk
+            
+            </v-icon-stub>
+             
+            <span
+              class="title font-weight-light"
+            >
+              Characters
+            </span>
+          </v-card-title-stub>
+           
+          <v-card-text-stub
+            class="profile-characters-card-text display-1 font-weight-bold text-center"
+            data-testid="profile-characters-card-text"
+            datatestid="profile-characters-card-text"
+          >
+            
+            6 characters
+          
+          </v-card-text-stub>
+        </v-card-stub>
+      </v-col-stub>
+       
+      <v-col-stub
+        cols="6"
+        tag="div"
+      >
+        <v-card-stub
+          class="mx-auto"
+          color="#26c6da"
+          dark="true"
+          loaderheight="4"
+          maxwidth="600"
+          tag="div"
+        >
+          <v-card-title-stub>
+            <v-icon-stub
+              large=""
+              left=""
+            >
+              
+              mdi-format-list-bulleted
+            
+            </v-icon-stub>
+             
+            <span
+              class="title font-weight-light"
+            >
+              Categories
+            </span>
+          </v-card-title-stub>
+           
+          <v-card-text-stub
+            class="profile-categories-card-text display-1 font-weight-bold text-center"
+            data-testid="profile-categories-card-text"
+            datatestid="profile-categories-card-text"
+          >
+            
+            3 categories
+          
+          </v-card-text-stub>
+        </v-card-stub>
+      </v-col-stub>
+       
+      <v-col-stub
+        cols="6"
+        tag="div"
+      >
+        <v-card-stub
+          class="mx-auto"
+          color="#BA68C8"
+          dark="true"
+          loaderheight="4"
+          maxwidth="600"
+          tag="div"
+        >
+          <v-card-title-stub>
+            <v-icon-stub
+              large=""
+              left=""
+            >
+              
+              mdi-book-open-variant
+            
+            </v-icon-stub>
+             
+            <span
+              class="title font-weight-light"
+            >
+              Stories
+            </span>
+          </v-card-title-stub>
+           
+          <v-card-text-stub
+            class="profile-stories-card-text display-1 font-weight-bold text-center"
+            data-testid="profile-stories-card-text"
+            datatestid="profile-stories-card-text"
+          >
+            
+            3 stories
+          
+          </v-card-text-stub>
+        </v-card-stub>
+      </v-col-stub>
+       
+      <v-col-stub
+        cols="6"
+        tag="div"
+      >
+        <v-card-stub
+          class="mx-auto"
+          color="#F06292"
+          dark="true"
+          loaderheight="4"
+          maxwidth="600"
+          tag="div"
+        >
+          <v-card-title-stub>
+            <v-icon-stub
+              large=""
+              left=""
+            >
+              
+              favorite_border
+            
+            </v-icon-stub>
+             
+            <span
+              class="title font-weight-light"
+            >
+              Favorites
+            </span>
+          </v-card-title-stub>
+           
+          <v-card-text-stub
+            class="profile-favorites-card-text display-1 font-weight-bold text-center"
+            data-testid="profile-favorites-card-text"
+            datatestid="profile-favorites-card-text"
+          >
+            
+            4 favorites
+          
+          </v-card-text-stub>
+        </v-card-stub>
+      </v-col-stub>
+    </v-row-stub>
+  </v-container-stub>
+</application-layout-stub>
+`;

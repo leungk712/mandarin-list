@@ -1,5 +1,8 @@
 import CharacterCard from "@/components/CharacterCard.vue";
 import { shallowMount, createLocalVue } from "@vue/test-utils";
+import { mockCategories } from "../mocks/mock-categories-list";
+import { mockMandarinList } from "../mocks/mock-mandarin-list";
+import { mockUser } from "../mocks/mock-user";
 import Vue from "vue";
 import Vuetify from "vuetify";
 import Vuex from "vuex";
@@ -22,18 +25,33 @@ describe("CharacterCard", () => {
   const actions = {
     clearSelectedMandarin: jest.fn(),
     getIndividualCharacter: jest.fn(),
+    handleAddMandarinExample: jest.fn(),
+    handleDeleteMandarinExample: jest.fn(),
     updateMandarinCharacter: jest.fn()
   };
   const store = new Vuex.Store({
     modules: {
+      categories: {
+        state: {
+          categoriesList: mockCategories
+        },
+        actions
+      },
       posts: {
         state: {
           loadingState: [],
-          mandarinList: [],
-          selectedMandarin: {}
+          mandarinList: mockMandarinList,
+          selectedMandarin: null,
+          selectedMandarinExamples: []
         },
         actions,
         namespaced: true
+      },
+      user: {
+        state: {
+          user: mockUser
+        },
+        actions
       }
     }
   });
