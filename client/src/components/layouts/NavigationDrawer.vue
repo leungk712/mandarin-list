@@ -97,7 +97,7 @@
             <v-list-item-icon>
               <v-icon>code</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Code</v-list-item-title>
+            <v-list-item-title>About</v-list-item-title>
           </v-list-item>
           <v-list-item
             data-testid="nav-drawer-logout-link"

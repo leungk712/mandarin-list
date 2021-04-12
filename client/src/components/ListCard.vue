@@ -34,7 +34,7 @@
               size="30"
               @click="handleRating(character)"
             >
-              favorite_border
+              {{ character.starred ? 'favorite' : 'favorite_border' }}
             </v-icon>
           </v-row>
 
@@ -43,7 +43,7 @@
           <v-chip
             v-for="(category, idx) in character.categories"
             :key="idx"
-            class="mx-1"
+            class="ma-1"
             color="deep-purple lighten-4"
           >
             {{ category }}

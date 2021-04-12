@@ -1,6 +1,6 @@
 <template>
   <application-layout>
-    <v-container class="container-border profile-container">
+    <v-container class="container-border profile-container" v-if="userInfo">
       <h1>
         <v-icon large class="pb-1">
           person_outline
@@ -138,7 +138,8 @@ export default class Profile extends Vue {
   }
 
   get favorites() {
-    return this.posts.mandarinList.filter(characters => characters.starred).length;
+    return this.posts.mandarinList.filter(characters => characters.starred)
+      .length;
   }
 
   // ===== Lifecycle Hooks ===== //
@@ -146,7 +147,7 @@ export default class Profile extends Vue {
 </script>
 
 <style scoped>
-  .profile-container {
-    width: 85%;
-  }
+.profile-container {
+  width: 85%;
+}
 </style>

@@ -29,14 +29,34 @@ exports[`NavigationDrawer template should match snapshot 1`] = `
           class="px-2"
           tag="div"
         >
-          <!---->
+          <v-list-item-avatar-stub
+            class="mr-2 white--text"
+            size="48"
+            tile="true"
+          >
+            
+            TU
+          
+          </v-list-item-avatar-stub>
         </v-list-item-stub>
          
         <v-list-item-stub
           activeclass=""
           tag="div"
         >
-          <!---->
+          <v-list-item-content-stub>
+            <v-list-item-title-stub
+              class="title"
+            >
+              
+              Test User
+            
+            </v-list-item-title-stub>
+             
+            <v-list-item-subtitle-stub>
+              testuser@email.com
+            </v-list-item-subtitle-stub>
+          </v-list-item-content-stub>
         </v-list-item-stub>
          
         <v-list-item-stub
@@ -156,7 +176,7 @@ exports[`NavigationDrawer template should match snapshot 1`] = `
           </v-list-item-icon-stub>
            
           <v-list-item-title-stub>
-            Code
+            About
           </v-list-item-title-stub>
         </v-list-item-stub>
          

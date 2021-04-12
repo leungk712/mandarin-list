@@ -20,7 +20,7 @@
       @click="handleLogin"
       outlined
     >
-      Login
+      Login/Register
     </v-btn>
   </v-app-bar>
 </template>
@@ -41,7 +41,6 @@ const user = namespace(UserModule.name);
 export default class ApplicationToolbar extends Vue {
   // ===== Store ===== //
   @State("user") public user!: UserState;
-  @user.Action("logout") public logout!: () => void;
 
   // ===== Data ===== //
 
@@ -66,16 +65,6 @@ export default class ApplicationToolbar extends Vue {
 
   get nonDashboard(): boolean {
     return this.$route.name === "Home";
-  }
-  get userInfo() {
-    return this.user.user;
-  }
-  get userInitials() {
-    return this.userInfo
-      ? `${this.userInfo.firstName.charAt(0)}${this.userInfo.lastName.charAt(
-          0
-        )}`
-      : "";
   }
 }
 </script>

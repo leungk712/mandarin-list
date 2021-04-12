@@ -3,7 +3,7 @@
     <v-dialog
       v-model="displayModal"
       persistent
-      max-width="32%"
+      max-width="50%"
       @click:outside="handleCancel"
     >
       <v-card>
@@ -35,7 +35,7 @@
             <v-btn
               data-testid="modal-confirm-btn"
               class="modal-confirm-btn"
-              color="green darken-1"
+              color="primary lighten-1"
               text
               outlined
               :loading="loading"

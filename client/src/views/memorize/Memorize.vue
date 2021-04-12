@@ -3,9 +3,30 @@
     <v-container class="container-border memorize-container mb-6">
       <h1 class="display-1 my-4">Memorize!</h1>
       <p>Test your vocabulary by hovering over a card to see the meaning!</p>
-      <v-divider />
+      <v-divider class="my-2" />
+      <v-row class="mt-1">
+          <v-col cols="6">
+            <v-select
+                data-testid="memorize-categories-menu"
+                class="memorize-category-menu my-0 py-0"
+                :class="$vuetify.breakpoint.xl ? 'mx-8' : ''"
+                v-model="selectedCategory"
+                :items="categories.categoriesList"
+                label="Select one or more categories to view the associated characters"
+                outlined
+                chips
+                multiple
+                item-value="value"
+                item-text="name"
+            />
+          </v-col>
+      </v-row>
       <v-row>
+        <v-col v-if="!charactersList.length">
+            <h2 class="text-center">No characters found. Search again.</h2>
+        </v-col>
         <v-col
+            v-else
             v-for="(character) in charactersList"
             :key="character._id"
             sm="6"
@@ -60,8 +81,11 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace, State } from "vuex-class";
-import { PostsState, SelectedCharacter } from "@/models";
+import { CategoriesState, PostsState, SelectedCharacter } from "@/models";
+import CategoriesModule from "@/store/modules/categories";
 import PostsModule from "@/store/modules/posts";
+
+const categories = namespace(CategoriesModule.name);
 const posts = namespace(PostsModule.name);
 
 @Component({
@@ -69,14 +93,22 @@ const posts = namespace(PostsModule.name);
 })
 export default class Memorize extends Vue {
   // ===== Store ===== //
+  @State("categories") public categories!: CategoriesState;
   @State("posts") public posts!: PostsState;
 
   // ===== Data ===== //
+  public selectedCategory = [];
 
   // ===== Methods ===== //
 
   // ===== Computed ===== //
 get charactersList(): SelectedCharacter[] {
+    if (this.selectedCategory && this.selectedCategory.length) {
+      return this.posts.mandarinList.filter(cards =>
+        this.selectedCategory.some(category => cards.categories.includes(category))
+      ).sort(() => 0.5 - Math.random());
+    }
+
     return this.posts.mandarinList.sort(() => 0.5 - Math.random());
   }
 

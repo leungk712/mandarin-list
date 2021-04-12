@@ -4,6 +4,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Vuetify from "vuetify";
 import { mockMandarinList } from "../../mocks/mock-mandarin-list";
+import { mockCategoriesList } from "../../mocks/mock-categories-list";
 
 Vue.use(Vuetify);
 
@@ -20,6 +21,12 @@ document.body.setAttribute("data-app", true);
 const actions = {};
 
 const mockStore = {
+    categories: {
+        state: {
+            categoriesList: mockCategoriesList
+        },
+        actions
+    },
     posts: {
         state: {
             mandarinList: mockMandarinList

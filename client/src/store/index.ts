@@ -3,6 +3,8 @@ import axios from "axios";
 import Vue from "vue";
 import Vuex, { StoreOptions } from "vuex";
 import createPersistedState from "vuex-persistedstate";
+import router from "@/router";
+import { userActions } from "@/store/modules/user";
 
 // ===== Module Imports ===== //
 import AlertModule from "@/store/modules/alert";
@@ -14,7 +16,7 @@ import UserModule from "@/store/modules/user";
 
 Vue.use(Vuex);
 
-const store: StoreOptions<RootState> = {
+export const store: StoreOptions<RootState> = {
   plugins: [createPersistedState()],
   modules: {
     alert: AlertModule,
@@ -28,11 +30,25 @@ const store: StoreOptions<RootState> = {
 
 export default new Vuex.Store<RootState>(store);
 
-if (sessionStorage.getItem("access_token")) {
-  axios.defaults.headers.common.Authorization = sessionStorage.getItem(
-    "access_token"
-  );
+const accessToken = sessionStorage.getItem("access_token");
+
+if (accessToken) {
+  axios.defaults.headers.common.Authorization = accessToken;
 }
+
+axios.interceptors.response.use((response) => {
+  return response;
+}, async (error) => {
+  if (!error.response) {
+    router.push({ name: "AppLogin" });
+  }
+  const { response: { status } } = error;
+  if (status === 403) {
+    router.push({ name: "AppLogin" });
+    
+  }
+  return Promise.reject(error);
+});
 
 // ===== Axios Setup ===== //
 axios.defaults.baseURL = process.env.VUE_APP_API_HOST;
