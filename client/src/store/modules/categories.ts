@@ -20,7 +20,6 @@ export const categoriesActions: ActionTree<CategoriesState, RootState> = {
         commit("removeFromLoadingState", "getting user categories...");
       })
       .catch((err) => {
-        console.info(err.config);
         dispatch("snackbar/errorStatus", err.response.data.message, {
           root: true
         });

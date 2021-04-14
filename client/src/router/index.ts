@@ -24,6 +24,7 @@ Vue.use(VueRouter);
 
 import CharacterRoute from "@/router/routes/character";
 import DashboardRoute from "@/router/routes/dashboard";
+import ErrorRoute from "@/router/routes/error";
 import HomeRoute from "@/router/routes/home";
 import LoginRoute from "@/router/routes/login";
 import NavigationRoute from "@/router/routes/navigation";
@@ -31,6 +32,7 @@ import NavigationRoute from "@/router/routes/navigation";
 const routes: Array<RouteConfig> = [
   ...CharacterRoute,
   ...DashboardRoute,
+  ...ErrorRoute,
   ...HomeRoute,
   ...LoginRoute,
   ...NavigationRoute
