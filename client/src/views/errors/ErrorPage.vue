@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import ApplicationToolbar from "@/components/layouts/ApplicationToolbar"
+import ApplicationToolbar from "@/components/layouts/ApplicationToolbar.vue"
 
 @Component({
     name: "ErrorPage",
