@@ -40,8 +40,12 @@ if (accessToken) {
 axios.interceptors.response.use((response) => {
   return response;
 }, async (error) => {
-  store.dispatch("user/logout", null, { root: true });
-  router.push({ name: "ErrorPage" });
+  const { response: { status } } = error;
+  if(!error.response || status === 403) {
+    await router.push({ name: "ErrorPage" });
+    store.dispatch("user/logout", null, { root: true });
+  }
+
   return Promise.reject(error);
 });
 
