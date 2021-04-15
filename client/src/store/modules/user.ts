@@ -28,6 +28,7 @@ export const userActions: ActionTree<UserState, RootState> = {
 
   login: ({ commit, dispatch }, payload: LoginPayload) => {
     commit("addToLoadingState", "attemping to log in...");
+    dispatch("snackbar/clearSnackbarMessage", null, { root: true });
     return axios
       .post(`${process.env.VUE_APP_API_HOST}/users/login`, payload)
       .then((resp: AxiosResponse) => {
