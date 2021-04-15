@@ -34,7 +34,7 @@
               size="30"
               @click="handleRating(character)"
             >
-              favorite_border
+              {{ character.starred ? 'favorite' : 'favorite_border' }}
             </v-icon>
           </v-row>
 

@@ -22,7 +22,7 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ status: 400, message: "Invalid credentials. Please try again.", error: null });
         }
 
-        const token = jwt.sign({ email: existingUser.email, id: existingUser._id, }, secret, { expiresIn: "1h"});
+        const token = jwt.sign({ email: existingUser.email, id: existingUser._id, }, secret, { expiresIn: 3600 });
 
         res.status(200).json({ status: 200, message: "Log in successful!", user: existingUser, token });
     } catch(err) {
@@ -58,7 +58,7 @@ const registerUser = async (req, res) => {
 
         const user = await User.create({ firstName, lastName, email, password: hashedPassword });
 
-        const token = jwt.sign({ ...user }, secret, { expiresIn: "1h" });
+        const token = jwt.sign({ ...user }, secret, { expiresIn: 3600 });
 
         res.status(200).json({ status: 200 });
     } catch(err) {

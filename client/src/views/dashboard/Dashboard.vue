@@ -3,9 +3,9 @@
     <v-container class="mb-6 dashboard-container">
       <v-card>
         <v-toolbar flat color="blue-grey lighten-2" dark>
-          <v-toolbar-title>Dashboard</v-toolbar-title>
+          <v-toolbar-title>My Dashboard</v-toolbar-title>
         </v-toolbar>
-        <v-tabs vertical background-color="blue-grey lighten-4">
+        <v-tabs background-color="blue-grey lighten-4" grow>
           <v-tab>
             <v-icon left>mdi-ideogram-cjk</v-icon>
             Characters

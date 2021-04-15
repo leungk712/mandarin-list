@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Translate template should match snapshot 1`] = `
+<div>
+  <v-container-stub
+    class="translate-container mb-6"
+    fluid="true"
+    tag="div"
+  >
+    <v-row-stub
+      class="mt-6"
+      tag="div"
+    >
+      <h4>
+        
+        Inspired by Google Translate, type in your simplified chinese
+        characters and we'll produce a pinyin version
+      
+      </h4>
+    </v-row-stub>
+     
+    <v-row-stub
+      align="center"
+      class="translate-row mt-6"
+      justify="space-around"
+      tag="div"
+    >
+      <v-col-stub
+        cols="6"
+        tag="div"
+      >
+        <h4>
+          Simplified Chinese Characters | 简体中文
+        </h4>
+         
+        <v-textarea-stub
+          backgroundcolor=""
+          class="translate-simplified-textarea"
+          clearicon="$clear"
+          data-testid="translate-simplified-textarea"
+          errorcount="1"
+          errormessages=""
+          loaderheight="2"
+          messages=""
+          noresize="true"
+          outlined="true"
+          placeholder="你好..."
+          rowheight="24"
+          rows="4"
+          rules=""
+          successmessages=""
+          type="text"
+          value=""
+        />
+      </v-col-stub>
+       
+      <v-col-stub
+        cols="6"
+        tag="div"
+      >
+        <h4>
+          Pinyin | 拼音
+        </h4>
+         
+        <v-textarea-stub
+          backgroundcolor=""
+          class="translate-result-textarea"
+          clearicon="$clear"
+          data-testid="translate-result-textarea"
+          errorcount="1"
+          errormessages=""
+          loaderheight="2"
+          messages=""
+          noresize="true"
+          outlined="true"
+          placeholder="Nǐ hǎo..."
+          readonly="true"
+          rowheight="24"
+          rows="4"
+          rules=""
+          successmessages=""
+          type="text"
+          value=""
+        />
+      </v-col-stub>
+    </v-row-stub>
+  </v-container-stub>
+</div>
+`;

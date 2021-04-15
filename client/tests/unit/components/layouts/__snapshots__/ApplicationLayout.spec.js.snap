@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationLayout template should match snapshot 1`] = `
+<div
+  id="layout--application"
+>
+  <applicationtoolbar-stub />
+   
+  <navigationdrawer-stub />
+   
+  <v-main-stub
+    tag="main"
+  />
+   
+  <applicationsnackbar-stub />
+</div>
+`;

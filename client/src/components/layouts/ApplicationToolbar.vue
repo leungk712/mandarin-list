@@ -16,15 +16,16 @@
     <v-spacer />
     <h3 class="white--text font-weight-bold ml-4">Mandarin List</h3>
     <v-spacer />
-    <v-icon
+    <v-btn
       v-if="nonDashboard"
       data-testid="navbar-login-btn"
       class="navbar-login-btn"
       color="white"
       @click="handleLogin"
+      outlined
     >
-      login
-    </v-icon>
+      Login/Register
+    </v-btn>
   </v-app-bar>
 </template>
 
@@ -44,7 +45,6 @@ const user = namespace(UserModule.name);
 export default class ApplicationToolbar extends Vue {
   // ===== Store ===== //
   @State("user") public user!: UserState;
-  @user.Action("logout") public logout!: () => void;
 
   // ===== Data ===== //
 
@@ -69,16 +69,6 @@ export default class ApplicationToolbar extends Vue {
 
   get nonDashboard(): boolean {
     return this.$route.name === "Home";
-  }
-  get userInfo() {
-    return this.user.user;
-  }
-  get userInitials() {
-    return this.userInfo
-      ? `${this.userInfo.firstName.charAt(0)}${this.userInfo.lastName.charAt(
-          0
-        )}`
-      : "";
   }
 }
 </script>

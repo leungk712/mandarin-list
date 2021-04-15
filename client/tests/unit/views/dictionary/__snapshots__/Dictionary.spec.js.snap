@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dictionary template should match snapshot 1`] = `
+<div>
+  <v-container-stub
+    class="container-border dictionary-container mb-6"
+    tag="div"
+  >
+    <p
+      class="display-1 my-4"
+    >
+      Chinese Dictionary
+    </p>
+     
+    <v-divider-stub />
+     
+    <p
+      class="my-4 title"
+    >
+      
+      Due to the dictionary package utilized being too large, resulting in decreased application performance,
+the dictionary is on a separate website which you can click below to access. Please be patient with the loading time...
+    
+    </p>
+     
+    <v-row-stub
+      class="my-6"
+      justify="center"
+      tag="div"
+    >
+      <v-btn-stub
+        activeclass=""
+        class="dictionary-link-btn"
+        color="blue lighten-1 white--text"
+        data-testid="dictionary-link-btn"
+        large="true"
+        tag="button"
+        type="button"
+      >
+        <v-icon-stub
+          class="mr-2"
+        >
+          open_in_new
+        </v-icon-stub>
+         
+        <a
+          class="text-decoration-none white--text"
+          href="https://mandarin-list-dictionary.netlify.com"
+          target="_blank"
+        >
+          
+        Dictionary
+        
+        </a>
+      </v-btn-stub>
+    </v-row-stub>
+     
+    <v-img-stub
+      options="[object Object]"
+      position="center center"
+      src="@/assets/misc/mandarin-list-dictionary.png"
+      transition="fade-transition"
+    />
+  </v-container-stub>
+</div>
+`;

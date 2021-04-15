@@ -1,7 +1,6 @@
 import { RootState, SnackbarState } from "@/models";
 import { ActionTree, MutationTree } from "vuex";
 import { AxiosError } from "axios";
-import { userActions } from "@/store/modules/user";
 
 export const processErrorMessage = (error: AxiosError | string) => {
   let errorMessage = "Uh oh! An error occurred.";

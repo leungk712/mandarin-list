@@ -25,21 +25,29 @@ export const vocabItems = [
   {
     id: 1,
     character: "你好",
+    pinyin: "Nǐ hǎo",
+    english: "Hello",
     backgroundColor: "blue lighten-2"
   },
   {
     id: 2,
     character: "北京",
+    pinyin: "Běijīng",
+    english: "Beijing",
     backgroundColor: "purple lighten-2"
   },
   {
     id: 3,
     character: "朋友",
+    pinyin: "Péngyǒu",
+    english: "Friend",
     backgroundColor: "red lighten-2"
   },
   {
     id: 4,
     character: "喜欢",
+    pinyin: "Xǐhuān",
+    english: "Like",
     backgroundColor: "teal lighten-3"
   },
   {
@@ -50,21 +58,29 @@ export const vocabItems = [
   {
     id: 6,
     character: "再见",
+    pinyin: "Zàijiàn",
+    english: "Goodbye",
     backgroundColor: "orange lighten-2"
   },
   {
     id: 7,
     character: "苹果",
+    pinyin: "Píngguǒ",
+    english: "Apple",
     backgroundColor: "yellow lighten-2"
   },
   {
     id: 8,
     character: "妈妈",
+    pinyin: "Māmā",
+    english: "Mom",
     backgroundColor: "green lighten-2"
   },
   {
     id: 9,
     character: "山",
+    pinyin: "Shān",
+    english: "Mountain",
     backgroundColor: "blue-grey lighten-2"
   }
 ];

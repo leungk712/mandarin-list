@@ -31,8 +31,8 @@ export const userActions: ActionTree<UserState, RootState> = {
     return axios
       .post(`${process.env.VUE_APP_API_HOST}/users/login`, payload)
       .then((resp: AxiosResponse) => {
-        commit("setUser", resp.data.user);
         commit("setLoginSuccess", resp.data);
+        commit("setUser", resp.data.user);
         dispatch("handleAvatarColor");
         dispatch("posts/getMandarinList", resp.data.user._id, { root: true });
         dispatch("categories/getCategories", resp.data.user._id, { root: true });
@@ -40,6 +40,7 @@ export const userActions: ActionTree<UserState, RootState> = {
         commit("removeFromLoadingState", "attemping to log in...");
       })
       .catch(err => {
+        
         dispatch("alert/errorStatus", err.response.data.message, {
           root: true
         });
@@ -53,6 +54,7 @@ export const userActions: ActionTree<UserState, RootState> = {
     dispatch("posts/handleResetPostsState", null, { root: true });
     dispatch("stories/handleResetStoriesState", null, { root: true });
     dispatch("categories/handleResetCategoriesState", null, { root: true });
+    dispatch("snackbar/clearSnackbarMessage", null, { root: true });
   },
 
   register: ({ commit, dispatch }, payload: RegisterPayload) => {
