@@ -36,8 +36,9 @@
                 {{ item.character }}
               </p>
             </v-col>
-            <v-col v-if="item.character === 'Welcome'" cols="12" class="text-center">
+            <v-col cols="12" class="text-center">
               <v-btn
+                v-if="item.character === 'Welcome'"
                 data-testid="landing-page-login-btn"
                 class="landing-page-login-btn"
                 color="purple lighten-1 white--text"
@@ -47,6 +48,7 @@
               >
                 Login or Register
               </v-btn>
+              <p v-else class="title">{{ item.pinyin }} | {{ item.english }}</p>
             </v-col>
             </v-row>
           </v-card>

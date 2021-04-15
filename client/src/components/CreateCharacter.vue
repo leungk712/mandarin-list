@@ -13,7 +13,11 @@
         justify="center"
         class="mt-3"
       >
-        <v-col sm="12" md="3" xl="2">
+        <v-col
+          sm="12"
+          md="3"
+          xl="2"
+        >
           <ValidationProvider
             mode="eager"
             :rules="'required'"
@@ -31,7 +35,11 @@
             />
           </ValidationProvider>
         </v-col>
-        <v-col sm="12" md="3" xl="2">
+        <v-col
+          sm="12"
+          md="3"
+          xl="2"
+        >
           <ValidationProvider
             mode="eager"
             :rules="'required'"
@@ -49,7 +57,11 @@
             />
           </ValidationProvider>
         </v-col>
-        <v-col sm="12" md="3" xl="2">
+        <v-col
+          sm="12"
+          md="3"
+          xl="2"
+        >
           <ValidationProvider
             mode="eager"
             :rules="'required'"
@@ -70,7 +82,11 @@
       </v-row>
     </ValidationObserver>
     <v-row align-content="center" justify="center">
-      <v-col sm="12" md="9" xl="6">
+      <v-col
+        sm="12"
+        md="9"
+        xl="6"
+      >
         <p class="font-weight-bold">Select 1 or more categories:</p>
         <v-select
           data-testid="new-example-category-menu"
@@ -87,7 +103,11 @@
       </v-col>
     </v-row>
     <v-row align-content="center" justify="center">
-      <v-col sm="12" md="9" xl="6">
+      <v-col
+        sm="12"
+        md="9"
+        xl="6"
+      >
         <p class="font-weight-bold">Add an example (optional):</p>
         <v-text-field
           data-testid="new-example-sentence-input"
@@ -110,7 +130,6 @@
         >
           <v-row>
             <v-col cols="10">
-
               <p class="title pt-1 my-auto">
                 <v-icon>chevron_right</v-icon>
                 {{ example.sentence }}
@@ -130,8 +149,16 @@
         </div>
       </v-col>
     </v-row>
-    <v-row justify="center" align-content="center" class="mt-4">
-      <v-col lg="9" xl="6" class="mr-6">
+    <v-row
+      justify="center"
+      align-content="center"
+      class="mt-4"
+    >
+      <v-col
+        lg="9"
+        xl="6"
+        class="mr-6"
+      >
         <v-row justify="end">
           <v-btn
             data-testid="add-example-btn"

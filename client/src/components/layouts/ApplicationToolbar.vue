@@ -1,5 +1,9 @@
 <template>
-  <v-app-bar color="#8bbf9f" max-height="10vh" app clipped-left>
+  <v-app-bar
+    color="#8bbf9f"
+    max-height="10vh"
+    app clipped-left
+  >
     <v-icon
       v-if="!nonDashboard"
       data-testid="navbar-home-btn"

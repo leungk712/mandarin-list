@@ -18,7 +18,10 @@
             >
               <v-row>
                 <v-col cols="6">
-                  <ValidationProvider rules="required" v-slot="{ errors }">
+                  <ValidationProvider
+                    rules="required"
+                    v-slot="{ errors }"
+                  >
                     <v-text-field
                       data-testid="register-first-name-input"
                       class="register-first-name-input"
@@ -31,7 +34,10 @@
                   </ValidationProvider>
                 </v-col>
                 <v-col cols="6">
-                  <ValidationProvider rules="required" v-slot="{ errors }">
+                  <ValidationProvider
+                    rules="required"
+                    v-slot="{ errors }"
+                  >
                     <v-text-field
                       data-testid="register-last-name-input"
                       class="register-last-name-input"
@@ -46,7 +52,10 @@
               </v-row>
               <v-row>
                 <v-col class="mt-0 pt-0">
-                  <ValidationProvider rules="required|email" v-slot="{ errors }">
+                  <ValidationProvider
+                    rules="required|email"
+                    v-slot="{ errors }"
+                  >
                     <v-text-field
                       data-testid="register-email-input"
                       class="register-email-input"
@@ -112,8 +121,15 @@
                 </v-row>
               </ValidationObserver>
             </v-form>
-            <v-form @submit.prevent="handleLoginRegister" v-else :key="'login-transition-key'">
-              <ValidationProvider rules="required|email" v-slot="{ errors }">
+            <v-form
+              v-else
+              @submit.prevent="handleLoginRegister"
+              :key="'login-transition-key'"
+            >
+              <ValidationProvider
+                rules="required|email"
+                v-slot="{ errors }"
+              >
                 <v-text-field
                   data-testid="login-email-input"
                   class="login-email-input"
@@ -125,7 +141,10 @@
                 />
               </ValidationProvider>
 
-              <ValidationProvider rules="required" v-slot="{ errors }">
+              <ValidationProvider
+                rules="required"
+                v-slot="{ errors }"
+              >
                 <v-text-field
                   data-testid="login-password-input"
                   class="login-password-input"

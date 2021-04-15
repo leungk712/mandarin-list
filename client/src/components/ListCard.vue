@@ -58,7 +58,6 @@
             color="teal accent-4"
             @click.native="handleReveal(idx)"
           >
-            {{ character.character }}
             Examples ({{ character.examples.length }} |
             {{ converter.toWords(character.examples.length) }})
           </v-btn>
