@@ -9,7 +9,6 @@
             <v-select
                 data-testid="memorize-categories-menu"
                 class="memorize-category-menu my-0 py-0"
-                :class="$vuetify.breakpoint.xl ? 'mx-8' : ''"
                 v-model="selectedCategory"
                 :items="categories.categoriesList"
                 label="Select one or more categories to view the associated characters"
